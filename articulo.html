@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Artículo | eParadise</title>
+    <link rel="icon" type="image/png" href="/img/icono.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <img src="/img/logosinfondo.png" alt="Logo" />
+      </a>
+      <nav class="navbar">
+        <a href="/" class="nav-logo" style="margin-right: 9px">
+          <img src="/img/icono.png" alt="Logo" />
+        </a>
+        <div class="nav-links">
+          <a href="/acerca">Acerca de</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="/fisicos">Físicos</a>
+              <a href="/digitales">Digitales</a>
+            </div>
+          </div>
+        </div>
+        <button id="search-trigger" class="search-btn" style="margin-left: 4px">
+          <i class="fas fa-search"></i>
+        </button>
+      </nav>
+    </header>
+
+    <main
+      style="background-color: white; padding: 80px 20px 40px; min-height: 60vh"
+    >
+      <div style="max-width: 800px; margin: 0 auto">
+        <h1
+          id="art-titulo"
+          style="
+            font-family: inherit !important;
+            color: #1a1a1a !important;
+            font-size: 30px !important;
+            text-align: center !important;
+            margin: 20px 0 30px 0 !important;
+            font-weight: 800 !important;
+            display: block !important;
+            width: 100% !important;
+          "
+        >
+          Cargando...
+        </h1>
+
+        <div style="text-align: center; margin-bottom: 30px">
+          <img
+            id="art-imagen"
+            src=""
+            alt=""
+            style="max-width: 350px; width: 100%; border-radius: 10px"
+          />
+        </div>
+
+        <article
+          id="art-cuerpo"
+          style="
+            color: #333;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            text-align: justify;
+            margin-bottom: 30px;
+          "
+        >
+          <!-- dynamic content -->
+        </article>
+
+        <div style="text-align: center; margin-bottom: 25px">
+          <a
+            id="art-boton"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
+              color: white;
+              text-decoration: none;
+              padding: 14px 50px;
+              border-radius: 50px;
+              font-weight: bold;
+              display: inline-block;
+            "
+          >
+            Comprar
+          </a>
+        </div>
+
+        <div style="text-align: center">
+          <a href="/" class="btn btn-secondary">← Volver al inicio</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <img src="/img/logo.png" alt="eParadise Logo" />
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/eparadiseve/" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <a href="/contacto" class="btn-footer-contacto">Contacto</a>
+      <p class="footer-copyright">
+        &copy; 2026 eParadise. Todos los derechos reservados.<span
+          style="margin: 0 3px; opacity: 0.5"
+          >|</span
+        ><a
+          href="/legal"
+          style="color: inherit; text-decoration: none; font-weight: 500"
+          >Avisos Legales</a
+        >
+      </p>
+    </footer>
+
+    <!-- Buscador Modal -->
+    <div id="search-modal" class="search-modal">
+      <div class="search-modal-content">
+        <div class="search-header">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Buscar productos..."
+            autocomplete="off"
+          />
+          <button id="close-search" class="close-search">&times;</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <script src="/animations.js" defer></script>
+    <script src="/buscador.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+      const supabaseClient = supabase.createClient(
+        "https://htxjwpwaxuvyrjqpclzy.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0eGp3cHdheHV2eXJqcXBjbHp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NzE0ODcsImV4cCI6MjA4ODE0NzQ4N30.8hd5y8epVG76rgwUM0KxWDlQRpUaJp65oPy9BvjanU4",
+      );
+
+      async function cargarArticulo() {
+        const pathParts = window.location.pathname.split("/");
+        const slug = decodeURIComponent(
+          pathParts.pop() ||
+            new URLSearchParams(window.location.search).get("s"),
+        );
+        if (!slug) return;
+
+        const { data, error } = await supabaseClient
+          .from("articulos")
+          .select("*")
+          .eq("slug", slug)
+          .single();
+
+        if (error) {
+          console.error("Error cargando el artículo:", error);
+          return;
+        }
+
+        if (data) {
+          document.title = `${data.titulo} | eParadise`;
+          document.getElementById("art-titulo").innerText = data.titulo;
+          document.getElementById("art-imagen").src = data.imagen_url;
+
+          // Procesamiento de Markdown básico
+          let contenidoHtml = marked.parse(data.contenido);
+
+          // Soporte manual para el centrado ->
+          contenidoHtml = contenidoHtml.replace(
+            /([^<]+)-&gt;/g,
+            '<div style="text-align: center;">$1</div>',
+          );
+
+          document.getElementById("art-cuerpo").innerHTML = contenidoHtml;
+
+          const btn = document.getElementById("art-boton");
+          btn.href = data.link_compra;
+          btn.style.backgroundColor =
+            data.tipo === "amazon" ? "#ff9900" : "#007bff";
+        }
+      }
+      AOS.init();
+      cargarArticulo();
+    </script>
+  </body>
+</html>

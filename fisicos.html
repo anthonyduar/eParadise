@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productos Físicos | eParadise</title>
+    <link rel="icon" type="image/png" href="img/icono.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .hero-simple {
+        background: white !important;
+        padding: 100px 0 100px 0;
+        text-align: center;
+        color: #333;
+      }
+      .hero-simple h1 {
+        color: #222;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <img src="img/logosinfondo.png" alt="Logo" />
+      </a>
+      <nav class="navbar">
+        <a href="/" class="nav-logo" style="margin-right: 9px;">
+          <img src="img/icono.png" alt="Logo" />
+        </a>
+        <div class="nav-links">
+          <a href="/acerca">Acerca de</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="/fisicos">Físicos</a>
+              <a href="/digitales">Digitales</a>              
+            </div>
+          </div>
+        </div>
+        <button id="search-trigger" class="search-btn" style="margin-left: 4px;">
+          <i class="fas fa-search"></i>
+        </button>
+      </nav>
+    </header>
+
+    <section class="hero-simple" data-aos="fade-in">
+      <h1>Lo más nuevo en eParadise</h1>
+      <p>Selección exclusiva de productos <strong>físicos</strong>.</p>
+    </section>
+
+    <main>
+      <section class="product-shelf">
+          <div class="product-grid" id="contenedor-catalogo">
+          <p style="text-align: center; grid-column: 1/-1; padding: 50px; opacity: 0.6;">Cargando catálogo...</p>
+        </div>
+
+        <div style="text-align: center; margin: 40px 0">
+          <a href="/" class="btn btn-secondary">
+            ← Volver al inicio
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <img src="img/logo.png" alt="eParadise Logo" />
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/eparadiseve/" target="_blank">
+          <i class="fab fa-instagram"></i>
+        </a>        
+      </div>
+      <a href="/contacto" class="btn-footer-contacto">Contacto</a>
+      <p class="footer-copyright">
+        &copy; 2026 eParadise. Todos los derechos reservados.<span style="margin: 0 3px; opacity: 0.5;">|</span><a href="/legal" style="color: inherit; text-decoration: none; font-weight: 500;">Avisos Legales</a>
+      </p>
+    </footer>
+
+    <!-- Buscador Modal -->
+    <div id="search-modal" class="search-modal">
+      <div class="search-modal-content">
+        <div class="search-header">
+          <input type="text" id="search-input" placeholder="Buscar productos..." autocomplete="off">
+          <button id="close-search" class="close-search">&times;</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <script src="animations.js" defer></script>
+    <script src="buscador.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+      const supabaseClient = supabase.createClient('https://htxjwpwaxuvyrjqpclzy.supabase.co', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0eGp3cHdheHV2eXJqcXBjbHp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NzE0ODcsImV4cCI6MjA4ODE0NzQ4N30.8hd5y8epVG76rgwUM0KxWDlQRpUaJp65oPy9BvjanU4');
+
+      async function cargarFisicos() {
+        const { data: articulos, error } = await supabaseClient
+          .from('articulos')
+          .select('*');
+
+        if (error) {
+          console.error("Error Supabase:", error);
+          document.getElementById('contenedor-catalogo').innerHTML = '<p style="text-align: center; grid-column: 1/-1;">Error cargando catálogo.</p>';
+          return;
+        }
+
+        // Filtramos solo los de tipo amazon y ordenamos de más reciente a más antiguo
+        const fisicos = articulos
+          .filter(a => a.tipo === 'amazon')
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+        if (fisicos.length === 0) {
+          document.getElementById('contenedor-catalogo').innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 50px; opacity: 0.6;">No hay productos físicos disponibles.</p>';
+          return;
+        }
+
+        document.getElementById('contenedor-catalogo').innerHTML = fisicos.map(art => `
+          <article class="card" data-aos="fade-up">
+            <img src="${art.imagen_url}" alt="${art.titulo}" />
+            <div class="card-info">
+              <h3>${art.titulo}</h3>
+              <p>${art.resumen}</p>
+              <div class="card-buttons">
+                <a href="/articulo/${art.slug}" class="btn btn-secondary">Ver más</a>
+                <a href="${art.link_compra}" target="_blank" class="btn btn-primary ${art.tipo}">Comprar</a>
+              </div>
+            </div>
+          </article>`).join('');
+        
+        if (window.AOS) AOS.refresh();
+      }
+      AOS.init();
+      cargarFisicos();
+    </script>
+  </body>
+</html>

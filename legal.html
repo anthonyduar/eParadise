@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avisos Legales | eParadise</title>
+  <link rel="icon" type="image/png" href="img/icono.png" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body { background-color: #f4f4f4; color: #333; margin: 0; }
+    .hero-simple { background: white !important; padding: 100px 0 100px 0; text-align: center; margin-bottom: 20px; }
+    .legal-main { max-width: 900px; margin: 20px auto; padding: 40px; background: white; border-radius: 8px; }
+    .legal-section { margin-bottom: 50px; text-align: justify; }
+    .legal-section h2 { color: #000; border-bottom: 2px solid #f4f4f4; padding-bottom: 15px; font-size: 1.8rem; text-align: center; }
+    .legal-section p { font-size: 1.1rem; line-height: 1.8; margin-top: 20px; }
+    .site-footer { background: white !important; margin-top: 20px; }
+  </style>
+</head>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script src="buscador.js"></script>
+<body>
+  <header>
+    <a href="/" class="logo"><img src="img/logosinfondo.png" alt="Logo" /></a>
+    <nav class="navbar">
+        <a href="/" class="nav-logo" style="margin-right: 9px;">
+          <img src="img/icono.png" alt="Logo" />
+        </a>
+        <div class="nav-links">
+          <a href="/acerca">Acerca de</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="/fisicos">Físicos</a>
+              <a href="/digitales">Digitales</a>              
+            </div>
+          </div>
+        </div>
+        <button id="search-trigger" class="search-btn" style="margin-left: 4px;">
+          <i class="fas fa-search"></i>
+        </button>
+      </nav>
+  </header>
+
+  <section class="hero-simple" data-aos="fade-in">
+    <h1>Avisos Legales</h1>
+    <p>Transparencia y seguridad en cada una de tus compras.</p>
+  </section>
+
+  <main class="legal-main" data-aos="fade-up">
+    <section class="legal-section">
+      <h2>Política de Privacidad</h2>
+      <p>En <strong>eParadise</strong>, protegemos tus datos personales. Al navegar y comprar, aceptas la recopilación de información necesaria para procesar tus pedidos. No compartimos tus datos con terceros, salvo para fines logísticos y pagos seguros.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Política de Cookies</h2>
+      <p>Este sitio web utiliza cookies para mejorar la experiencia del usuario y analizar el tráfico a través de Google Analytics.</p>
+      <p>
+  <strong>• Cookies técnicas:</strong> Necesarias para el funcionamiento básico de la web.<br><br>
+  <strong>• Cookies de análisis:</strong> Nos ayudan a entender cómo interactúas con la tienda para mejorar nuestros servicios.
+      </p>
+      <p>Puedes desactivar las cookies desde la configuración de tu navegador, aunque esto podría afectar algunas funciones del sitio.</p>
+    </section>
+
+    <section class="legal-section">
+      <h2>Términos y Condiciones</h2>
+      <p>
+        <strong>1. Gestión de Compras:</strong> eParadise facilita enlaces a plataformas externas. Toda transacción, pago y procesamiento de datos se realiza bajo las políticas de Payhip (digitales) o Amazon (físicos).<br><br>
+        <strong>2. Productos Digitales:</strong> Debido a la naturaleza de los activos digitales y su descarga inmediata, todas las ventas son finales. No se ofrecen reembolsos una vez enviado el enlace de descarga por Payhip.<br><br>
+        <strong>3. Productos Físicos y Garantía:</strong> eParadise participa en el Programa de Afiliados de Amazon. No somos los fabricantes ni transportistas de los productos físicos. Cualquier reclamación, garantía o devolución debe tramitarse directamente a través del servicio al cliente de Amazon.
+      </p>
+    </section>
+
+    <div style="text-align: center; margin-top: 40px;">
+      <a href="/" class="btn btn-secondary">← Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-logo"><img src="img/logo.png" alt="eParadise Logo" /></div>
+    <div class="footer-socials">
+       <a href="https://www.instagram.com/eparadiseve/" target="_blank"><i class="fab fa-instagram"></i></a>
+      </div>
+      <a href="/contacto" class="btn-footer-contacto">Contacto</a>
+      <p class="footer-copyright">
+       &copy; 2026 eParadise. Todos los derechos reservados.<span style="margin: 0 3px; opacity: 0.5;">|</span><a href="/legal" style="color: inherit; text-decoration: none; font-weight: 500;">Avisos Legales</a>
+      </p>
+  </footer>
+
+    <div id="search-modal" class="search-modal">
+      <div class="search-modal-content">
+        <div class="search-header">
+          <input type="text" id="search-input" placeholder="Buscar productos..." autocomplete="off">
+          <button id="close-search" class="close-search">&times;</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <script src="animations.js" defer></script>
+    <script src="buscador.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# No indexar código ni plantillas internas
+Disallow: /plantillas/
+Disallow: /.github/
+Disallow: /generador.py
+
+# El mapa de tu sitio
+Sitemap: https://eparadise.vercel.app/sitemap.xml

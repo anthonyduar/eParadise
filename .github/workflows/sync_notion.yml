@@ -1,0 +1,36 @@
+name: Sincronizar Notion Automático
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.9"
+
+      - name: Instalar dependencias
+        run: pip install requests supabase # <-- IMPORTANTE: Añadir supabase aquí
+
+      - name: Ejecutar script
+        env:
+          NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
+          DATABASE_ID: ${{ secrets.DATABASE_ID }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }} # <-- Añadir esto
+          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }} # <-- Añadir esto
+        run: python generador.py
+
+      - name: Subir cambios a GitHub
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "Sincronización automática desde Notion" || exit 0
+          git push

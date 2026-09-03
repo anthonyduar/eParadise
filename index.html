@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eParadise | Tienda Oficial</title>
+    <meta
+      name="google-site-verification"
+      content="rzR3HWDEDQEf9c4QIl2VmFX1Gs-vAE0pdYV7QNiFyTk"
+    />
+    <link rel="icon" type="image/png" href="img/icono.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-7M328JQCXD"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-7M328JQCXD");
+    </script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6929115276344973"
+     crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <img src="img/logosinfondo.png" alt="Logo" />
+      </a>
+      <nav class="navbar">
+        <a href="/" class="nav-logo" style="margin-right: 9px;">
+          <img src="img/icono.png" alt="Logo" />
+        </a>
+        <div class="nav-links">
+          <a href="/acerca">Acerca de</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="/fisicos">Físicos</a>
+              <a href="/digitales">Digitales</a>              
+            </div>
+          </div>
+        </div>
+        <button id="search-trigger" class="search-btn" style="margin-left: 4px;">
+          <i class="fas fa-search"></i>
+        </button>
+      </nav>
+    </header>
+    <section class="hero" data-aos="fade-in" data-aos-duration="2000">
+      <div class="hero-content">
+        <h1 data-aos="fade-up" data-aos-duration="1500">
+          Diseña tu futuro con tecnología avanzada creada para escalar
+        </h1>
+        <p
+          class="hero-description"
+          data-aos="fade-up"
+          data-aos-delay="300"
+          data-aos-duration="1500"
+        >
+          Accede a nuestra selección de activos digitales y equipos de última
+          generación. Todo lo que necesitas para potenciar tus proyectos y
+          mantenerte a la vanguardia.
+        </p>
+        <div data-aos="fade-up" data-aos-delay="500" data-aos-duration="1500">
+          <a href="javascript:void(0)" onclick="document.getElementById('fisicos').scrollIntoView({ behavior: 'smooth' })" class="btn btn-hero">Empezar ahora</a>
+        </div>
+      </div>
+    </section>
+
+    <h1 class="visually-hidden">Productos Destacados de eParadise</h1>
+
+    <main>
+      <section class="product-shelf" id="fisicos">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1500"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 50px;
+            margin-bottom: 20px;
+          "
+        >
+          <h2 class="shelf-title" style="margin: 0 8px 0 0">
+            Productos Físicos
+          </h2>
+          <a
+            href="/fisicos"
+            style="
+              background-color: #ff9900;
+              color: white;
+              text-decoration: none;
+              padding: 6px 15px;
+              border-radius: 50px;
+              font-size: 13px;
+              font-weight: bold;
+            "
+            >Ver todos</a
+          >
+        </div>
+        <div class="card-container" id="contenedor-fisicos-index">
+          <!-- Dynamic content from Supabase -->
+        </div>
+      </section>
+
+      <section class="product-shelf" id="digitales">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1500"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+          "
+        >
+          <h2 class="shelf-title" style="margin: 0 8px 0 0">
+            Productos Digitales
+          </h2>
+          <a
+            href="/digitales"
+            style="
+              background-color: #007bff;
+              color: white;
+              text-decoration: none;
+              padding: 6px 15px;
+              border-radius: 50px;
+              font-size: 13px;
+              font-weight: bold;
+            "
+            >Ver todos</a
+          >
+        </div>
+        <div class="card-container" id="contenedor-digitales-index">
+          <!-- Dynamic content from Supabase -->
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <img src="img/logo.png" alt="eParadise Logo" />
+      </div>
+      <div class="footer-socials">
+        <a
+          href="https://www.instagram.com/eparadiseve/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+      <a href="/contacto" class="btn-footer-contacto">Contacto</a>
+      <p class="footer-copyright">
+        &copy; 2026 eParadise. Todos los derechos reservados.<span
+          style="margin: 0 3px; opacity: 0.5"
+          >|</span
+        ><a
+          href="/legal"
+          style="color: inherit; text-decoration: none; font-weight: 500"
+          >Avisos Legales</a
+        >
+      </p>
+    </footer>
+
+    <!-- Buscador Modal -->
+    <div id="search-modal" class="search-modal">
+      <div class="search-modal-content">
+        <div class="search-header">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Buscar productos..."
+            autocomplete="off"
+          />
+          <button id="close-search" class="close-search">&times;</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <script src="animations.js" defer></script>
+    <script src="buscador.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script>
+      const supabaseClient = supabase.createClient(
+        "https://htxjwpwaxuvyrjqpclzy.supabase.co",
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imh0eGp3cHdheHV2eXJqcXBjbHp5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1NzE0ODcsImV4cCI6MjA4ODE0NzQ4N30.8hd5y8epVG76rgwUM0KxWDlQRpUaJp65oPy9BvjanU4",
+      );
+
+      async function cargarHome() {
+        const { data: articulos, error } = await supabaseClient
+          .from("articulos")
+          .select("*");
+        if (error) return console.error("Error Supabase:", error);
+
+        const render = (art) => `
+          <article class="card" data-aos="fade-up">
+            <img src="${art.imagen_url}" alt="${art.titulo}" />
+            <div class="card-info">
+              <h3>${art.titulo}</h3>
+              <p>${art.resumen}</p>
+              <div class="card-buttons">
+                <a href="/articulo/${art.slug}" class="btn btn-secondary">Ver más</a>
+                <a href="${art.link_compra}" target="_blank" class="btn btn-primary ${art.tipo}">Comprar</a>
+              </div>
+            </div>
+          </article>`;
+
+        const contDigital = document.getElementById(
+          "contenedor-digitales-index",
+        );
+        const contFisico = document.getElementById("contenedor-fisicos-index");
+
+        // Filtra y ordena por fecha descendente (más reciente primero)
+        const digitales = articulos
+          .filter((a) => a.tipo === "payhip")
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(0, 4);
+
+        const fisicos = articulos
+          .filter((a) => a.tipo === "amazon")
+          .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+          .slice(0, 4);
+
+        if (contDigital) contDigital.innerHTML = digitales.map(render).join("");
+        if (contFisico) contFisico.innerHTML = fisicos.map(render).join("");
+
+        // Configura la navegación del carrusel
+        setupCarouselNavigation();
+
+        if (window.AOS) AOS.refresh();
+      }
+
+      function setupCarouselNavigation() {
+        const configs = [
+          { sectionId: "digitales", url: "/digitales" },
+          { sectionId: "fisicos", url: "/fisicos" },
+        ];
+
+        configs.forEach(({ sectionId, url }) => {
+          const section = document.getElementById(sectionId);
+          if (!section) return;
+
+          let btn = section.querySelector(".carousel-nav-btn");
+          if (!btn) {
+            btn = document.createElement("a"); // Ahora es un enlace
+            btn.href = url;
+            btn.className = "carousel-nav-btn";
+            btn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+            btn.style.cssText =
+              "position: absolute; right: 30px; top: 50%; transform: translateY(-50%); background: #000; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; font-size: 20px; cursor: pointer; z-index: 10; transition: background 0.3s ease; display: flex; align-items: center; justify-content: center; text-decoration: none;";
+
+            btn.onmouseover = () => (btn.style.background = "#333");
+            btn.onmouseout = () => (btn.style.background = "#000");
+
+            section.style.position = "relative";
+            section.appendChild(btn);
+          }
+        });
+      }
+      AOS.init();
+      cargarHome();
+    </script>
+
+    <!-- Banner de Cookies -->
+    <div
+      id="cookie-banner"
+      style="
+        display: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        color: #111;
+        border-top: 1px solid #ddd;
+        z-index: 99999;
+        padding: 12px 20px;
+        box-sizing: border-box;
+        box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+      "
+    >
+      <button
+        onclick="cerrarCookieBanner()"
+        style="
+          position: absolute;
+          top: 8px;
+          right: 14px;
+          background: none;
+          border: none;
+          cursor: pointer;
+          font-size: 18px;
+          color: #111;
+          line-height: 1;
+        "
+        aria-label="Cerrar"
+      >
+        &#x2715;
+      </button>
+      <p
+        style="
+          margin: 0 0 8px 0;
+          font-size: 14px;
+          text-align: center;
+          padding-right: 30px;
+        "
+      >
+        Utilizamos cookies para mejorar su experiencia y analizar el tráfico. Al
+        continuar navegando, acepta su uso.
+      </p>
+      <div style="display: flex; justify-content: center; gap: 12px">
+        <a
+          href="/legal"
+          style="
+            padding: 7px 22px;
+            border: 1.5px solid #111;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #111;
+            text-decoration: none;
+            background: #fff;
+            letter-spacing: 0.03em;
+          "
+          >VER MÁS</a
+        >
+        <button
+          onclick="aceptarCookies()"
+          style="
+            padding: 7px 22px;
+            border: 1.5px solid #111;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #fff;
+            background: #111;
+            cursor: pointer;
+            letter-spacing: 0.03em;
+          "
+        >
+          ACEPTAR
+        </button>
+      </div>
+    </div>
+    <script>
+      (function () {
+        if (!localStorage.getItem("cookiesAceptadas")) {
+          document.getElementById("cookie-banner").style.display = "block";
+        }
+      })();
+      function aceptarCookies() {
+        localStorage.setItem("cookiesAceptadas", "1");
+        document.getElementById("cookie-banner").style.display = "none";
+      }
+      function cerrarCookieBanner() {
+        document.getElementById("cookie-banner").style.display = "none";
+      }
+    </script>
+  </body>
+</html>

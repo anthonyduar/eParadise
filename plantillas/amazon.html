@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{TITULO}} | eParadise</title>
+    <link rel="icon" type="image/png" href="../img/icono.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="../style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="../index.html" class="logo">
+        <img src="../img/logosinfondo.png" alt="Logo" />
+      </a>
+      <nav class="navbar">
+        <div class="nav-links">
+          <a href="../digitales.html">Productos Digitales</a>
+          <a href="../fisicos.html">Productos Físicos</a>
+        </div>
+      </nav>
+    </header>
+
+    <main
+      style="background-color: white; padding: 80px 20px 40px; min-height: 60vh"
+    >
+      <div style="max-width: 800px; margin: 0 auto">
+        <h1
+          style="
+            color: #1a1a1a !important;
+            font-size: 30px !important;
+            text-align: center !important;
+            margin: 20px 0 30px 0 !important;
+            font-weight: 800 !important;
+            display: block !important;
+            width: 100% !important;
+          "
+        >
+          {{TITULO}}
+        </h1>
+
+        <div style="text-align: center; margin-bottom: 30px">
+          <img
+            src="{{IMAGEN}}"
+            alt="{{TITULO}}"
+            style="max-width: 350px; width: 100%; border-radius: 10px"
+          />
+        </div>
+
+        <article
+          style="
+            color: #333;
+            line-height: 1.6;
+            font-size: 18px;
+            text-align: justify;
+            margin-bottom: 30px;
+          "
+        >
+          {{CUERPO}}
+        </article>
+
+        <div style="text-align: center; margin-bottom: 25px">
+          <a
+            href="{{LINK_COMPRA}}"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="
+              background-color: #ff9900;
+              color: white;
+              text-decoration: none;
+              padding: 14px 50px;
+              border-radius: 50px;
+              font-weight: bold;
+              display: inline-block;
+            "
+          >
+            Comprar
+          </a>
+        </div>
+
+        <div style="text-align: center">
+          <a href="../index.html" class="btn btn-secondary"
+            >← Volver al inicio</a
+          >
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <img src="../img/logo.png" alt="eParadise Logo" />
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.instagram.com/eparadise.ve/" target="_blank"
+          ><i class="fab fa-instagram"></i
+        ></a>
+        <a href="https://www.facebook.com/eparadiseve" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </div>
+      <a href="../contacto.html" class="btn-footer-contacto">Contacto</a>
+      <p class="footer-copyright">
+        &copy; 2026 eParadise. Todos los derechos reservados.<span style="margin: 0 3px; opacity: 0.5;">|</span><a href="../legal.html" style="color: inherit; text-decoration: none; font-weight: 500;">Avisos Legales</a>
+      </p>
+    </footer>
+
+    <div id="search-modal" class="search-modal">
+      <div class="search-modal-content">
+        <div class="search-header">
+          <input type="text" id="search-input" placeholder="Buscar productos..." autocomplete="off">
+          <button id="close-search" class="close-search">&times;</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <script src="../animations.js" defer></script>
+    <script src="../buscador.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+  </body>
+</html>

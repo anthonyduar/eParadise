@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>eParadise | Tienda Oficial</title>
+    <link rel="icon" type="image/png" href="img/icono.png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <a href="/" class="logo">
+        <img src="img/logosinfondo.png" alt="Logo" />
+      </a>
+      <nav class="navbar">
+        <a href="/" class="nav-logo" style="margin-right: 9px;">
+          <img src="img/icono.png" alt="Logo" />
+        </a>
+        <div class="nav-links">
+          <a href="/acerca">Acerca de</a>
+          <div class="dropdown">
+            <a href="#" class="dropdown-toggle">Productos</a>
+            <div class="dropdown-menu">
+              <a href="/fisicos">Físicos</a>
+              <a href="/digitales">Digitales</a>              
+            </div>
+          </div>
+        </div>
+        <button id="search-trigger" class="search-btn" style="margin-left: 4px;">
+          <i class="fas fa-search"></i>
+        </button>
+      </nav>
+    </header>
+    <section class="hero">
+      <div class="contacto-container">
+        <h1>Contáctanos</h1>
+        <form
+          action="https://api.web3forms.com/submit"
+          method="POST"
+          class="contacto-form"
+        >
+          <input
+            type="hidden"
+            name="access_key"
+            value="f0dbd793-0aee-4e4f-bd81-040d9411522d"
+          />
+          <input type="text" name="name" placeholder="Tu Nombre" required />
+          <input type="email" name="email" placeholder="Tu Email" required />
+          <textarea
+            name="message"
+            placeholder="¿Cómo podemos ayudarte?"
+            rows="5"
+            required
+          ></textarea>
+          <button type="submit" class="btn-enviar">Enviar Mensaje</button>
+        </form>
+        <a href="/" class="btn-volver">← Volver al inicio</a>
+      </div>
+    </section>
+    <footer class="site-footer">
+      <div class="footer-logo">
+        <img src="img/logo.png" alt="eParadise Logo" />
+      </div>
+      <div class="footer-socials">
+        <a
+          href="https://www.instagram.com/eparadiseve/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <i class="fab fa-instagram"></i>
+        </a>
+        
+      </div>
+      <a href="/contacto" class="btn-footer-contacto">Contacto</a>
+      <p class="footer-copyright">
+        &copy; 2026 eParadise. Todos los derechos reservados.<span
+          style="margin: 0 3px; opacity: 0.5"
+          >|</span
+        ><a
+          href="/legal"
+          style="color: inherit; text-decoration: none; font-weight: 500"
+          >Avisos Legales</a
+        >
+      </p>
+    </footer>
+    <!-- Buscador Modal -->
+    <div id="search-modal" class="search-modal">
+      <div class="search-modal-content">
+        <div class="search-header">
+          <input
+            type="text"
+            id="search-input"
+            placeholder="Buscar productos..."
+            autocomplete="off"
+          />
+          <button id="close-search" class="close-search">&times;</button>
+        </div>
+        <div id="search-results" class="search-results"></div>
+      </div>
+    </div>
+
+    <script src="animations.js" defer></script>
+    <script src="buscador.js" defer></script>
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <script src="buscador.js"></script>
+  </body>
+</html>
