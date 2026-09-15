@@ -3,6 +3,38 @@ import { notFound } from "next/navigation";
 // Importamos también getProducts para traer la lista de artículos
 import { getProductBySlug, getProducts } from "@/lib/notion"; 
 
+// 👇 GENERACIÓN AUTOMÁTICA DE METADATOS (SEO ESTILO YOAST)
+export async function generateMetadata({ params }) {
+  const { slug } = await params;
+  const product = await getProductBySlug(slug);
+
+  if (!product) {
+    return {
+      title: "Artículo no encontrado | eParadise",
+    };
+  }
+
+  // Corta el cuerpo a las primeras 30 palabras para la meta descripción de Google
+  const metaDescripcion = product.cuerpo
+    ? product.cuerpo.split(/\s+/).slice(0, 30).join(" ") + "..."
+    : "Lee más sobre este producto en eParadise.";
+
+  return {
+    title: `${product.titulo} | eParadise`, // Título en la pestaña y Google
+    description: metaDescripcion, // Descripción que lee Google
+    openGraph: {
+      title: product.titulo,
+      description: metaDescripcion,
+      images: [
+        {
+          url: product.imagen_url,
+          alt: product.titulo,
+        },
+      ],
+    },
+  };
+}
+
 export default async function ArticlePage({ params }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
