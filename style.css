@@ -1,8 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
+
 * {
   box-sizing: border-box;
 }
-
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap");
 
 body {
   font-family: "Inter", sans-serif;
@@ -448,7 +448,7 @@ html {
 
 #art-cuerpo h1 {
   font-size: 2rem;
-  color: inherit !important;       /* Toma el #666 de #art-cuerpo */
+  color: inherit !important; /* Toma el #666 de #art-cuerpo */
   font-family: inherit !important; /* Toma la misma tipografía */
   margin-top: 1.2rem;
   margin-bottom: 0.8rem;
@@ -692,4 +692,55 @@ html {
 .dropdown-menu a {
   padding: 8px 16px;
   white-space: nowrap;
+}
+
+.nav-logo img {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.dropdown-toggle {
+  display: block;
+  cursor: default;
+}
+
+.hero-simple {
+  background: white;
+  padding: 100px 20px;
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.hero-simple h1 {
+  color: #222;
+}
+
+.legal-main {
+  max-width: 900px;
+  margin: 20px auto;
+  padding: 40px;
+  background: white;
+  border-radius: 8px;
+}
+
+.legal-section {
+  margin-bottom: 50px;
+  text-align: justify;
+}
+
+.legal-section h2 {
+  color: #000;
+  border-bottom: 2px solid #f4f4f4;
+  padding-bottom: 15px;
+  font-size: 1.8rem;
+  text-align: center;
+}
+
+.legal-section p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-top: 20px;
 }
