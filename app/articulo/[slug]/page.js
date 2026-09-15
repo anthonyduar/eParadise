@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { getProductBySlug } from "@/lib/notion";
+// Importamos también getProducts para traer la lista de artículos
+import { getProductBySlug, getProducts } from "@/lib/notion"; 
 
 export default async function ArticlePage({ params }) {
   const { slug } = await params;
@@ -44,4 +45,13 @@ export default async function ArticlePage({ params }) {
       </div>
     </main>
   );
+}
+
+// Esta función le enseña a Vercel qué artículos existen al compilar
+export async function generateStaticParams() {
+  const products = await getProducts(); 
+  
+  return products.map((product) => ({
+    slug: product.slug, 
+  }));
 }
