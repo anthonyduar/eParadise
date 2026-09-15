@@ -9,28 +9,35 @@ export async function generateMetadata({ params }) {
   const product = await getProductBySlug(slug);
 
   if (!product) {
-    return {
-      title: "Artículo no encontrado | eParadise",
-    };
+    return { title: "Artículo no encontrado | eParadise" };
   }
 
-  // Corta el cuerpo a las primeras 30 palabras para la meta descripción de Google
   const metaDescripcion = product.cuerpo
     ? product.cuerpo.split(/\s+/).slice(0, 30).join(" ") + "..."
     : "Lee más sobre este producto en eParadise.";
 
+  // Usamos la URL de UploadThing tal y como viene de Notion
+  const schemaImagen = product.imagen_url || "";
+
   return {
-    title: `${product.titulo} | eParadise`, // Título en la pestaña y Google
-    description: metaDescripcion, // Descripción que lee Google
+    title: `${product.titulo} | eParadise`,
+    description: metaDescripcion,
     openGraph: {
       title: product.titulo,
       description: metaDescripcion,
+      type: "article",
       images: [
         {
-          url: product.imagen_url,
+          url: schemaImagen,
           alt: product.titulo,
         },
       ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: product.titulo,
+      description: metaDescripcion,
+      images: [schemaImagen],
     },
   };
 }
