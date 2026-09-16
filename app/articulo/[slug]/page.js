@@ -1,9 +1,9 @@
 import Link from "next/link";
+import Image from "next/image"; // 👈 1. Importamos el componente optimizador de Next.js
 import { notFound } from "next/navigation";
-// Importamos también getProducts para traer la lista de artículos
 import { getProductBySlug, getProducts } from "@/lib/notion"; 
 
-// 👇 GENERACIÓN AUTOMÁTICA DE METADATOS (SEO ESTILO YOAST)
+// GENERACIÓN AUTOMÁTICA DE METADATOS (SEO ESTILO YOAST)
 export async function generateMetadata({ params }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
@@ -16,7 +16,6 @@ export async function generateMetadata({ params }) {
     ? product.cuerpo.split(/\s+/).slice(0, 30).join(" ") + "..."
     : "Lee más sobre este producto en eParadise.";
 
-  // Usamos la URL de UploadThing tal y como viene de Notion
   const schemaImagen = product.imagen_url || "";
 
   return {
@@ -46,6 +45,7 @@ export default async function ArticlePage({ params }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) notFound();
+  
   return (
     <main
       style={{
@@ -56,13 +56,22 @@ export default async function ArticlePage({ params }) {
     >
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <h1 style={{ textAlign: "center" }}>{product.titulo}</h1>
+        
+        {/* Contenedor de la imagen */}
         <div style={{ textAlign: "center", marginBottom: 30 }}>
-          <img
-            src={product.imagen_url}
-            alt={product.titulo}
-            style={{ maxWidth: 350, width: "100%", borderRadius: 10 }}
-          />
+          {/* 👈 2. Cambiamos <img> por <Image /> configurado correctamente */}
+          <div style={{ display: "inline-block", maxWidth: 350, width: "100%", position: "relative" }}>
+            <Image
+              src={product.imagen_url}
+              alt={product.titulo}
+              width={350} // Le decimos a Vercel el tamaño máximo que necesita procesar
+              height={350} // Alto base (Next.js mantendrá la proporción gracias a la clase CSS)
+              style={{ width: "100%", height: "auto", borderRadius: 10 }}
+              priority // Fuerza a la imagen principal a cargar al instante sin retrasos
+            />
+          </div>
         </div>
+
         <article id='art-cuerpo' style={{ whiteSpace: "pre-wrap" }}>
           {product.cuerpo || "Este artículo no tiene contenido disponible."}
         </article>
@@ -86,7 +95,6 @@ export default async function ArticlePage({ params }) {
   );
 }
 
-// Esta función le enseña a Vercel qué artículos existen al compilar
 export async function generateStaticParams() {
   const products = await getProducts(); 
   
