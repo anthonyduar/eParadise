@@ -92,42 +92,51 @@ export default async function ArticlePage({ params }) {
           }}
         >
           {/* 👈 Reemplazamos el texto plano por el componente que renderiza Markdown */}
-          <ReactMarkdown
-            components={{
-              // Esto evita que los H2 y H3 se justifiquen y se vean feos, alineándolos a la izquierda
-              h2: ({ node, ...props }) => (
-                <h2
-                  style={{
-                    textAlign: "left",
-                    marginTop: "30px",
-                    marginBottom: "15px",
-                  }}
-                  {...props}
-                />
-              ),
-              h3: ({ node, ...props }) => (
-                <h3
-                  style={{
-                    textAlign: "left",
-                    marginTop: "25px",
-                    marginBottom: "10px",
-                  }}
-                  {...props}
-                />
-              ),
-              // Estilo para los enlaces embebidos en el texto
-              a: ({ node, ...props }) => (
-                <a
-                  style={{ color: "#0070f3", textDecoration: "underline" }}
-                  target='_blank'
-                  rel='noopener noreferrer'
-                  {...props}
-                />
-              ),
-            }}
-          >
-            {product.cuerpo || "Este artículo no tiene contenido disponible."}
-          </ReactMarkdown>
+         <ReactMarkdown
+  components={{
+    // Evita que los H2 se justifiquen y les da un margen correcto
+    h2: ({ node, ...props }) => (
+      <h2
+        style={{
+          textAlign: "left",
+          marginTop: "30px",
+          marginBottom: "15px",
+        }}
+        {...props}
+      />
+    ),
+    // Evita que los H3 se justifiquen y los alinea a la izquierda
+    h3: ({ node, ...props }) => (
+      <h3
+        style={{
+          textAlign: "left",
+          marginTop: "25px",
+          marginBottom: "10px",
+        }}
+        {...props}
+      />
+    ),
+    // 💥 SOLUCIÓN DE ENLACES: Forzamos la extracción de la URL y los estilos cliqueables
+    a: ({ href, children }) => (
+      <a
+        href={href}
+        style={{
+          color: "#0070f3",
+          textDecoration: "underline",
+          fontWeight: "500",
+          cursor: "pointer"
+        }}
+        target='_blank'
+        rel='noopener noreferrer'
+      >
+        {children}
+      </a>
+    ),
+  }}
+>
+  {product.cuerpo || "Este artículo no tiene contenido disponible."}
+</ReactMarkdown>
+
         </article>
 
         <div style={{ textAlign: "center", marginBottom: 25 }}>
