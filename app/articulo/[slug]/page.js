@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image"; // 👈 1. Importamos el componente optimizador de Next.js
 import { notFound } from "next/navigation";
 import { getProductBySlug, getProducts } from "@/lib/notion";
+import ReactMarkdown from "react-markdown"; // 👈 Importamos el procesador de formato
 
 // GENERACIÓN AUTOMÁTICA DE METADATOS (SEO ESTILO YOAST)
 export async function generateMetadata({ params }) {
@@ -82,17 +83,53 @@ export default async function ArticlePage({ params }) {
         <article
           id='art-cuerpo'
           style={{
-            whiteSpace: "pre-wrap",
-            textAlign: "justify", // 👈 1. Justifica el texto (lo alinea perfectamente a ambos lados)
-            lineHeight: "1.8", // 👈 2. Le da aire entre líneas para que sea más fácil de leer
-            fontSize: "1.1rem", // 👈 3. Tamaño de letra ideal para lectura en blogs
-            color: "#2d3748", // 👈 4. Un tono gris oscuro profesional (no negro puro, que cansa la vista)
-            marginBottom: "40px", // 👈 5. Margen inferior para que no se pegue al botón de comprar
-            padding: "0 10px", // 👈 6. Pequeño margen interno para pantallas móviles
+            textAlign: "justify", // Justifica los párrafos
+            lineHeight: "1.8",
+            fontSize: "1.1rem",
+            color: "#2d3748",
+            marginBottom: "40px",
+            padding: "0 10px",
           }}
         >
-          {product.cuerpo || "Este artículo no tiene contenido disponible."}
+          {/* 👈 Reemplazamos el texto plano por el componente que renderiza Markdown */}
+          <ReactMarkdown
+            components={{
+              // Esto evita que los H2 y H3 se justifiquen y se vean feos, alineándolos a la izquierda
+              h2: ({ node, ...props }) => (
+                <h2
+                  style={{
+                    textAlign: "left",
+                    marginTop: "30px",
+                    marginBottom: "15px",
+                  }}
+                  {...props}
+                />
+              ),
+              h3: ({ node, ...props }) => (
+                <h3
+                  style={{
+                    textAlign: "left",
+                    marginTop: "25px",
+                    marginBottom: "10px",
+                  }}
+                  {...props}
+                />
+              ),
+              // Estilo para los enlaces embebidos en el texto
+              a: ({ node, ...props }) => (
+                <a
+                  style={{ color: "#0070f3", textDecoration: "underline" }}
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  {...props}
+                />
+              ),
+            }}
+          >
+            {product.cuerpo || "Este artículo no tiene contenido disponible."}
+          </ReactMarkdown>
         </article>
+
         <div style={{ textAlign: "center", marginBottom: 25 }}>
           <a
             href={product.link_compra}
