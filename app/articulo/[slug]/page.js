@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image"; // 👈 1. Importamos el componente optimizador de Next.js
 import { notFound } from "next/navigation";
-import { getProductBySlug, getProducts } from "@/lib/notion"; 
+import { getProductBySlug, getProducts } from "@/lib/notion";
 
 // GENERACIÓN AUTOMÁTICA DE METADATOS (SEO ESTILO YOAST)
 export async function generateMetadata({ params }) {
@@ -45,7 +45,7 @@ export default async function ArticlePage({ params }) {
   const { slug } = await params;
   const product = await getProductBySlug(slug);
   if (!product) notFound();
-  
+
   return (
     <main
       style={{
@@ -56,11 +56,18 @@ export default async function ArticlePage({ params }) {
     >
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <h1 style={{ textAlign: "center" }}>{product.titulo}</h1>
-        
+
         {/* Contenedor de la imagen */}
         <div style={{ textAlign: "center", marginBottom: 30 }}>
           {/* 👈 2. Cambiamos <img> por <Image /> configurado correctamente */}
-          <div style={{ display: "inline-block", maxWidth: 350, width: "100%", position: "relative" }}>
+          <div
+            style={{
+              display: "inline-block",
+              maxWidth: 350,
+              width: "100%",
+              position: "relative",
+            }}
+          >
             <Image
               src={product.imagen_url}
               alt={product.titulo}
@@ -72,7 +79,18 @@ export default async function ArticlePage({ params }) {
           </div>
         </div>
 
-        <article id='art-cuerpo' style={{ whiteSpace: "pre-wrap" }}>
+        <article
+          id='art-cuerpo'
+          style={{
+            whiteSpace: "pre-wrap",
+            textAlign: "justify", // 👈 1. Justifica el texto (lo alinea perfectamente a ambos lados)
+            lineHeight: "1.8", // 👈 2. Le da aire entre líneas para que sea más fácil de leer
+            fontSize: "1.1rem", // 👈 3. Tamaño de letra ideal para lectura en blogs
+            color: "#2d3748", // 👈 4. Un tono gris oscuro profesional (no negro puro, que cansa la vista)
+            marginBottom: "40px", // 👈 5. Margen inferior para que no se pegue al botón de comprar
+            padding: "0 10px", // 👈 6. Pequeño margen interno para pantallas móviles
+          }}
+        >
           {product.cuerpo || "Este artículo no tiene contenido disponible."}
         </article>
         <div style={{ textAlign: "center", marginBottom: 25 }}>
@@ -96,9 +114,9 @@ export default async function ArticlePage({ params }) {
 }
 
 export async function generateStaticParams() {
-  const products = await getProducts(); 
-  
+  const products = await getProducts();
+
   return products.map((product) => ({
-    slug: product.slug, 
+    slug: product.slug,
   }));
 }
