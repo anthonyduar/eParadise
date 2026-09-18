@@ -45,6 +45,12 @@ npm run dev
 
 La aplicación queda disponible en `http://localhost:3000`. Las rutas migradas son `/`, `/acerca`, `/fisicos`, `/digitales`, `/contacto`, `/legal` y `/articulo/[slug]`.
 
-## Conexión con Notion
+## Conexión con WordPress / Pantheon
 
-La capa de datos está centralizada en `lib/notion.js` y la búsqueda usa `app/api/products/route.js`. Copia `.env.example` a `.env.local` y configura `NOTION_TOKEN` y `NOTION_DATABASE_ID`; la consulta a Notion debe implementarse en `getProducts`, que se ejecuta en el servidor.
+La capa de datos está centralizada en `lib/wordpress.js` y consulta el Custom Post Type `tienda` mediante la API REST de WordPress. Configura `WORDPRESS_URL` en `.env.local` con la URL base de tu sitio Pantheon, por ejemplo:
+
+```bash
+WORDPRESS_URL=https://tu-sitio.pantheonsite.io
+```
+
+Los productos se obtienen de `/wp-json/wp/v2/tienda?_embed` y sus campos personalizados proceden de ACF.
