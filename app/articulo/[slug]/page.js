@@ -1,8 +1,8 @@
 import Link from "next/link";
-import Image from "next/image"; // 👈 1. Importamos el componente optimizador de Next.js
+import Image from "next/image";
 import { notFound } from "next/navigation";
-import { getProductBySlug, getProducts } from "@/lib/notion";
-import ReactMarkdown from "react-markdown"; // 👈 Importamos el procesador de formato
+import { getProductBySlug, getProducts } from "@/lib/wordpress";
+import ReactMarkdown from "react-markdown";
 
 // GENERACIÓN AUTOMÁTICA DE METADATOS (SEO ESTILO YOAST)
 export async function generateMetadata({ params }) {
@@ -13,8 +13,11 @@ export async function generateMetadata({ params }) {
     return { title: "Artículo no encontrado | eParadise" };
   }
 
-  const metaDescripcion = product.cuerpo
-    ? product.cuerpo.split(/\s+/).slice(0, 30).join(" ") + "..."
+  const rawDesc =
+    product.resumen ||
+    (product.cuerpo ? product.cuerpo.replace(/<[^>]*>?/gm, " ").trim() : "");
+  const metaDescripcion = rawDesc
+    ? rawDesc.split(/\s+/).slice(0, 30).join(" ") + "..."
     : "Lee más sobre este producto en eParadise.";
 
   const schemaImagen = product.imagen_url || "";
@@ -70,7 +73,7 @@ export default async function ArticlePage({ params }) {
             }}
           >
             <Image
-              src={product.imagen_url}
+              src={product.imagen_url || "/img/logo.png"}
               alt={product.titulo}
               width={350} // Le decimos a Vercel el tamaño máximo que necesita procesar
               height={350} // Alto base (Next.js mantendrá la proporción gracias a la clase CSS)
@@ -83,7 +86,7 @@ export default async function ArticlePage({ params }) {
         <article
           id='art-cuerpo'
           style={{
-            textAlign: "justify", // Justifica los párrafos
+            textAlign: "justify",
             lineHeight: "1.8",
             fontSize: "1.1rem",
             color: "#2d3748",
@@ -91,52 +94,56 @@ export default async function ArticlePage({ params }) {
             padding: "0 10px",
           }}
         >
-          {/* 👈 Reemplazamos el texto plano por el componente que renderiza Markdown */}
-         <ReactMarkdown
-  components={{
-    // Evita que los H2 se justifiquen y les da un margen correcto
-    h2: ({ node, ...props }) => (
-      <h2
-        style={{
-          textAlign: "left",
-          marginTop: "30px",
-          marginBottom: "15px",
-        }}
-        {...props}
-      />
-    ),
-    // Evita que los H3 se justifiquen y los alinea a la izquierda
-    h3: ({ node, ...props }) => (
-      <h3
-        style={{
-          textAlign: "left",
-          marginTop: "25px",
-          marginBottom: "10px",
-        }}
-        {...props}
-      />
-    ),
-    // 💥 SOLUCIÓN DE ENLACES: Forzamos la extracción de la URL y los estilos cliqueables
-    a: ({ href, children }) => (
-      <a
-        href={href}
-        style={{
-          color: "#0070f3",
-          textDecoration: "underline",
-          fontWeight: "500",
-          cursor: "pointer"
-        }}
-        target='_blank'
-        rel='noopener noreferrer'
-      >
-        {children}
-      </a>
-    ),
-  }}
->
-  {product.cuerpo || "Este artículo no tiene contenido disponible."}
-</ReactMarkdown>
-
+          {/<\/?[a-z][\s\S]*>/i.test(product.cuerpo || "") ? (
+            <div
+              className='article-html-content'
+              dangerouslySetInnerHTML={{
+                __html: product.cuerpo || "<p>Este artículo no tiene contenido disponible.</p>",
+              }}
+            />
+          ) : (
+            <ReactMarkdown
+              components={{
+                h2: ({ node, ...props }) => (
+                  <h2
+                    style={{
+                      textAlign: "left",
+                      marginTop: "30px",
+                      marginBottom: "15px",
+                    }}
+                    {...props}
+                  />
+                ),
+                h3: ({ node, ...props }) => (
+                  <h3
+                    style={{
+                      textAlign: "left",
+                      marginTop: "25px",
+                      marginBottom: "10px",
+                    }}
+                    {...props}
+                  />
+                ),
+                a: ({ href, children }) => (
+                  <a
+                    href={href}
+                    style={{
+                      color: "#0070f3",
+                      textDecoration: "underline",
+                      fontWeight: "500",
+                      cursor: "pointer",
+                    }}
+                    target='_blank'
+                    rel='noopener noreferrer'
+                  >
+                    {children}
+                  </a>
+                ),
+              }}
+            >
+              {product.cuerpo || "Este artículo no tiene contenido disponible."}
+            </ReactMarkdown>
+          )}
         </article>
 
         <div style={{ textAlign: "center", marginBottom: 25 }}>

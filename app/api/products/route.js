@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { getProducts } from "@/lib/notion";
+import { getProducts } from "@/lib/wordpress";
 
 export async function GET(request) {
   const query =

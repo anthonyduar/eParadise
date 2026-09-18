@@ -1,6 +1,6 @@
 import Link from "next/link";
 import ProductGrid from "@/components/ProductGrid";
-import { filterProducts, getProducts } from "@/lib/notion";
+import { filterProducts, getProducts } from "@/lib/wordpress";
 
 export const metadata = { title: "Productos Físicos | eParadise" };
 

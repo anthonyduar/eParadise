@@ -744,3 +744,69 @@ html {
   line-height: 1.8;
   margin-top: 20px;
 }
+
+/* Estilos para contenido HTML enriquecido desde WordPress / Gutenberg */
+.article-html-content {
+  color: #2d3748;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.article-html-content p {
+  margin-bottom: 1.5rem;
+}
+
+.article-html-content h1,
+.article-html-content h2,
+.article-html-content h3,
+.article-html-content h4 {
+  color: #1a202c;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  text-align: left;
+  font-weight: 700;
+}
+
+.article-html-content h2 {
+  font-size: 1.6rem;
+  border-bottom: 1px solid #edf2f7;
+  padding-bottom: 0.5rem;
+}
+
+.article-html-content h3 {
+  font-size: 1.3rem;
+}
+
+.article-html-content ul,
+.article-html-content ol {
+  margin: 1.5rem 0 1.5rem 2rem;
+}
+
+.article-html-content li {
+  margin-bottom: 0.5rem;
+}
+
+.article-html-content a {
+  color: #0070f3;
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+.article-html-content figure,
+.article-html-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 1.5rem auto;
+  display: block;
+}
+
+.article-html-content blockquote {
+  border-left: 4px solid #0070f3;
+  padding: 10px 20px;
+  margin: 1.5rem 0;
+  background-color: #f7fafc;
+  color: #4a5568;
+  font-style: italic;
+}
+

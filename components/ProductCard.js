@@ -8,7 +8,7 @@ export default function ProductCard({ product }) {
       <div style={{ position: "relative", width: "100%", height: "200px", overflow: "hidden", borderRadius: "10px 10px 0 0" }}>
         {/* 👈 2. Cambiamos la etiqueta <img> vieja por <Image /> */}
         <Image 
-          src={product.imagen_url} 
+          src={product.imagen_url || "/img/logo.png"} 
           alt={product.titulo}
           fill // Hace que la imagen se adapte perfectamente al tamaño de la caja de la card
           sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw' // Optimiza la descarga según el tamaño de la pantalla
