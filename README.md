@@ -1,56 +1,38 @@
 # 🛒 eParadise | E-commerce Híbrido & Automatizado
 
-**[Ver sitio en vivo 🌐](https://tu-sitio.vercel.app)**
+[Ver sitio en vivo 🌐](https://eparadise.vercel.app)
 
-**eParadise** es una tienda online moderna que combina la venta de productos digitales (**Payhip**) y productos físicos (**Amazon Affiliates**). Es un sitio de alto rendimiento donde el diseño se controla desde código y el contenido se gestiona de forma externa mediante **Notion**.
+**eParadise** es una tienda online moderna orientada a la comercialización de productos digitales (Payhip) y de afiliados (Amazon). Cuenta con una arquitectura de alto rendimiento donde el diseño se controla mediante código y el contenido se gestiona de forma externa y automatizada.
 
 ---
 
-## 🎯 ¿Cómo funciona? (El Proceso)
+## 🎯 ¿Cómo funciona? (El Proceso de Desarrollo y Gestión)
 
-He diseñado un flujo de trabajo híbrido que separa el desarrollo visual de la gestión de contenidos:
+He diseñado un flujo de trabajo híbrido que separa por completo la estructura visual de la redacción de contenidos:
 
-1. **Desarrollo y Estética (VS Code):** Todo el diseño, estilos CSS y lógica visual los desarrollo en **VS Code** con asistencia de **Gemini AI**. Cuando realizo mejoras, hago un `git push` manual para actualizar la estructura de la tienda.
-2. **Gestión de Contenido:** Creo cada artículo y subo los datos (Nombre, Resumen, Cuerpo, Imagen, Tipo, Fecha, Link y Estado) a mi base de datos en **Notion**.
-3. **Sincronización (GitHub Actions):** Una vez que el artículo está en Notion, activo manualmente el **Workflow en GitHub**. Este proceso extrae la información y la centraliza en Supabase, lo que permite generar los archivos correspondientes manteniendo el repositorio de GitHub limpio de activos pesados.
-4. **Despliegue automático:** Al finalizar la actualización en GitHub, **Vercel** detecta los cambios y publica la nueva versión de la tienda al instante, asegurando que el contenido esté siempre sincronizado.
+1. **Diseño y Estructura (Figma a Código):** 
+   - El prototipado y diseño visual se planean primero en **Figma**.
+   - La implementación inicial y maquetación se desarrollan utilizando **Google IDX**.
+2. **Control Local y Despliegue (VS Code & Vercel):**
+   - El proyecto se traslada al entorno local manejándolo con **VS Code**.
+   - Los cambios de código e interfaz se sincronizan con **GitHub** mediante commits manuales.
+   - **Vercel** detecta los cambios automáticamente y despliega la tienda al instante.
+3. **Gestión de Artículos y Contenido (WordPress / Pantheon):**
+   - Los artículos y las reseñas de productos se redactan y gestionan desde un entorno de **WordPress alojado en Pantheon**.
+   - Gracias a la integración headless, estos contenidos se sincronizan y publican de forma automatizada en el sitio desplegado en Vercel.
 
 ---
 
 ## 🚀 Tecnologías Utilizadas
 
-- **Frontend:** Next.js con App Router, React y CSS reutilizando `style.css`.
-- **Gestión de Datos:** Notion API como CMS Headless y Supabase para persistencia de activos.
-- **CI/CD:** GitHub Actions (Manual Run Workflow).
-- **Hosting:** [Vercel](https://eparadise.vercel.app)
+* **Frontend:** Next.js (App Router), React y estilos personalizados.
+* **CMS & Contenido:** WordPress (Pantheon).
+* **Control de Versiones:** Git y GitHub.
+* **Hosting & CI/CD:** Vercel.
 
 ---
 
 ## 🔒 Seguridad y Propiedad Intelectual
 
-- **Claves Cifradas:** Todas las credenciales críticas (`NOTION_API_KEY`, `DATABASE_ID`, `SUPABASE_KEY`) están protegidas como **GitHub Secrets**. No están visibles en el código fuente ni en el historial de despliegue.
-- **Arquitectura Blindada:** Al ser un sitio estático, no existen bases de datos expuestas a vulnerabilidades, garantizando la seguridad total de los enlaces de afiliados y activos digitales.
-- **⚠️ Aviso Legal y Licencia:** Este repositorio es exclusivamente para exhibición de portafolio profesional. Todos los derechos están reservados (All Rights Reserved). Queda estrictamente prohibida la copia, uso, modificación, redistribución o comercialización de este código sin autorización expresa del autor.
-
----
-
-Desarrollado por [anthonyduar] - Ingeniería aplicada a la automatización de E-commerce y activos digitales.
-
-## Desarrollo local
-
-```bash
-npm install
-npm run dev
-```
-
-La aplicación queda disponible en `http://localhost:3000`. Las rutas migradas son `/`, `/acerca`, `/fisicos`, `/digitales`, `/contacto`, `/legal` y `/articulo/[slug]`.
-
-## Conexión con WordPress / Pantheon
-
-La capa de datos está centralizada en `lib/wordpress.js` y consulta el Custom Post Type `tienda` mediante la API REST de WordPress. Configura `WORDPRESS_URL` en `.env.local` con la URL base de tu sitio Pantheon, por ejemplo:
-
-```bash
-WORDPRESS_URL=https://tu-sitio.pantheonsite.io
-```
-
-Los productos se obtienen de `/wp-json/wp/v2/tienda?_embed` y sus campos personalizados proceden de ACF.
+* **Arquitectura Segura:** Al tratarse de un entorno optimizado y estático/headless, se evita la exposición de vulnerabilidades, resguardando de forma segura los enlaces de afiliados de Amazon y Payhip.
+* **⚠️ Aviso Legal y Licencia:** Este repositorio es exclusivamente para exhibición de portafolio profesional. Todos los derechos reservados (**All Rights Reserved**). Queda estrictamente prohibida la copia, uso, modificación, redistribución o comercialización de este código sin autorización expresa del autor.
