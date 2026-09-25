@@ -6,33 +6,29 @@
 
 ---
 
-## 🎯 ¿Cómo funciona? (El Proceso de Desarrollo y Gestión)
+## 🎯 ¿Cómo funciona el flujo de trabajo?
 
-He diseñado un flujo de trabajo híbrido que separa por completo la estructura visual de la redacción de contenidos:
+El proyecto combina un diseño visual optimizado con una separación total entre la gestión de contenidos y el código:
 
-1. **Diseño y Estructura (Figma a Código):** 
-   - El prototipado y diseño visual se planean primero en **Figma**.
-   - La implementación inicial y maquetación se desarrollan utilizando **Google IDX**.
-2. **Control Local y Despliegue (VS Code & Vercel):**
-   - El proyecto se traslada al entorno local manejándolo con **VS Code**.
-   - Los cambios de código e interfaz se sincronizan con **GitHub** mediante commits manuales.
-   - **Vercel** detecta los cambios automáticamente y despliega la tienda al instante.
-3. **Gestión de Artículos y Contenido (WordPress / Pantheon):**
-   - Los artículos y las reseñas de productos se redactan y gestionan desde un entorno de **WordPress alojado en Pantheon**.
-   - Gracias a la integración headless, estos contenidos se sincronizan y publican de forma automatizada en el sitio desplegado en Vercel.
+* **Diseño UI/UX (Figma):** La interfaz visual y la estructura de componentes fueron ideadas y diseñadas originalmente en Figma para garantizar una experiencia de usuario limpia y moderna.
+* **Estructuración y Desarrollo Inicial (Google IDX):** Utilicé este entorno en la nube para transformar el diseño de Figma en código base de manera eficiente.
+* **Desarrollo y Control de Versiones (VS Code + GitHub):** Refino toda la lógica, los componentes, las páginas dinámicas y los estilos directamente en VS Code, gestionando los cambios mediante GitHub.
+* **Gestión de Artículos (WordPress + Pantheon):** Administro y redacto los productos y reseñas directamente en WordPress alojado en Pantheon, conectándolos con la tienda.
+* **Despliegue Continuo (Vercel):** Toda la plataforma está conectada a Vercel, lo que permite que tanto las actualizaciones de código como las publicaciones se desplieguen y actualicen de forma totalmente automatizada.
 
 ---
 
 ## 🚀 Tecnologías Utilizadas
 
-* **Frontend:** Next.js (App Router), React y estilos personalizados.
-* **CMS & Contenido:** WordPress (Pantheon).
-* **Control de Versiones:** Git y GitHub.
-* **Hosting & CI/CD:** Vercel.
+* **Frontend:** Next.js (App Router) y React.
+* **Estilos:** CSS personalizado y componentes reutilizables.
+* **Headless CMS / Backend:** WordPress (Pantheon).
+* **Monetización:** Enlaces de afiliados de Amazon y productos digitales de Payhip.
+* **Control de Versiones y Hosting:** GitHub y Vercel.
 
 ---
 
-## 🔒 Seguridad y Propiedad Intelectual
+## 🔒 Seguridad, Privacidad y Propiedad Intelectual
 
-* **Arquitectura Segura:** Al tratarse de un entorno optimizado y estático/headless, se evita la exposición de vulnerabilidades, resguardando de forma segura los enlaces de afiliados de Amazon y Payhip.
-* **⚠️ Aviso Legal y Licencia:** Este repositorio es exclusivamente para exhibición de portafolio profesional. Todos los derechos reservados (**All Rights Reserved**). Queda estrictamente prohibida la copia, uso, modificación, redistribución o comercialización de este código sin autorización expresa del autor.
+* **Protección de Credenciales:** Las claves de configuración y variables sensibles están estrictamente protegidas mediante variables de entorno en Vercel y GitHub Secrets.
+* **Derechos de Autor (Todos los derechos reservados):** © 2026 Anthony Duarte. Este repositorio y su código forman parte de un portafolio profesional y técnico. Queda estrictamente prohibida su reproducción, distribución, modificación o uso comercial sin la autorización previa y por escrito del autor.
