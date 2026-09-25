@@ -2,7 +2,7 @@
 
 [Ver sitio en vivo 🌐](https://eparadise.vercel.app)
 
-**eParadise** es una tienda online moderna orientada a la comercialización de productos digitales (Payhip) y de afiliados (Amazon). Cuenta con una arquitectura de alto rendimiento donde el diseño se controla mediante código y el contenido comercial se gestiona de forma externa y automatizada.
+**eParadise** es una tienda online moderna bajo una arquitectura **Jamstack y Headless**, orientada a la comercialización de productos digitales (Payhip) y de afiliados (Amazon). Su enfoque de alto rendimiento separa el diseño en código del contenido gestionado externamente.
 
 ---
 
@@ -12,8 +12,8 @@ El proyecto combina un diseño visual optimizado con una separación total entre
 
 * **Diseño UI/UX (Figma):** La interfaz visual, la retícula de productos y la experiencia de usuario fueron ideadas y diseñadas originalmente en Figma para garantizar una navegación atractiva y limpia.
 * **Estructuración y Desarrollo Inicial (Google IDX):** Utilicé este entorno en la nube para transformar el diseño visual de la tienda en código base de manera eficiente.
-* **Desarrollo y Control de Versiones (VS Code + GitHub):** Refino toda la lógica del e-commerce, los componentes de las tarjetas de productos, modales de búsqueda y estilos directamente en VS Code, gestionando los cambios mediante GitHub.
-* **Gestión de Artículos (WordPress + Pantheon):** Administro y redacto las reseñas de productos, descripciones y ofertas comerciales directamente en WordPress alojado en Pantheon, sincronizándolos con la tienda.
+* **Desarrollo y Control de Versiones (VS Code + GitHub):** Refino toda la lógica del e-commerce, los componentes de las tarjetas de productos, modales y estilos directamente en VS Code, gestionando los cambios mediante GitHub.
+* **Gestión de Artículos (WordPress + Pantheon):** Administro y redacto las reseñas de productos, descripciones y ofertas comerciales directamente en WordPress alojado en Pantheon, sincronizándolos de forma headless con la tienda.
 * **Despliegue Continuo (Vercel):** Toda la plataforma está conectada a Vercel, lo que permite que tanto las actualizaciones de código como la publicación de nuevos productos se desplieguen de forma totalmente automatizada.
 
 ---
@@ -21,7 +21,7 @@ El proyecto combina un diseño visual optimizado con una separación total entre
 ## 🚀 Tecnologías Utilizadas
 
 * **Frontend:** Next.js (App Router) y React.
-* **Estilos:** CSS personalizado (`style.css`) y componentes reutilizables.
+* **Estilos:** CSS personalizado y componentes reutilizables.
 * **Headless CMS / Backend:** WordPress (Pantheon) con integración API.
 * **Monetización / E-commerce:** Enlaces de afiliados de Amazon y pasarela de productos digitales de Payhip.
 * **Control de Versiones y Hosting:** GitHub y Vercel.
