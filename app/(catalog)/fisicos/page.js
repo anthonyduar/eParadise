@@ -5,10 +5,9 @@ import { ArrowLeft, Cpu } from "lucide-react";
 
 export const metadata = {
   title: "Equipos & Hardware de Vanguardia | eParadise",
-  description: "Explora nuestra selección completa de hardware de alta gama, audio profesional y accesorios de ingeniería.",
+  description:
+    "Explora nuestra selección completa de hardware de alta gama, audio profesional y accesorios de ingeniería.",
 };
-
-export const revalidate = 60;
 
 export default async function PhysicalProductsPage() {
   const products = filterProducts(await getProducts(), "amazon");
@@ -53,9 +52,12 @@ export default async function PhysicalProductsPage() {
           <Cpu size={14} />
           <span>Catálogo de Hardware</span>
         </div>
-        <h1 className='secondary-hero-title'>Equipos & Hardware de Vanguardia</h1>
+        <h1 className='secondary-hero-title'>
+          Equipos & Hardware de Vanguardia
+        </h1>
         <p className='secondary-hero-sub'>
-          Dispositivos de alto rendimiento, sonido pro, ergonomía y componentes seleccionados con precisión.
+          Dispositivos de alto rendimiento, sonido pro, ergonomía y componentes
+          seleccionados con precisión.
         </p>
       </header>
 

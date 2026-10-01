@@ -5,10 +5,9 @@ import { ArrowLeft, Layers } from "lucide-react";
 
 export const metadata = {
   title: "Ecosistema & Activos Digitales | eParadise",
-  description: "Herramientas de software, scripts automatizados, plantillas y assets para desarrolladores y creadores.",
+  description:
+    "Herramientas de software, scripts automatizados, plantillas y assets para desarrolladores y creadores.",
 };
-
-export const revalidate = 60;
 
 export default async function DigitalProductsPage() {
   const products = filterProducts(await getProducts(), "payhip");
@@ -55,7 +54,8 @@ export default async function DigitalProductsPage() {
         </div>
         <h1 className='secondary-hero-title'>Ecosistema & Activos Digitales</h1>
         <p className='secondary-hero-sub'>
-          Automatizaciones, kits para SaaS, optimizadores como Excel Pro Cleaner y recursos gráficos para acelerar tu desarrollo.
+          Automatizaciones, kits para SaaS, optimizadores como Excel Pro Cleaner
+          y recursos gráficos para acelerar tu desarrollo.
         </p>
       </header>
 

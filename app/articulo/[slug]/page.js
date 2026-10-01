@@ -3,7 +3,13 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProductBySlug, getProducts } from "@/lib/wordpress";
 import ReactMarkdown from "react-markdown";
-import { ArrowLeft, ExternalLink, ShieldCheck, Zap, Share2 } from "lucide-react";
+import {
+  ArrowLeft,
+  ExternalLink,
+  ShieldCheck,
+  Zap,
+  Share2,
+} from "lucide-react";
 
 // GENERACIÓN AUTOMÁTICA DE METADATOS (SEO ESTILO YOAST)
 export async function generateMetadata({ params }) {
@@ -83,7 +89,9 @@ export default async function ArticlePage({ params }) {
           {isAmazon ? "Equipos de Vanguardia" : "Ecosistema Digital"}
         </Link>
         <span>/</span>
-        <span style={{ color: "#111113", fontWeight: 600 }}>{product.titulo}</span>
+        <span style={{ color: "#111113", fontWeight: 600 }}>
+          {product.titulo}
+        </span>
       </nav>
 
       {/* Back Button */}
@@ -110,7 +118,9 @@ export default async function ArticlePage({ params }) {
         {/* Article Header */}
         <header className='article-header'>
           <span className='article-badge'>
-            {isAmazon ? "Hardware de Alta Gama • Amazon" : "Activo Digital • Payhip"}
+            {isAmazon
+              ? "Hardware de Alta Gama • Amazon"
+              : "Activo Digital • Payhip"}
           </span>
           <h1 className='article-title'>{product.titulo}</h1>
           {product.resumen && (
@@ -153,21 +163,40 @@ export default async function ArticlePage({ params }) {
           {/<\/?[a-z][\s\S]*>/i.test(product.cuerpo || "") ? (
             <div
               dangerouslySetInnerHTML={{
-                __html: product.cuerpo || "<p>Contenido detallado en preparación.</p>",
+                __html:
+                  product.cuerpo ||
+                  "<p>Contenido detallado en preparación.</p>",
               }}
             />
           ) : (
-            <ReactMarkdown>{product.cuerpo || "Contenido no disponible."}</ReactMarkdown>
+            <ReactMarkdown>
+              {product.cuerpo || "Contenido no disponible."}
+            </ReactMarkdown>
           )}
         </article>
 
         {/* Direct Buy Action Card */}
         <section className='article-action-bar'>
           <div style={{ textAlign: "left", flex: 1 }}>
-            <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 4 }}>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+                marginBottom: 4,
+              }}
+            >
               <ShieldCheck size={18} color='#0071e3' />
-              <span style={{ fontWeight: 700, fontSize: "0.95rem", color: "#111113" }}>
-                {isAmazon ? "Disponibilidad Verificada" : "Licencia Digital Inmediata"}
+              <span
+                style={{
+                  fontWeight: 700,
+                  fontSize: "0.95rem",
+                  color: "#111113",
+                }}
+              >
+                {isAmazon
+                  ? "Disponibilidad Verificada"
+                  : "Licencia Digital Inmediata"}
               </span>
             </div>
             <p style={{ fontSize: "0.82rem", color: "#6e6e73", margin: 0 }}>
@@ -216,12 +245,23 @@ export default async function ArticlePage({ params }) {
             <Zap size={20} />
           </div>
           <div>
-            <h4 style={{ fontSize: "0.95rem", fontWeight: 700, color: "#111113", marginBottom: 2 }}>
+            <h4
+              style={{
+                fontSize: "0.95rem",
+                fontWeight: 700,
+                color: "#111113",
+                marginBottom: 2,
+              }}
+            >
               Soporte eParadise Garantizado
             </h4>
             <p style={{ fontSize: "0.82rem", color: "#6e6e73", margin: 0 }}>
-              ¿Tienes dudas sobre especificaciones o compatibilidad? Contáctanos a través de nuestra{" "}
-              <Link href='/contacto' style={{ color: "#0071e3", textDecoration: "underline" }}>
+              ¿Tienes dudas sobre especificaciones o compatibilidad? Contáctanos
+              a través de nuestra{" "}
+              <Link
+                href='/contacto'
+                style={{ color: "#0071e3", textDecoration: "underline" }}
+              >
                 página de contacto
               </Link>{" "}
               o en nuestro canal oficial de{" "}
@@ -319,7 +359,6 @@ export default async function ArticlePage({ params }) {
   );
 }
 
-export const revalidate = 60;
 export const dynamicParams = true;
 
 export async function generateStaticParams() {
