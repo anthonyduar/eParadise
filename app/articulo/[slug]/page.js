@@ -82,7 +82,11 @@ export default async function ArticlePage({ params }) {
       ? "Ebook"
       : productCategory === "software"
         ? "Software"
-        : "Equipos de Vanguardia";
+        : "Hardware";
+  const shortTitle =
+    product.titulo && product.titulo.includes(":")
+      ? product.titulo.split(":")[0].trim()
+      : product.titulo;
   const badgeCategoryLabel =
     productCategory === "ebook"
       ? "Ebook"
@@ -134,7 +138,7 @@ export default async function ArticlePage({ params }) {
         </Link>
         <span>/</span>
         <span style={{ color: "#111113", fontWeight: 600 }}>
-          {product.titulo}
+          {shortTitle}
         </span>
       </nav>
 

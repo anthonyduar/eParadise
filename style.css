@@ -212,6 +212,9 @@ html, body {
   display: flex;
   flex-direction: column;
   color: #f5f5f7;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 .mobile-nav-header {
   display: flex;
@@ -1084,8 +1087,18 @@ html, body {
 }
 
 @media (max-width: 580px) {
+  .apple-footer-breadcrumbs {
+    justify-content: center;
+  }
   .apple-footer-directory {
     grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .directory-col-links {
+    align-items: center;
+  }
+  .directory-col-links li {
+    text-align: center;
   }
   .apple-hero-fullbleed,
   .apple-hero-light {

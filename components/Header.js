@@ -25,6 +25,26 @@ export default function Header() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+
+    return () => {
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      if (window.lenis) {
+        window.lenis.start();
+      }
+    };
+  }, [mobileMenuOpen]);
+
   const handleNavClick = (sectionId) => {
     if (isHome) {
       const el = document.getElementById(sectionId);
@@ -143,7 +163,11 @@ export default function Header() {
 
       {/* Mobile Drawer (Apple Style) */}
       {mobileMenuOpen && (
-        <div className='mobile-nav-drawer' style={{ zIndex: 20000 }}>
+        <div
+          className='mobile-nav-drawer'
+          data-lenis-prevent
+          style={{ zIndex: 20000 }}
+        >
           <div className='mobile-nav-header'>
             <Link href='/' className='navbar-brand' onClick={() => setMobileMenuOpen(false)}>
               <img src='/img/icono.png' alt='eParadise' className='brand-icon' />
@@ -160,11 +184,8 @@ export default function Header() {
           </div>
 
           <div className='mobile-nav-links'>
-            <Link href='/' onClick={() => setMobileMenuOpen(false)}>
-              Tienda Oficial <span>→</span>
-            </Link>
             <Link href='/fisicos' onClick={() => setMobileMenuOpen(false)}>
-              Equipos de Vanguardia <span>→</span>
+              Hardware <span>→</span>
             </Link>
             <Link href='/digitales' onClick={() => setMobileMenuOpen(false)}>
               Software <span>→</span>
@@ -183,7 +204,7 @@ export default function Header() {
             </Link>
           </div>
 
-          <div style={{ marginTop: "auto", display: "flex", flexDirection: "column", gap: 12 }}>
+          <div style={{ marginTop: "auto", paddingTop: 20, flexShrink: 0, display: "flex", flexDirection: "column", gap: 12 }}>
             <button
               className='btn-apple-pill'
               onClick={() => {
