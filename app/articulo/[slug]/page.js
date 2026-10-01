@@ -241,7 +241,7 @@ export default async function ArticlePage({ params }) {
 
       {/* Related Products Grid */}
       {related.length > 0 && (
-        <section style={{ paddingTop: 8 }}>
+        <section style={{ paddingTop: 28 }}>
           <h3
             style={{
               fontSize: "1.4rem",

@@ -34,12 +34,22 @@ export default function Footer() {
     };
   }, []);
 
-  const hardwareLinks = products
+  // Muestra únicamente el nombre del modelo cortando antes de ":" si existe
+  const getModelTitle = (titulo) => {
+    if (!titulo || typeof titulo !== "string") return "";
+    return titulo.includes(":") ? titulo.split(":")[0].trim() : titulo.trim();
+  };
+
+  const sortedProducts = [...products].sort(
+    (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
+  );
+
+  const hardwareLinks = sortedProducts
     .filter((p) => p.tipo === "amazon")
-    .slice(0, 4);
-  const digitalLinks = products
+    .slice(0, 3);
+  const digitalLinks = sortedProducts
     .filter((p) => p.tipo === "payhip")
-    .slice(0, 4);
+    .slice(0, 3);
 
   const scrollToTop = () => {
     if (typeof window !== "undefined") {
@@ -77,7 +87,9 @@ export default function Footer() {
             <ul className='directory-col-links'>
               {hardwareLinks.map((item) => (
                 <li key={item.slug}>
-                  <Link href={`/articulo/${item.slug}`}>{item.titulo}</Link>
+                  <Link href={`/articulo/${item.slug}`}>
+                    {getModelTitle(item.titulo)}
+                  </Link>
                 </li>
               ))}
               <li>
@@ -92,7 +104,9 @@ export default function Footer() {
             <ul className='directory-col-links'>
               {digitalLinks.map((item) => (
                 <li key={item.slug}>
-                  <Link href={`/articulo/${item.slug}`}>{item.titulo}</Link>
+                  <Link href={`/articulo/${item.slug}`}>
+                    {getModelTitle(item.titulo)}
+                  </Link>
                 </li>
               ))}
               <li>

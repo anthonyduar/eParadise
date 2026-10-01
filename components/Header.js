@@ -127,22 +127,10 @@ export default function Header() {
               type='button'
               onClick={() => setSearchOpen(true)}
               aria-label='Buscar en eParadise'
-              title='Buscar (⌘K)'
+              title='Buscar'
             >
               <Search size={15} />
-              <span className='kbd-pill'>⌘K</span>
             </button>
-
-            <a
-              href='https://www.instagram.com/eparadiseve/'
-              target='_blank'
-              rel='noopener noreferrer'
-              className='btn-apple-insta'
-              aria-label='Instagram @eparadiseve'
-            >
-              <InstagramIcon size={14} color='#f5f5f7' />
-              <span>@eparadiseve</span>
-            </a>
 
             {/* Mobile Hamburger Button */}
             <button

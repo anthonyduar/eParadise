@@ -7,6 +7,12 @@ export default function HomeCanvas({ products = [] }) {
   const [hardwareIndex, setHardwareIndex] = useState(0);
   const [softwareIndex, setSoftwareIndex] = useState(0);
 
+  // Muestra únicamente el nombre del modelo cortando antes de ":" si existe
+  const getModelTitle = (titulo) => {
+    if (!titulo || typeof titulo !== "string") return "";
+    return titulo.includes(":") ? titulo.split(":")[0].trim() : titulo.trim();
+  };
+
   // Separa dinámicamente los productos publicados en WordPress por su categoría ('amazon' = Hardware, 'payhip' = Software)
   const hardwareProducts = products.filter((p) => p.tipo === "amazon");
   const digitalProducts = products.filter((p) => p.tipo === "payhip");
@@ -48,7 +54,7 @@ export default function HomeCanvas({ products = [] }) {
   // 3. SECCIÓN 3 - HARDWARE (Cards Grandes en Grilla 2 Columnas - Exclusivamente Hardware desde WordPress)
   const hardwareGridCards = hardwareProducts.map((item) => ({
     theme: "card-light",
-    title: item.titulo,
+    title: getModelTitle(item.titulo),
     desc: item.resumen,
     slug: item.slug,
     imagen_url: item.imagen_url || "/img/logo.png",
@@ -59,7 +65,7 @@ export default function HomeCanvas({ products = [] }) {
   // 4. SECCIÓN 4 - SOFTWARE (Cards Grandes en Grilla 2 Columnas - Exclusivamente Software desde WordPress)
   const softwareGridCards = digitalProducts.map((item) => ({
     theme: "card-light",
-    title: item.titulo,
+    title: getModelTitle(item.titulo),
     desc: item.resumen,
     slug: item.slug,
     imagen_url: item.imagen_url || "/img/logo.png",
@@ -83,7 +89,9 @@ export default function HomeCanvas({ products = [] }) {
             key={`hw-copy-${currentHardware.slug}`}
             className='apple-hero-content carousel-fade-item'
           >
-            <h1 className='apple-hero-headline'>{currentHardware.titulo}</h1>
+            <h1 className='apple-hero-headline'>
+              {getModelTitle(currentHardware.titulo)}
+            </h1>
 
             <p className='apple-hero-subhead'>
               {currentHardware.resumen ||
@@ -158,7 +166,9 @@ export default function HomeCanvas({ products = [] }) {
             key={`sw-copy-${currentSoftware.slug}`}
             className='apple-hero-content carousel-fade-item'
           >
-            <h2 className='apple-hero-headline'>{currentSoftware.titulo}</h2>
+            <h2 className='apple-hero-headline'>
+              {getModelTitle(currentSoftware.titulo)}
+            </h2>
 
             <p className='apple-hero-subhead'>
               {currentSoftware.resumen ||
