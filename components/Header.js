@@ -75,32 +75,20 @@ export default function Header() {
               </Link>
             </li>
             <li>
-              <a
-                href={isHome ? "#hardware-section" : "/fisicos"}
-                className='apple-nav-link'
-                onClick={(e) => {
-                  if (isHome) {
-                    e.preventDefault();
-                    handleNavClick("hardware-section");
-                  }
-                }}
+              <Link
+                href='/fisicos'
+                className={`apple-nav-link ${pathname === "/fisicos" ? "active" : ""}`}
               >
                 Hardware
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href={isHome ? "#software-section" : "/digitales"}
-                className='apple-nav-link'
-                onClick={(e) => {
-                  if (isHome) {
-                    e.preventDefault();
-                    handleNavClick("software-section");
-                  }
-                }}
+              <Link
+                href='/digitales'
+                className={`apple-nav-link ${pathname === "/digitales" ? "active" : ""}`}
               >
                 Ecosistema Digital
-              </a>
+              </Link>
             </li>
             <li>
               <Link
@@ -167,32 +155,12 @@ export default function Header() {
             <Link href='/' onClick={() => setMobileMenuOpen(false)}>
               Tienda Oficial <span>→</span>
             </Link>
-            <a
-              href={isHome ? "#hardware-section" : "/fisicos"}
-              onClick={(e) => {
-                if (isHome) {
-                  e.preventDefault();
-                  handleNavClick("hardware-section");
-                } else {
-                  setMobileMenuOpen(false);
-                }
-              }}
-            >
+            <Link href='/fisicos' onClick={() => setMobileMenuOpen(false)}>
               Equipos de Vanguardia <span>→</span>
-            </a>
-            <a
-              href={isHome ? "#software-section" : "/digitales"}
-              onClick={(e) => {
-                if (isHome) {
-                  e.preventDefault();
-                  handleNavClick("software-section");
-                } else {
-                  setMobileMenuOpen(false);
-                }
-              }}
-            >
+            </Link>
+            <Link href='/digitales' onClick={() => setMobileMenuOpen(false)}>
               Ecosistema Digital <span>→</span>
-            </a>
+            </Link>
             <Link href='/acerca' onClick={() => setMobileMenuOpen(false)}>
               Acerca de <span>→</span>
             </Link>

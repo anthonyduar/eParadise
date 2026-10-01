@@ -74,8 +74,6 @@ export default function Footer() {
             />
           </Link>
           <ChevronRight size={12} color='#6e6e73' />
-          <Link href='/'>Tienda Oficial</Link>
-          <ChevronRight size={12} color='#6e6e73' />
           <span>Catálogo de Lanzamientos</span>
         </div>
 
