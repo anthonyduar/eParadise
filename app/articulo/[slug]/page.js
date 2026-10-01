@@ -89,6 +89,24 @@ export default async function ArticlePage({ params }) {
       : productCategory === "software"
         ? "Software"
         : "Hardware de Alta Gama";
+  const actionBarTitle =
+    productCategory === "ebook"
+      ? "Edición Digital Inmediata"
+      : productCategory === "software"
+        ? "Licencia Digital Inmediata"
+        : "Disponibilidad Verificada";
+  const actionBarDesc =
+    productCategory === "ebook"
+      ? isAmazon
+        ? "Acceso digital instantáneo a tu Ebook con el respaldo y compra segura de Amazon."
+        : "Descarga instantánea de tu Ebook tras completar el pago seguro en Payhip."
+      : productCategory === "software"
+        ? isAmazon
+          ? "Acceso digital inmediato y licencia gestionada con la protección de compra de Amazon."
+          : "Descarga instantánea y soporte técnico tras completar el pago seguro en Payhip."
+        : isAmazon
+          ? "Compra gestionada con la protección al comprador y envíos de Amazon."
+          : "Compra verificada y gestionada de forma segura a través de Payhip.";
 
   return (
     <main className='article-container'>
@@ -218,15 +236,11 @@ export default async function ArticlePage({ params }) {
                   color: "#111113",
                 }}
               >
-                {isAmazon
-                  ? "Disponibilidad Verificada"
-                  : "Licencia Digital Inmediata"}
+                {actionBarTitle}
               </span>
             </div>
             <p style={{ fontSize: "0.82rem", color: "#6e6e73", margin: 0 }}>
-              {isAmazon
-                ? "Compra gestionada con la protección al comprador y envíos de Amazon."
-                : "Descarga instantánea y soporte técnico tras completar el pago seguro en Payhip."}
+              {actionBarDesc}
             </p>
           </div>
 
