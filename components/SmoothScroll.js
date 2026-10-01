@@ -1,11 +1,28 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Lenis from "lenis";
 
 export default function SmoothScroll({ children }) {
   const pathname = usePathname();
+  const router = useRouter();
+
+  useEffect(() => {
+    const refreshFromWordPress = () => {
+      if (document.visibilityState === "visible") {
+        router.refresh();
+      }
+    };
+
+    window.addEventListener("focus", refreshFromWordPress);
+    document.addEventListener("visibilitychange", refreshFromWordPress);
+
+    return () => {
+      window.removeEventListener("focus", refreshFromWordPress);
+      document.removeEventListener("visibilitychange", refreshFromWordPress);
+    };
+  }, [router]);
 
   useEffect(() => {
     // Initialize Lenis smooth scroll engine (as on landonorris.com)

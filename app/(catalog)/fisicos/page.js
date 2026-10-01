@@ -3,6 +3,9 @@ import ProductGrid from "@/components/ProductGrid";
 import { filterProducts, getProducts } from "@/lib/wordpress";
 import { ArrowLeft, Cpu } from "lucide-react";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "Equipos & Hardware de Vanguardia | eParadise",
   description:

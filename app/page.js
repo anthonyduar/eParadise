@@ -1,6 +1,9 @@
 import HomeCanvas from "@/components/HomeCanvas";
 import { getProducts } from "@/lib/wordpress";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export const metadata = {
   title: "eParadise | Diseña tu futuro con tecnología avanzada",
   description:
