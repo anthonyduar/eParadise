@@ -87,7 +87,15 @@ export default function Header() {
                 href='/digitales'
                 className={`apple-nav-link ${pathname === "/digitales" ? "active" : ""}`}
               >
-                Ecosistema Digital
+                Software
+              </Link>
+            </li>
+            <li>
+              <Link
+                href='/ebooks'
+                className={`apple-nav-link ${pathname === "/ebooks" ? "active" : ""}`}
+              >
+                Ebook
               </Link>
             </li>
             <li>
@@ -159,7 +167,10 @@ export default function Header() {
               Equipos de Vanguardia <span>→</span>
             </Link>
             <Link href='/digitales' onClick={() => setMobileMenuOpen(false)}>
-              Ecosistema Digital <span>→</span>
+              Software <span>→</span>
+            </Link>
+            <Link href='/ebooks' onClick={() => setMobileMenuOpen(false)}>
+              Ebook <span>→</span>
             </Link>
             <Link href='/acerca' onClick={() => setMobileMenuOpen(false)}>
               Acerca de <span>→</span>

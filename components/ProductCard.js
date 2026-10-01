@@ -4,6 +4,14 @@ import { ArrowRight, ExternalLink } from "lucide-react";
 
 export default function ProductCard({ product }) {
   const isAmazon = product.tipo === "amazon";
+  const tipoProducto =
+    product.tipo_de_producto || (isAmazon ? "hardware" : "software");
+  const badgeLabel =
+    tipoProducto === "ebook"
+      ? "Ebook"
+      : tipoProducto === "software"
+        ? "Software"
+        : "Hardware";
 
   return (
     <article
@@ -42,7 +50,7 @@ export default function ProductCard({ product }) {
             borderRadius: 9999,
           }}
         >
-          {isAmazon ? "Hardware" : "Digital"}
+          {badgeLabel}
         </div>
       </div>
 

@@ -58,11 +58,37 @@ export default async function ArticlePage({ params }) {
   if (!product) notFound();
 
   const allProducts = await getProducts();
+  const productCategory =
+    product.tipo_de_producto ||
+    (product.tipo === "payhip" ? "software" : "hardware");
+
   const related = allProducts
-    .filter((p) => p.slug !== slug && p.tipo === product.tipo)
+    .filter((p) => {
+      const pCat =
+        p.tipo_de_producto || (p.tipo === "payhip" ? "software" : "hardware");
+      return p.slug !== slug && pCat === productCategory;
+    })
     .slice(0, 3);
 
   const isAmazon = product.tipo === "amazon";
+  const categoryHref =
+    productCategory === "ebook"
+      ? "/ebooks"
+      : productCategory === "software"
+        ? "/digitales"
+        : "/fisicos";
+  const categoryLabel =
+    productCategory === "ebook"
+      ? "Ebook"
+      : productCategory === "software"
+        ? "Software"
+        : "Equipos de Vanguardia";
+  const badgeCategoryLabel =
+    productCategory === "ebook"
+      ? "Ebook"
+      : productCategory === "software"
+        ? "Software"
+        : "Hardware de Alta Gama";
 
   return (
     <main className='article-container'>
@@ -83,10 +109,10 @@ export default async function ArticlePage({ params }) {
         </Link>
         <span>/</span>
         <Link
-          href={isAmazon ? "/fisicos" : "/digitales"}
+          href={categoryHref}
           style={{ color: "#6e6e73", textDecoration: "none" }}
         >
-          {isAmazon ? "Equipos de Vanguardia" : "Ecosistema Digital"}
+          {categoryLabel}
         </Link>
         <span>/</span>
         <span style={{ color: "#111113", fontWeight: 600 }}>
@@ -118,9 +144,7 @@ export default async function ArticlePage({ params }) {
         {/* Article Header */}
         <header className='article-header'>
           <span className='article-badge'>
-            {isAmazon
-              ? "Hardware de Alta Gama • Amazon"
-              : "Activo Digital • Payhip"}
+            {`${badgeCategoryLabel} • ${isAmazon ? "Amazon" : "Payhip"}`}
           </span>
           <h1 className='article-title'>{product.titulo}</h1>
           {product.resumen && (

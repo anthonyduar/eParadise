@@ -14,9 +14,19 @@ export default function HomeCanvas({ products = [] }) {
     return titulo.includes(":") ? titulo.split(":")[0].trim() : titulo.trim();
   };
 
-  // Separa dinámicamente los productos publicados en WordPress por su categoría ('amazon' = Hardware, 'payhip' = Software)
-  const hardwareProducts = products.filter((p) => p.tipo === "amazon");
-  const digitalProducts = products.filter((p) => p.tipo === "payhip");
+  // Separa dinámicamente los productos publicados en WordPress por su tipo_de_producto ('hardware', 'software', 'ebook')
+  const getProductCategory = (p) =>
+    p.tipo_de_producto || (p.tipo === "payhip" ? "software" : "hardware");
+
+  const hardwareProducts = products.filter(
+    (p) => getProductCategory(p) === "hardware",
+  );
+  const digitalProducts = products.filter(
+    (p) => getProductCategory(p) === "software",
+  );
+  const ebookProducts = products.filter(
+    (p) => getProductCategory(p) === "ebook",
+  );
 
   // 1. SECCIÓN 1 - HARDWARE (Carrusel Principal - Productos Amazon desde WordPress)
   const hardwareCarouselList = hardwareProducts;
@@ -73,26 +83,43 @@ export default function HomeCanvas({ products = [] }) {
     }
   }, [softwareIndex, softwareCarouselList.length]);
 
-  // 3. SECCIÓN 3 - HARDWARE (Cards Grandes en Grilla 2 Columnas - Exclusivamente Hardware desde WordPress)
-  const hardwareGridCards = hardwareProducts.map((item) => ({
+  // 3. SECCIÓN 3 - HARDWARE (Cards Grandes en Grilla 2 Columnas - Máximo 2 productos)
+  const hardwareGridCards = hardwareProducts.slice(0, 2).map((item) => ({
     theme: "card-light",
     title: getModelTitle(item.titulo),
     desc: item.resumen,
     slug: item.slug,
     imagen_url: item.imagen_url || "/img/logo.png",
-    link_compra: item.link_compra || "https://amazon.com",
-    tipo: "amazon",
+    link_compra:
+      item.link_compra ||
+      (item.tipo === "payhip" ? "https://payhip.com" : "https://amazon.com"),
+    tipo: item.tipo || "amazon",
   }));
 
-  // 4. SECCIÓN 4 - SOFTWARE (Cards Grandes en Grilla 2 Columnas - Exclusivamente Software desde WordPress)
-  const softwareGridCards = digitalProducts.map((item) => ({
+  // 4. SECCIÓN 4 - SOFTWARE (Cards Grandes en Grilla 2 Columnas - Máximo 2 productos)
+  const softwareGridCards = digitalProducts.slice(0, 2).map((item) => ({
     theme: "card-light",
     title: getModelTitle(item.titulo),
     desc: item.resumen,
     slug: item.slug,
     imagen_url: item.imagen_url || "/img/logo.png",
-    link_compra: item.link_compra || "https://payhip.com",
-    tipo: "payhip",
+    link_compra:
+      item.link_compra ||
+      (item.tipo === "payhip" ? "https://payhip.com" : "https://amazon.com"),
+    tipo: item.tipo || "payhip",
+  }));
+
+  // 5. SECCIÓN 5 - EBOOKS (Cards Grandes en Grilla 2 Columnas - Máximo 2 productos)
+  const ebookGridCards = ebookProducts.slice(0, 2).map((item) => ({
+    theme: "card-light",
+    title: getModelTitle(item.titulo),
+    desc: item.resumen,
+    slug: item.slug,
+    imagen_url: item.imagen_url || "/img/logo.png",
+    link_compra:
+      item.link_compra ||
+      (item.tipo === "payhip" ? "https://payhip.com" : "https://amazon.com"),
+    tipo: item.tipo || "payhip",
   }));
 
   return (
@@ -321,7 +348,7 @@ export default function HomeCanvas({ products = [] }) {
 
       {/* =================================================================
           SECCIÓN 4 - SOFTWARE (Cards Grandes en Grilla 2 Columnas)
-          Renderiza dinámicamente todos los artículos de Software de WordPress
+          Renderiza dinámicamente hasta 2 artículos de Software de WordPress
          ================================================================= */}
       {softwareGridCards.length > 0 && (
         <section
@@ -330,6 +357,58 @@ export default function HomeCanvas({ products = [] }) {
         >
           <div className='apple-promo-grid'>
             {softwareGridCards.map((item) => (
+              <div
+                key={item.slug}
+                className={`apple-promo-card ${item.theme}`}
+              >
+                <div className='promo-top-content'>
+                  <h3 className='promo-title'>{item.title}</h3>
+                  <p className='promo-desc'>{item.desc}</p>
+
+                  <div className='promo-links'>
+                    <Link
+                      href={`/articulo/${item.slug}`}
+                      className='btn-apple-pill btn-sm'
+                    >
+                      <span>Más información</span>
+                    </Link>
+
+                    <a
+                      href={item.link_compra}
+                      target='_blank'
+                      rel='noopener noreferrer'
+                      className='btn-apple-outline-pill btn-sm outline-on-light'
+                    >
+                      <span>Comprar</span>
+                    </a>
+                  </div>
+                </div>
+
+                <div className='promo-media-box'>
+                  <img
+                    src={item.imagen_url}
+                    alt={item.title}
+                    className='promo-media-img'
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
+
+      {/* =================================================================
+          SECCIÓN 5 - EBOOKS (Cards Grandes en Grilla 2 Columnas)
+          Renderiza dinámicamente hasta 2 artículos de Ebook de WordPress
+         ================================================================= */}
+      {ebookGridCards.length > 0 && (
+        <section
+          id='ebook-section'
+          className='apple-promo-section'
+          aria-label='Destacados de Ebooks'
+        >
+          <div className='apple-promo-grid'>
+            {ebookGridCards.map((item) => (
               <div
                 key={item.slug}
                 className={`apple-promo-card ${item.theme}`}

@@ -1,19 +1,19 @@
 import Link from "next/link";
 import ProductGrid from "@/components/ProductGrid";
 import { filterProducts, getProducts } from "@/lib/wordpress";
-import { ArrowLeft, Layers } from "lucide-react";
+import { ArrowLeft, BookOpen } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Software | eParadise",
+  title: "Ebooks | eParadise",
   description:
-    "Herramientas de software, scripts automatizados, plantillas y soluciones digitales para desarrolladores y creadores.",
+    "Explora nuestra biblioteca de ebooks técnicos, guías especializadas y recursos de aprendizaje digital.",
 };
 
-export default async function DigitalProductsPage() {
-  const products = filterProducts(await getProducts(), "software");
+export default async function EbooksProductsPage() {
+  const products = filterProducts(await getProducts(), "ebook");
 
   return (
     <main className='secondary-page-container' style={{ maxWidth: 1200 }}>
@@ -45,20 +45,20 @@ export default async function DigitalProductsPage() {
             fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "0.14em",
-            color: "#833ab4",
-            background: "rgba(131,58,180,0.06)",
+            color: "#0071e3",
+            background: "rgba(0,113,227,0.06)",
             padding: "4px 12px",
             borderRadius: 9999,
             marginBottom: 10,
           }}
         >
-          <Layers size={14} />
-          <span>Catálogo de Software</span>
+          <BookOpen size={14} />
+          <span>Catálogo de Ebooks</span>
         </div>
-        <h1 className='secondary-hero-title'>Software</h1>
+        <h1 className='secondary-hero-title'>Ebooks</h1>
         <p className='secondary-hero-sub'>
-          Automatizaciones, kits para SaaS, optimizadores como Excel Pro Cleaner
-          y soluciones digitales para acelerar tu desarrollo.
+          Guías prácticas, literatura técnica y manuales digitales diseñados para
+          potenciar tus conocimientos.
         </p>
       </header>
 
@@ -71,7 +71,7 @@ export default async function DigitalProductsPage() {
       >
         <ProductGrid
           products={products}
-          emptyMessage='No se encontraron activos digitales disponibles en este momento.'
+          emptyMessage='No se encontraron ebooks disponibles en este momento.'
         />
       </div>
     </main>

@@ -40,15 +40,21 @@ export default function Footer() {
     return titulo.includes(":") ? titulo.split(":")[0].trim() : titulo.trim();
   };
 
+  const getProductCategory = (p) =>
+    p.tipo_de_producto || (p.tipo === "payhip" ? "software" : "hardware");
+
   const sortedProducts = [...products].sort(
     (a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0)
   );
 
   const hardwareLinks = sortedProducts
-    .filter((p) => p.tipo === "amazon")
+    .filter((p) => getProductCategory(p) === "hardware")
     .slice(0, 3);
   const digitalLinks = sortedProducts
-    .filter((p) => p.tipo === "payhip")
+    .filter((p) => getProductCategory(p) === "software")
+    .slice(0, 3);
+  const ebookLinks = sortedProducts
+    .filter((p) => getProductCategory(p) === "ebook")
     .slice(0, 3);
 
   const scrollToTop = () => {
@@ -98,7 +104,7 @@ export default function Footer() {
 
           {/* Col 2: Software dinámico desde WordPress */}
           <div>
-            <h3 className='directory-col-title'>Ecosistema Digital</h3>
+            <h3 className='directory-col-title'>Software</h3>
             <ul className='directory-col-links'>
               {digitalLinks.map((item) => (
                 <li key={item.slug}>
@@ -113,7 +119,24 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 3: Comunidad & Redes */}
+          {/* Col 3: Ebooks dinámico desde WordPress */}
+          <div>
+            <h3 className='directory-col-title'>Ebooks</h3>
+            <ul className='directory-col-links'>
+              {ebookLinks.map((item) => (
+                <li key={item.slug}>
+                  <Link href={`/articulo/${item.slug}`}>
+                    {getModelTitle(item.titulo)}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href='/ebooks'>Ver catálogo completo de ebooks →</Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Col 4: Comunidad & Redes */}
           <div>
             <h3 className='directory-col-title'>Comunidad & Redes</h3>
             <ul className='directory-col-links'>
@@ -139,21 +162,6 @@ export default function Footer() {
                 <Link href='/legal'>Avisos Legales & Privacidad</Link>
               </li>
             </ul>
-          </div>
-
-          {/* Col 4: Logo */}
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "flex-start" }}>
-            <Link href='/' onClick={scrollToTop}>
-              <img
-                src='/img/logo.png'
-                alt='eParadise'
-                style={{
-                  maxWidth: 130,
-                  height: "auto",
-                  objectFit: "contain",
-                }}
-              />
-            </Link>
           </div>
         </div>
 
