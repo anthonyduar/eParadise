@@ -1065,6 +1065,118 @@ html, body {
 }
 
 /* =========================================================
+   COOKIE CONSENT BANNER (eParadise Frosted Style)
+   ========================================================= */
+
+.eparadise-cookie-banner {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 15000;
+  width: calc(100% - 48px);
+  max-width: 430px;
+  background: rgba(255, 255, 255, 0.94);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  border: 1px solid rgba(0, 113, 227, 0.18);
+  border-radius: 22px;
+  padding: 22px 24px;
+  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+  color: #1d1d1f;
+  animation: appleSlideFade 0.5s var(--ease-apple) both;
+}
+
+.cookie-banner-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.cookie-banner-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--apple-blue);
+}
+
+.cookie-banner-close {
+  background: transparent;
+  border: none;
+  color: #86868b;
+  cursor: pointer;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.cookie-banner-close:hover {
+  color: #1d1d1f;
+  background: rgba(0, 0, 0, 0.05);
+}
+
+.cookie-banner-text {
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: #1d1d1f;
+  margin-bottom: 20px;
+}
+
+.cookie-banner-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cookie-banner-policy {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6e6e73;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.cookie-banner-policy:hover {
+  color: var(--apple-blue);
+}
+
+.cookie-banner-accept {
+  background: var(--apple-blue);
+  color: #ffffff;
+  border: 1px solid var(--apple-blue);
+  border-radius: 980px;
+  padding: 9px 24px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.cookie-banner-accept:hover {
+  background: var(--apple-blue-hover);
+}
+
+@media (max-width: 580px) {
+  .eparadise-cookie-banner {
+    right: 16px;
+    left: 16px;
+    bottom: 16px;
+    width: auto;
+    max-width: none;
+    padding: 20px;
+  }
+}
+
+/* =========================================================
    8. RESPONSIVE BREAKPOINTS
    ========================================================= */
 

@@ -2,6 +2,7 @@ import "../style.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
+import CookieBanner from "@/components/CookieBanner";
 
 export const metadata = {
   title: "eParadise | Tienda Oficial de Tecnología y Activos Digitales",
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
           <Header />
           {children}
           <Footer />
+          <CookieBanner />
         </SmoothScroll>
       </body>
     </html>
