@@ -83,6 +83,30 @@ export default function HomeCanvas({ products = [] }) {
     }
   }, [softwareIndex, softwareCarouselList.length]);
 
+  // Efecto de aparición desde los laterales al hacer scroll y llegar a las secciones 3, 4 y 5
+  useEffect(() => {
+    const sections = document.querySelectorAll(".apple-promo-section");
+    if (!sections.length) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("section-in-view");
+          }
+        });
+      },
+      { threshold: 0.15, rootMargin: "0px 0px -40px 0px" },
+    );
+
+    sections.forEach((sec) => observer.observe(sec));
+    return () => observer.disconnect();
+  }, [
+    hardwareProducts.length,
+    digitalProducts.length,
+    ebookProducts.length,
+  ]);
+
   // 3. SECCIÓN 3 - HARDWARE (Cards Grandes en Grilla 2 Columnas - Máximo 2 productos)
   const hardwareGridCards = hardwareProducts.slice(0, 2).map((item) => ({
     theme: "card-light",
@@ -305,10 +329,10 @@ export default function HomeCanvas({ products = [] }) {
           aria-label='Destacados de Hardware'
         >
           <div className='apple-promo-grid'>
-            {hardwareGridCards.map((item) => (
+            {hardwareGridCards.map((item, idx) => (
               <div
                 key={item.slug}
-                className={`apple-promo-card ${item.theme}`}
+                className={`apple-promo-card ${item.theme} ${idx % 2 === 0 ? "promo-slide-left" : "promo-slide-right"}`}
               >
                 <div className='promo-top-content'>
                   <h3 className='promo-title'>{item.title}</h3>
@@ -356,10 +380,10 @@ export default function HomeCanvas({ products = [] }) {
           aria-label='Destacados de Software'
         >
           <div className='apple-promo-grid'>
-            {softwareGridCards.map((item) => (
+            {softwareGridCards.map((item, idx) => (
               <div
                 key={item.slug}
-                className={`apple-promo-card ${item.theme}`}
+                className={`apple-promo-card ${item.theme} ${idx % 2 === 0 ? "promo-slide-left" : "promo-slide-right"}`}
               >
                 <div className='promo-top-content'>
                   <h3 className='promo-title'>{item.title}</h3>
@@ -408,10 +432,10 @@ export default function HomeCanvas({ products = [] }) {
           aria-label='Destacados de Ebooks'
         >
           <div className='apple-promo-grid'>
-            {ebookGridCards.map((item) => (
+            {ebookGridCards.map((item, idx) => (
               <div
                 key={item.slug}
-                className={`apple-promo-card ${item.theme}`}
+                className={`apple-promo-card ${item.theme} ${idx % 2 === 0 ? "promo-slide-left" : "promo-slide-right"}`}
               >
                 <div className='promo-top-content'>
                   <h3 className='promo-title'>{item.title}</h3>

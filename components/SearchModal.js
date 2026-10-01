@@ -2,16 +2,24 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Search, X, ArrowRight, Package, Cpu } from "lucide-react";
+import { Search, X, ArrowRight, Package, Cpu, BookOpen } from "lucide-react";
 
 export default function SearchModal({ onClose }) {
   const [query, setQuery] = useState("");
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [categoryFilter, setCategoryFilter] = useState("all"); // all, amazon (hardware), payhip (digital)
+  const [categoryFilter, setCategoryFilter] = useState("all"); // all, hardware, software, ebook
   const inputRef = useRef(null);
 
   useEffect(() => {
+    const prevBodyOverflow = document.body.style.overflow;
+    const prevHtmlOverflow = document.documentElement.style.overflow;
+    document.body.style.overflow = "hidden";
+    document.documentElement.style.overflow = "hidden";
+    if (window.lenis) {
+      window.lenis.stop();
+    }
+
     if (inputRef.current) {
       inputRef.current.focus();
     }
@@ -22,7 +30,14 @@ export default function SearchModal({ onClose }) {
       }
     };
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = prevBodyOverflow;
+      document.documentElement.style.overflow = prevHtmlOverflow;
+      if (window.lenis) {
+        window.lenis.start();
+      }
+    };
   }, [onClose]);
 
   useEffect(() => {
@@ -47,15 +62,21 @@ export default function SearchModal({ onClose }) {
     return () => clearTimeout(timer);
   }, [query]);
 
+  const getProductCategory = (p) =>
+    p.tipo_de_producto || (p.tipo === "payhip" ? "software" : "hardware");
+
   const filtered = products.filter((p) => {
-    if (categoryFilter === "hardware") return p.tipo === "amazon";
-    if (categoryFilter === "digital") return p.tipo === "payhip";
+    const cat = getProductCategory(p);
+    if (categoryFilter === "hardware") return cat === "hardware";
+    if (categoryFilter === "software") return cat === "software";
+    if (categoryFilter === "ebook") return cat === "ebook";
     return true;
   });
 
   return (
     <div
       className='search-modal'
+      data-lenis-prevent
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
@@ -66,7 +87,7 @@ export default function SearchModal({ onClose }) {
           <input
             id='search-input'
             ref={inputRef}
-            placeholder='Buscar equipos, hardware o herramientas digitales...'
+            placeholder='Buscar equipos, hardware, software o ebooks...'
             value={query}
             onChange={(e) => setQuery(e.target.value)}
           />
@@ -88,6 +109,7 @@ export default function SearchModal({ onClose }) {
             padding: "10px 20px",
             borderBottom: "1px solid rgba(0,0,0,0.06)",
             background: "#f9f9fb",
+            flexWrap: "wrap",
           }}
         >
           <button
@@ -128,11 +150,11 @@ export default function SearchModal({ onClose }) {
           </button>
           <button
             type='button'
-            onClick={() => setCategoryFilter("digital")}
+            onClick={() => setCategoryFilter("software")}
             style={{
               border: "none",
-              background: categoryFilter === "digital" ? "#0071e3" : "transparent",
-              color: categoryFilter === "digital" ? "#fff" : "#666",
+              background: categoryFilter === "software" ? "#0071e3" : "transparent",
+              color: categoryFilter === "software" ? "#fff" : "#666",
               padding: "4px 12px",
               borderRadius: 9999,
               fontSize: "0.78rem",
@@ -144,12 +166,32 @@ export default function SearchModal({ onClose }) {
             }}
           >
             <Package size={12} />
-            Activos Digitales
+            Software
+          </button>
+          <button
+            type='button'
+            onClick={() => setCategoryFilter("ebook")}
+            style={{
+              border: "none",
+              background: categoryFilter === "ebook" ? "#0071e3" : "transparent",
+              color: categoryFilter === "ebook" ? "#fff" : "#666",
+              padding: "4px 12px",
+              borderRadius: 9999,
+              fontSize: "0.78rem",
+              fontWeight: 600,
+              cursor: "pointer",
+              display: "flex",
+              alignItems: "center",
+              gap: 4,
+            }}
+          >
+            <BookOpen size={12} />
+            Ebook
           </button>
         </div>
 
         {/* Results List */}
-        <div className='search-results'>
+        <div className='search-results' data-lenis-prevent>
           {loading && (
             <p style={{ textAlign: "center", color: "#8e8e93", padding: "20px 0", fontSize: "0.9rem" }}>
               Buscando en eParadise...
@@ -166,36 +208,45 @@ export default function SearchModal({ onClose }) {
           )}
 
           {!loading &&
-            filtered.map((product) => (
-              <Link
-                key={product.id || product.slug}
-                href={`/articulo/${product.slug}`}
-                className='search-item'
-                onClick={onClose}
-              >
-                <img
-                  src={product.imagen_url || "/img/icono.png"}
-                  alt={product.titulo}
-                />
-                <div className='search-item-info' style={{ flex: 1 }}>
-                  <h4>{product.titulo}</h4>
-                  <p>{product.resumen}</p>
-                </div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 6,
-                    fontSize: "0.75rem",
-                    fontWeight: 600,
-                    color: "#0071e3",
-                  }}
+            filtered.map((product) => {
+              const cat = getProductCategory(product);
+              const catLabel =
+                cat === "ebook"
+                  ? "Ebook"
+                  : cat === "software"
+                    ? "Software"
+                    : "Hardware";
+              return (
+                <Link
+                  key={product.id || product.slug}
+                  href={`/articulo/${product.slug}`}
+                  className='search-item'
+                  onClick={onClose}
                 >
-                  <span>{product.tipo === "amazon" ? "Hardware" : "Digital"}</span>
-                  <ArrowRight size={14} />
-                </div>
-              </Link>
-            ))}
+                  <img
+                    src={product.imagen_url || "/img/icono.png"}
+                    alt={product.titulo}
+                  />
+                  <div className='search-item-info' style={{ flex: 1 }}>
+                    <h4>{product.titulo}</h4>
+                    <p>{product.resumen}</p>
+                  </div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 6,
+                      fontSize: "0.75rem",
+                      fontWeight: 600,
+                      color: "#0071e3",
+                    }}
+                  >
+                    <span>{catLabel}</span>
+                    <ArrowRight size={14} />
+                  </div>
+                </Link>
+              );
+            })}
         </div>
       </div>
     </div>

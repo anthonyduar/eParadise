@@ -7,7 +7,7 @@ export const dynamic = "force-dynamic";
 export const revalidate = 0;
 
 export const metadata = {
-  title: "Equipos & Hardware de Vanguardia | eParadise",
+  title: "Hardware | eParadise",
   description:
     "Explora nuestra selección completa de hardware de alta gama, audio profesional y accesorios de ingeniería.",
 };
@@ -55,9 +55,7 @@ export default async function PhysicalProductsPage() {
           <Cpu size={14} />
           <span>Catálogo de Hardware</span>
         </div>
-        <h1 className='secondary-hero-title'>
-          Equipos & Hardware de Vanguardia
-        </h1>
+        <h1 className='secondary-hero-title'>Hardware</h1>
         <p className='secondary-hero-sub'>
           Dispositivos de alto rendimiento, sonido pro, ergonomía y componentes
           seleccionados con precisión.
