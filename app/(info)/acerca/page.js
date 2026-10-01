@@ -1,14 +1,14 @@
 import Link from "next/link";
-import { Cpu, Layers, ShieldCheck, ArrowRight, ArrowLeft } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
   title: "Acerca de eParadise | Innovación & Tecnología",
-  description: "Conoce más sobre eParadise, nuestra visión y el estándar de excelencia en hardware y activos digitales.",
+  description: "Conoce más sobre eParadise, nuestra visión y el estándar de excelencia en hardware, software y ebooks.",
 };
 
 export default function AboutPage() {
   return (
-    <main className='secondary-page-container'>
+    <main className='secondary-page-container' style={{ maxWidth: 840 }}>
       <div style={{ marginBottom: 20 }}>
         <Link
           href='/'
@@ -47,143 +47,31 @@ export default function AboutPage() {
         </p>
       </header>
 
-      {/* 3 Core Pillars (Apple Grid) */}
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: 20,
-          marginBottom: 60,
-        }}
-      >
-        <div
-          style={{
-            background: "#ffffff",
-            padding: 30,
-            borderRadius: 24,
-            border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.03)",
-          }}
-        >
-          <div
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              background: "rgba(0,113,227,0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#0071e3",
-              marginBottom: 16,
-            }}
-          >
-            <Cpu size={22} />
-          </div>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: 8, color: "#111113" }}>
-            Hardware de Alta Gama
-          </h3>
-          <p style={{ fontSize: "0.9rem", color: "#6e6e73", lineHeight: 1.6 }}>
-            Seleccionamos únicamente equipos probados para máxima durabilidad, ergonomía y rendimiento acústico o visual superior.
-          </p>
-        </div>
-
-        <div
-          style={{
-            background: "#ffffff",
-            padding: 30,
-            borderRadius: 24,
-            border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.03)",
-          }}
-        >
-          <div
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              background: "rgba(131,58,180,0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#833ab4",
-              marginBottom: 16,
-            }}
-          >
-            <Layers size={22} />
-          </div>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: 8, color: "#111113" }}>
-            Ecosistema Digital
-          </h3>
-          <p style={{ fontSize: "0.9rem", color: "#6e6e73", lineHeight: 1.6 }}>
-            Herramientas automatizadas como Excel Pro Cleaner, plantillas SaaS y librerías de shaders creadas para multiplicar la productividad.
-          </p>
-        </div>
-
-        <div
-          style={{
-            background: "#ffffff",
-            padding: 30,
-            borderRadius: 24,
-            border: "1px solid rgba(0,0,0,0.06)",
-            boxShadow: "0 10px 30px rgba(0,0,0,0.03)",
-          }}
-        >
-          <div
-            style={{
-              width: 44,
-              height: 44,
-              borderRadius: 12,
-              background: "rgba(39,201,63,0.08)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              color: "#27c93f",
-              marginBottom: 16,
-            }}
-          >
-            <ShieldCheck size={22} />
-          </div>
-          <h3 style={{ fontSize: "1.2rem", fontWeight: 700, marginBottom: 8, color: "#111113" }}>
-            Transparencia Total
-          </h3>
-          <p style={{ fontSize: "0.9rem", color: "#6e6e73", lineHeight: 1.6 }}>
-            Operamos con pasarelas certificadas y plataformas globales líderes como Amazon Services LLC y Payhip para total tranquilidad.
-          </p>
-        </div>
-      </div>
-
-      {/* Callout */}
-      <div
-        style={{
-          textAlign: "center",
           background: "#ffffff",
-          border: "1px solid rgba(0, 0, 0, 0.06)",
-          boxShadow: "0 10px 30px rgba(0, 0, 0, 0.03)",
-          color: "#1d1d1f",
-          padding: "48px 30px",
+          padding: "40px 44px",
           borderRadius: 28,
+          border: "1px solid rgba(0,0,0,0.06)",
+          boxShadow: "0 10px 30px rgba(0,0,0,0.03)",
+          marginBottom: 48,
+          color: "#55555d",
+          fontSize: "1rem",
+          lineHeight: 1.8,
+          display: "flex",
+          flexDirection: "column",
+          gap: 18,
         }}
       >
-        <h2 style={{ fontSize: "1.8rem", fontWeight: 800, marginBottom: 12, letterSpacing: "-0.02em", color: "#1d1d1f" }}>
-          Descubre el nuevo estándar de eParadise
-        </h2>
-        <p style={{ color: "#6e6e73", maxWidth: 540, margin: "0 auto 24px", fontSize: "0.95rem" }}>
-          Explora nuestros equipos insignia o ponte en contacto con nuestro equipo para asesoramiento personalizado.
+        <p style={{ margin: 0 }}>
+          <strong>eParadise</strong> nace con el propósito de acercar lo mejor de la innovación tecnológica, el desarrollo de software especializado y el conocimiento digital a profesionales, creadores y entusiastas que buscan herramientas confiables de alto rendimiento.
         </p>
-        <div style={{ display: "flex", justifyContent: "center", gap: 14, flexWrap: "wrap" }}>
-          <Link href='/fisicos' className='btn-apple-primary'>
-            <span>Ver Hardware</span>
-            <ArrowRight size={16} />
-          </Link>
-          <Link
-            href='/contacto'
-            className='btn-apple-glass'
-            style={{ background: "#ffffff", color: "#1d1d1f", borderColor: "rgba(0,0,0,0.12)" }}
-          >
-            <span>Contactar</span>
-          </Link>
-        </div>
+        <p style={{ margin: 0 }}>
+          Nuestro catálogo reúne una selección rigurosa en tres áreas clave: <strong>Hardware</strong> de vanguardia evaluado por su calidad constructiva, ergonomía y desempeño; soluciones de <strong>Software</strong> diseñadas para automatizar procesos y multiplicar la productividad; y una biblioteca de <strong>Ebooks</strong> orientada al aprendizaje práctico y la actualización continua.
+        </p>
+        <p style={{ margin: 0 }}>
+          En eParadise priorizamos la transparencia, la claridad técnica y la seguridad en cada recomendación. Por ello, todas las adquisiciones se gestionan a través de plataformas globales líderes y certificadas como <strong>Amazon</strong> y <strong>Payhip</strong>, garantizando respaldo al comprador, entregas verificadas y acceso digital inmediato.
+        </p>
       </div>
     </main>
   );
