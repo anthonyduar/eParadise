@@ -64,7 +64,7 @@ export default function LegalPage() {
               Política de Privacidad
             </h2>
           </div>
-          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7 }}>
+          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7, textAlign: "justify", textJustify: "inter-word" }}>
             En <strong>eParadise</strong> protegemos rigurosamente tus datos personales. No comercializamos, alquilamos ni transferimos información identificable a terceros. Los datos recopilados a través de formularios de contacto se utilizan exclusivamente para responder tus dudas y prestar servicio de asistencia.
           </p>
         </div>
@@ -85,10 +85,10 @@ export default function LegalPage() {
               Términos y Gestión de Compras
             </h2>
           </div>
-          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7, marginBottom: 14 }}>
+          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7, marginBottom: 14, textAlign: "justify", textJustify: "inter-word" }}>
             <strong>Activos Digitales (Payhip):</strong> La adquisición de plantillas, software, scripts y guías se canaliza mediante Payhip con entrega digital inmediata y encriptación SSL de grado bancario.
           </p>
-          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7 }}>
+          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7, textAlign: "justify", textJustify: "inter-word" }}>
             <strong>Equipos de Hardware (Amazon Afiliados):</strong> eParadise participa en el Programa de Afiliados de la Unión Europea y América de Amazon. Los enlaces dirigidos a Amazon generan una pequeña comisión para mantener la plataforma sin costo adicional para el comprador. Cualquier trámite logístico, garantía o devolución se rige por las políticas del distribuidor oficial en Amazon.
           </p>
         </div>
@@ -109,7 +109,7 @@ export default function LegalPage() {
               Política de Cookies
             </h2>
           </div>
-          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7 }}>
+          <p style={{ fontSize: "0.95rem", color: "#55555d", lineHeight: 1.7, textAlign: "justify", textJustify: "inter-word" }}>
             Utilizamos únicamente cookies técnicas imprescindibles para garantizar la fluidez de navegación, la memoria de sesión del carrito de compras y la seguridad de la infraestructura. Puedes configurar tu navegador para bloquear las cookies si así lo prefieres.
           </p>
         </div>

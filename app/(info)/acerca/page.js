@@ -58,18 +58,20 @@ export default function AboutPage() {
           color: "#55555d",
           fontSize: "1rem",
           lineHeight: 1.8,
+          textAlign: "justify",
+          textJustify: "inter-word",
           display: "flex",
           flexDirection: "column",
           gap: 18,
         }}
       >
-        <p style={{ margin: 0 }}>
+        <p style={{ margin: 0, textAlign: "justify" }}>
           <strong>eParadise</strong> nace con el propósito de acercar lo mejor de la innovación tecnológica, el desarrollo de software especializado y el conocimiento digital a profesionales, creadores y entusiastas que buscan herramientas confiables de alto rendimiento.
         </p>
-        <p style={{ margin: 0 }}>
+        <p style={{ margin: 0, textAlign: "justify" }}>
           Nuestro catálogo reúne una selección rigurosa en tres áreas clave: <strong>Hardware</strong> de vanguardia evaluado por su calidad constructiva, ergonomía y desempeño; soluciones de <strong>Software</strong> diseñadas para automatizar procesos y multiplicar la productividad; y una biblioteca de <strong>Ebooks</strong> orientada al aprendizaje práctico y la actualización continua.
         </p>
-        <p style={{ margin: 0 }}>
+        <p style={{ margin: 0, textAlign: "justify" }}>
           En eParadise priorizamos la transparencia, la claridad técnica y la seguridad en cada recomendación. Por ello, todas las adquisiciones se gestionan a través de plataformas globales líderes y certificadas como <strong>Amazon</strong> y <strong>Payhip</strong>, garantizando respaldo al comprador, entregas verificadas y acceso digital inmediato.
         </p>
       </div>
