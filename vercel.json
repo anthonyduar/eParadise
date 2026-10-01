@@ -1,9 +1,3 @@
 {
-  "cleanUrls": true,
-  "rewrites": [
-    {
-      "source": "/articulo/:slug*",
-      "destination": "/articulo"
-    }
-  ]
+  "framework": "nextjs"
 }
