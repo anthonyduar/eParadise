@@ -103,7 +103,7 @@ export default function ContactPage() {
           Envíanos un Mensaje
         </h2>
 
-        <form
+                <form
           action='https://api.web3forms.com/submit'
           method='POST'
           style={{ display: "flex", flexDirection: "column", gap: 18 }}
@@ -111,7 +111,12 @@ export default function ContactPage() {
           <input
             type='hidden'
             name='access_key'
-            value='f0dbd793-0aee-4e4f-bd81-040d9411522d'
+            value='74baae1a-d4db-41e1-a29c-8b7e936794de'
+          />
+          <input 
+            type='hidden' 
+            name='subject' 
+            value='Mensaje de eParadise' 
           />
 
           <div>
