@@ -45,7 +45,7 @@ export default async function DigitalProductsPage() {
             fontWeight: 700,
             textTransform: "uppercase",
             letterSpacing: "0.14em",
-            color: "#833ab4",
+            color: "#0071e3",
             background: "rgba(131,58,180,0.06)",
             padding: "4px 12px",
             borderRadius: 9999,
@@ -53,13 +53,11 @@ export default async function DigitalProductsPage() {
           }}
         >
           <Layers size={14} />
-          <span>Catálogo de Software</span>
+          <span>Catálogo</span>
         </div>
         <h1 className='secondary-hero-title'>Software</h1>
         <p className='secondary-hero-sub'>
-          Automatizaciones, kits para SaaS, optimizadores como Excel Pro Cleaner
-          y soluciones digitales para acelerar tu desarrollo.
-        </p>
+Software de nivel profesional. Automatizaciones, herramientas SaaS y soluciones digitales para acelerar tu desarrollo.</p>
       </header>
 
       <div

@@ -53,12 +53,11 @@ export default async function PhysicalProductsPage() {
           }}
         >
           <Cpu size={14} />
-          <span>Catálogo de Hardware</span>
+          <span>Catálogo</span>
         </div>
         <h1 className='secondary-hero-title'>Hardware</h1>
         <p className='secondary-hero-sub'>
-          Dispositivos de alto rendimiento, sonido pro, ergonomía y componentes
-          seleccionados con precisión.
+          Dispositivos de alta gama, rendimiento óptimo y máxima durabilidad.
         </p>
       </header>
 

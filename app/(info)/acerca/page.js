@@ -43,8 +43,7 @@ export default function AboutPage() {
         </span>
         <h1 className='secondary-hero-title'>Acerca de eParadise</h1>
         <p className='secondary-hero-sub'>
-          Diseñamos y curamos tecnología avanzada para profesionales, creadores y desarrolladores que buscan escalar sus proyectos sin límites.
-        </p>
+Tu puente hacia la innovación tecnológica para conectar con herramientas confiables, soluciones de software y el ecosistema digital que necesitas.</p>
       </header>
 
       <div

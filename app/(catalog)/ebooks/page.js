@@ -53,7 +53,7 @@ export default async function EbooksProductsPage() {
           }}
         >
           <BookOpen size={14} />
-          <span>Catálogo de Ebooks</span>
+          <span>Catálogo</span>
         </div>
         <h1 className='secondary-hero-title'>Ebooks</h1>
         <p className='secondary-hero-sub'>

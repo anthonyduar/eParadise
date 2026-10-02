@@ -87,7 +87,7 @@ export default function Footer() {
         <div className='apple-footer-directory'>
           {/* Col 1: Hardware dinámico desde WordPress */}
           <div>
-            <h3 className='directory-col-title'>Descubrir Hardware</h3>
+            <h3 className='directory-col-title'>Hardware</h3>
             <ul className='directory-col-links'>
               {hardwareLinks.map((item) => (
                 <li key={item.slug}>
@@ -114,7 +114,7 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href='/digitales'>Librería digital completa →</Link>
+                <Link href='/digitales'>Ver catálogo completo de Software →</Link>
               </li>
             </ul>
           </div>
@@ -148,7 +148,7 @@ export default function Footer() {
                   style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#424245" }}
                 >
                   <InstagramIcon size={12} color='#424245' />
-                  <span>Instagram @eparadiseve</span>
+                  <span>@eparadiseve</span>
                   <ArrowUpRight size={11} opacity={0.7} />
                 </a>
               </li>
@@ -156,10 +156,10 @@ export default function Footer() {
                 <Link href='/contacto'>Contacto</Link>
               </li>
               <li>
-                <Link href='/acerca'>Acerca de Nosotros</Link>
+                <Link href='/acerca'>Acerca de</Link>
               </li>
               <li>
-                <Link href='/legal'>Avisos Legales & Privacidad</Link>
+                <Link href='/legal'>Avisos Legales</Link>
               </li>
             </ul>
           </div>

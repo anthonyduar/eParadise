@@ -44,7 +44,7 @@ export default function ContactPage() {
         >
           Atención & Soporte
         </span>
-        <h1 className='secondary-hero-title'>Ponte en Contacto</h1>
+        <h1 className='secondary-hero-title'>Contacto</h1>
         <p className='secondary-hero-sub'>
           Estamos a tu disposición para resolver dudas sobre productos, pedidos
           o licenciamiento digital.
