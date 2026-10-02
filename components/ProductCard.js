@@ -1,140 +1,62 @@
 import Link from "next/link";
-import Image from "next/image";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { ExternalLink } from "lucide-react";
 
 export default function ProductCard({ product }) {
   const isAmazon = product.tipo === "amazon";
   const tipoProducto =
     product.tipo_de_producto || (isAmazon ? "hardware" : "software");
-  const badgeLabel =
-    tipoProducto === "ebook"
-      ? "Ebook"
-      : tipoProducto === "software"
-        ? "Software"
-        : "Hardware";
+
+  // Corta el título antes de los 2 puntos ":" si existen
+  const rawTitle = product.titulo || "";
+  const cleanTitle = rawTitle.includes(":")
+    ? rawTitle.split(":")[0].trim()
+    : rawTitle.trim();
+
+  const kickerLabel = "Nuevo";
 
   return (
-    <article
-      style={{
-        background: "#ffffff",
-        borderRadius: 20,
-        border: "1px solid rgba(0, 0, 0, 0.07)",
-        boxShadow: "0 8px 30px rgba(0, 0, 0, 0.04)",
-        overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        transition: "transform 0.3s ease, box-shadow 0.3s ease",
-      }}
-    >
-      <div style={{ position: "relative", width: "100%", height: 210, background: "#f5f5f7" }}>
-        <Image
+    <article className='apple-product-card-unit'>
+      {/* 1. Card Blanca Alargada Superior (Foto adentro grande y completa) */}
+      <Link
+        href={`/articulo/${product.slug}`}
+        className='apple-product-media-card'
+        aria-label={cleanTitle}
+      >
+        <img
           src={product.imagen_url || "/img/logo.png"}
-          alt={product.titulo}
-          fill
-          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
-          style={{ objectFit: "contain", padding: "16px" }}
-          referrerPolicy="no-referrer"
-          priority={false}
+          alt={cleanTitle}
+          className='apple-product-img'
         />
-        <div
-          style={{
-            position: "absolute",
-            top: 12,
-            right: 12,
-            background: "rgba(255, 255, 255, 0.92)",
-            backdropFilter: "blur(8px)",
-            border: "1px solid rgba(0, 0, 0, 0.08)",
-            color: "#1d1d1f",
-            fontSize: "0.7rem",
-            fontWeight: 700,
-            padding: "4px 10px",
-            borderRadius: 9999,
-          }}
-        >
-          {badgeLabel}
-        </div>
+      </Link>
+
+      {/* 2. Puntos de variación como en la imagen de referencia */}
+      <div className='apple-card-dots' aria-hidden='true'>
+        <span className='apple-card-dot' />
+        <span className='apple-card-dot active' />
       </div>
 
-      <div style={{ padding: 20, display: "flex", flexDirection: "column", flexGrow: 1 }}>
-        <h3
-          style={{
-            fontSize: "1.1rem",
-            fontWeight: 700,
-            color: "#111113",
-            marginBottom: 8,
-            lineHeight: 1.3,
-            display: "-webkit-box",
-            WebkitLineClamp: 2,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-          }}
-        >
-          {product.titulo}
-        </h3>
+      {/* 3. Textos y botones AFUERA de la card abajo */}
+      <div className='apple-product-info-outside'>
+        <span className='apple-card-kicker'>{kickerLabel}</span>
+        <h3 className='apple-card-title'>{cleanTitle}</h3>
+        <p className='apple-card-desc'>{product.resumen}</p>
 
-        <p
-          style={{
-            fontSize: "0.85rem",
-            lineHeight: 1.5,
-            color: "#6e6e73",
-            marginBottom: 20,
-            textAlign: "justify",
-            textJustify: "inter-word",
-            display: "-webkit-box",
-            WebkitLineClamp: 3,
-            WebkitBoxOrient: "vertical",
-            overflow: "hidden",
-            flexGrow: 1,
-          }}
-        >
-          {product.resumen}
-        </p>
-
-        <div style={{ display: "flex", gap: 10, marginTop: "auto" }}>
+        <div className='apple-card-actions'>
           <Link
             href={`/articulo/${product.slug}`}
-            style={{
-              flex: 1,
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 6,
-              background: "#f0f0f4",
-              color: "#1d1d1f",
-              textDecoration: "none",
-              fontSize: "0.85rem",
-              fontWeight: 600,
-              padding: "10px 14px",
-              borderRadius: 9999,
-              transition: "background 0.2s ease",
-            }}
+            className='apple-card-btn-primary'
           >
-            <span>Ver más</span>
-            <ArrowRight size={14} />
+            <span>Más información</span>
           </Link>
 
           <a
             href={product.link_compra}
             target='_blank'
             rel='noopener noreferrer'
-            style={{
-              flex: 1,
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
-              gap: 6,
-              background: "#0071e3",
-              color: "#ffffff",
-              textDecoration: "none",
-              fontSize: "0.85rem",
-              fontWeight: 700,
-              padding: "10px 14px",
-              borderRadius: 9999,
-              transition: "opacity 0.2s ease",
-            }}
+            className='apple-card-btn-secondary'
           >
-            <span>Comprar</span>
-            <ExternalLink size={13} />
+            <span>{isAmazon ? "Comprar en Amazon" : "Comprar en Payhip"}</span>
+            <ExternalLink size={12} />
           </a>
         </div>
       </div>

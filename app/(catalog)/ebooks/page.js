@@ -1,7 +1,5 @@
-import Link from "next/link";
 import ProductGrid from "@/components/ProductGrid";
 import { filterProducts, getProducts } from "@/lib/wordpress";
-import { ArrowLeft, BookOpen } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -16,64 +14,28 @@ export default async function EbooksProductsPage() {
   const products = filterProducts(await getProducts(), "ebook");
 
   return (
-    <main className='secondary-page-container' style={{ maxWidth: 1200 }}>
-      <div style={{ marginBottom: 20 }}>
-        <Link
-          href='/'
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            fontSize: "0.85rem",
-            color: "#0071e3",
-            textDecoration: "none",
-            fontWeight: 600,
-          }}
-        >
-          <ArrowLeft size={16} />
-          <span>Volver al inicio</span>
-        </Link>
-      </div>
-
-      <header className='secondary-hero-header'>
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            fontSize: "0.75rem",
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "0.14em",
-            color: "#0071e3",
-            background: "rgba(0,113,227,0.06)",
-            padding: "4px 12px",
-            borderRadius: 9999,
-            marginBottom: 10,
-          }}
-        >
-          <BookOpen size={14} />
-          <span>Catálogo</span>
-        </div>
-        <h1 className='secondary-hero-title'>Ebooks</h1>
-        <p className='secondary-hero-sub'>
+    <main className='apple-subpage-wrapper'>
+      {/* 1. Título grande arriba con fondo blanco estilo Sección 1 del Home, sin botón de volver atrás */}
+      <header className='apple-subpage-hero'>
+        <h1 className='apple-subpage-title'>Ebooks</h1>
+        <p className='apple-subpage-subhead'>
           Guías prácticas, literatura técnica y manuales digitales diseñados para
           potenciar tus conocimientos.
         </p>
       </header>
 
-      <div
-        style={{
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
-          gap: 24,
-        }}
-      >
-        <ProductGrid
-          products={products}
-          emptyMessage='No se encontraron ebooks disponibles en este momento.'
-        />
-      </div>
+      {/* 2. Franja gris clara divisoria como en el Home */}
+      <div className='apple-divider-strip' />
+
+      {/* 3. Cards blancas con separación gris como en el Home */}
+      <section className='apple-catalog-container'>
+        <div className='apple-catalog-grid'>
+          <ProductGrid
+            products={products}
+            emptyMessage='No se encontraron ebooks disponibles en este momento.'
+          />
+        </div>
+      </section>
     </main>
   );
 }

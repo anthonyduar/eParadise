@@ -113,290 +113,229 @@ export default async function ArticlePage({ params }) {
           : "Compra verificada y gestionada de forma segura a través de Payhip.";
 
   return (
-    <main className='article-container'>
-      {/* Breadcrumb Navigation */}
-      <nav
-        style={{
-          display: "flex",
-          alignItems: "center",
-          gap: 8,
-          fontSize: "0.82rem",
-          color: "#86868b",
-          marginBottom: 24,
-        }}
-        aria-label='Migas de pan'
-      >
-        <Link href='/' style={{ color: "#6e6e73", textDecoration: "none" }}>
-          Inicio
-        </Link>
-        <span>/</span>
-        <Link
-          href={categoryHref}
-          style={{ color: "#6e6e73", textDecoration: "none" }}
-        >
-          {categoryLabel}
-        </Link>
-        <span>/</span>
-        <span style={{ color: "#111113", fontWeight: 600 }}>
-          {shortTitle}
-        </span>
-      </nav>
-
-      {/* Back Button */}
-      <div style={{ marginBottom: 24 }}>
-        <Link
-          href='/'
+    <main className='apple-subpage-wrapper'>
+      {/* 1. Título grande arriba con fondo blanco estilo Sección 1 del Home, sin botón de volver atrás */}
+      <header className='apple-subpage-hero'>
+        <span
           style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: 6,
-            fontSize: "0.85rem",
+            fontSize: "0.75rem",
+            fontWeight: 700,
+            textTransform: "uppercase",
+            letterSpacing: "0.14em",
             color: "#0071e3",
-            textDecoration: "none",
-            fontWeight: 600,
+            marginBottom: 8,
+            display: "inline-block",
           }}
         >
-          <ArrowLeft size={16} />
-          <span>Volver al inicio</span>
-        </Link>
-      </div>
+          {`${badgeCategoryLabel} • ${isAmazon ? "Amazon" : "Payhip"}`}
+        </span>
+        <h1 className='apple-subpage-title'>{shortTitle}</h1>
+        {product.resumen && (
+          <p className='apple-subpage-subhead'>{product.resumen}</p>
+        )}
+      </header>
 
-      {/* White Canvas for the Article */}
-      <div className='article-white-canvas'>
-        {/* Article Header */}
-        <header className='article-header'>
-          <span className='article-badge'>
-            {`${badgeCategoryLabel} • ${isAmazon ? "Amazon" : "Payhip"}`}
-          </span>
-          <h1 className='article-title'>{product.titulo}</h1>
-          {product.resumen && (
-            <p
-              style={{
-                fontSize: "1.15rem",
-                lineHeight: 1.6,
-                color: "#55555d",
-                maxWidth: 720,
-                margin: "0 auto",
-              }}
-            >
-              {product.resumen}
-            </p>
-          )}
-        </header>
+      {/* 2. Franja gris clara divisoria como en el Home */}
+      <div className='apple-divider-strip' />
 
-        {/* Hero Image Showcase */}
-        <div className='article-image-box'>
-          <div style={{ maxWidth: 520, width: "100%", position: "relative" }}>
-            <Image
-              src={product.imagen_url || "/img/logo.png"}
-              alt={product.titulo}
-              width={600}
-              height={450}
-              style={{
-                width: "100%",
-                height: "auto",
-                maxHeight: 420,
-                objectFit: "contain",
-                borderRadius: 16,
-              }}
-              priority
-            />
-          </div>
-        </div>
-
-        {/* Article Markdown Body */}
-        <article id='art-cuerpo' className='article-body-content'>
-          {/<\/?[a-z][\s\S]*>/i.test(product.cuerpo || "") ? (
-            <div
-              dangerouslySetInnerHTML={{
-                __html:
-                  product.cuerpo ||
-                  "<p>Contenido detallado en preparación.</p>",
-              }}
-            />
-          ) : (
-            <ReactMarkdown>
-              {product.cuerpo || "Contenido no disponible."}
-            </ReactMarkdown>
-          )}
-        </article>
-
-        {/* Direct Buy Action Card */}
-        <section className='article-action-bar'>
-          <div style={{ textAlign: "left", flex: 1 }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 8,
-                marginBottom: 4,
-              }}
-            >
-              <ShieldCheck size={18} color='#0071e3' />
-              <span
+      {/* 3. Lienzo predominantemente blanco con franja gris alrededor */}
+      <section className='apple-canvas-page-section'>
+        <div className='apple-canvas-container'>
+          {/* Hero Image Showcase */}
+          <div className='article-image-box'>
+            <div style={{ maxWidth: 580, width: "100%", position: "relative" }}>
+              <img
+                src={product.imagen_url || "/img/logo.png"}
+                alt={product.titulo}
                 style={{
-                  fontWeight: 700,
-                  fontSize: "0.95rem",
-                  color: "#111113",
+                  width: "100%",
+                  height: "auto",
+                  maxHeight: 460,
+                  objectFit: "contain",
+                  borderRadius: 0,
+                  display: "block",
+                  margin: "0 auto",
+                  filter: "drop-shadow(0 14px 28px rgba(0,0,0,0.05))",
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Article Markdown Body */}
+          <article id='art-cuerpo' className='article-body-content'>
+            {/<\/?[a-z][\s\S]*>/i.test(product.cuerpo || "") ? (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html:
+                    product.cuerpo ||
+                    "<p>Contenido detallado en preparación.</p>",
+                }}
+              />
+            ) : (
+              <ReactMarkdown>
+                {product.cuerpo || "Contenido no disponible."}
+              </ReactMarkdown>
+            )}
+          </article>
+
+          {/* Direct Buy Action Card */}
+          <section className='article-action-bar'>
+            <div style={{ textAlign: "left", flex: 1 }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 8,
+                  marginBottom: 4,
                 }}
               >
-                {actionBarTitle}
-              </span>
+                <ShieldCheck size={18} color='#0071e3' />
+                <span
+                  style={{
+                    fontWeight: 700,
+                    fontSize: "0.95rem",
+                    color: "#111113",
+                  }}
+                >
+                  {actionBarTitle}
+                </span>
+              </div>
+              <p style={{ fontSize: "0.82rem", color: "#6e6e73", margin: 0 }}>
+                {actionBarDesc}
+              </p>
             </div>
-            <p style={{ fontSize: "0.82rem", color: "#6e6e73", margin: 0 }}>
-              {actionBarDesc}
-            </p>
-          </div>
 
-          <a
-            href={product.link_compra}
-            target='_blank'
-            rel='noopener noreferrer'
-            className={`btn-buy-external ${product.tipo}`}
-          >
-            <span>{isAmazon ? "Comprar en Amazon" : "Comprar en Payhip"}</span>
-            <ExternalLink size={16} />
-          </a>
-        </section>
+            <a
+              href={product.link_compra}
+              target='_blank'
+              rel='noopener noreferrer'
+              className={`btn-buy-external ${product.tipo}`}
+            >
+              <span>{isAmazon ? "Comprar en Amazon" : "Comprar en Payhip"}</span>
+              <ExternalLink size={16} />
+            </a>
+          </section>
 
-        {/* Guarantee and Support Notice */}
-        <div
-          style={{
-            background: "#f5f5f7",
-            border: "1px solid rgba(0,0,0,0.06)",
-            borderRadius: 16,
-            padding: "20px 24px",
-            display: "flex",
-            alignItems: "center",
-            gap: 16,
-          }}
-        >
+          {/* Guarantee and Support Notice */}
           <div
             style={{
-              width: 40,
-              height: 40,
-              borderRadius: "50%",
-              background: "rgba(0,113,227,0.1)",
+              background: "#f5f5f7",
+              border: "1px solid rgba(0,0,0,0.06)",
+              borderRadius: 16,
+              padding: "20px 24px",
               display: "flex",
               alignItems: "center",
-              justifyContent: "center",
-              color: "#0071e3",
-              flexShrink: 0,
-            }}
-          >
-            <Zap size={20} />
-          </div>
-          <div>
-            <h4
-              style={{
-                fontSize: "0.95rem",
-                fontWeight: 700,
-                color: "#111113",
-                marginBottom: 2,
-              }}
-            >
-              Soporte eParadise Garantizado
-            </h4>
-            <p style={{ fontSize: "0.82rem", color: "#6e6e73", margin: 0 }}>
-              ¿Tienes dudas sobre especificaciones o compatibilidad? Contáctanos
-              a través de nuestra{" "}
-              <Link
-                href='/contacto'
-                style={{ color: "#0071e3", textDecoration: "underline" }}
-              >
-                página de contacto
-              </Link>{" "}
-              o en nuestro canal oficial de{" "}
-              <a
-                href='https://www.instagram.com/eparadiseve/'
-                target='_blank'
-                rel='noopener noreferrer'
-                style={{ color: "#0071e3", textDecoration: "underline" }}
-              >
-                Instagram @eparadiseve
-              </a>
-              .
-            </p>
-          </div>
-        </div>
-      </div>
-
-      {/* Related Products Grid */}
-      {related.length > 0 && (
-        <section style={{ paddingTop: 28 }}>
-          <h3
-            style={{
-              fontSize: "1.4rem",
-              fontWeight: 800,
-              letterSpacing: "-0.02em",
-              color: "#111113",
-              marginBottom: 20,
-            }}
-          >
-            Otros artículos relacionados
-          </h3>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
               gap: 16,
             }}
           >
-            {related.map((rel) => (
-              <Link
-                key={rel.slug}
-                href={`/articulo/${rel.slug}`}
+            <div
+              style={{
+                width: 40,
+                height: 40,
+                borderRadius: "50%",
+                background: "rgba(0,113,227,0.1)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                color: "#0071e3",
+                flexShrink: 0,
+              }}
+            >
+              <Zap size={20} />
+            </div>
+            <div>
+              <h4
                 style={{
-                  background: "#fff",
-                  border: "1px solid rgba(0,0,0,0.08)",
-                  borderRadius: 16,
-                  padding: 16,
-                  textDecoration: "none",
-                  color: "inherit",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                  boxShadow: "0 4px 15px rgba(0,0,0,0.03)",
+                  fontSize: "0.95rem",
+                  fontWeight: 700,
+                  color: "#111113",
+                  marginBottom: 2,
                 }}
               >
-                <img
-                  src={rel.imagen_url || "/img/icono.png"}
-                  alt={rel.titulo}
-                  style={{
-                    width: "100%",
-                    height: 140,
-                    objectFit: "cover",
-                    borderRadius: 10,
-                    marginBottom: 12,
-                  }}
-                />
-                <h4
-                  style={{
-                    fontSize: "0.95rem",
-                    fontWeight: 700,
-                    color: "#111113",
-                    marginBottom: 6,
-                    lineHeight: 1.3,
-                  }}
+                Soporte eParadise Garantizado
+              </h4>
+              <p style={{ fontSize: "0.82rem", color: "#6e6e73", margin: 0 }}>
+                ¿Tienes dudas sobre especificaciones o compatibilidad? Contáctanos
+                a través de nuestra{" "}
+                <Link
+                  href='/contacto'
+                  style={{ color: "#0071e3", textDecoration: "underline" }}
                 >
-                  {rel.titulo}
-                </h4>
-                <span
-                  style={{
-                    fontSize: "0.82rem",
-                    color: "#0071e3",
-                    fontWeight: 600,
-                    marginTop: "auto",
-                  }}
+                  página de contacto
+                </Link>{" "}
+                o en nuestro canal oficial de{" "}
+                <a
+                  href='https://www.instagram.com/eparadiseve/'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  style={{ color: "#0071e3", textDecoration: "underline" }}
                 >
-                  Ver artículo →
-                </span>
-              </Link>
-            ))}
+                  Instagram @eparadiseve
+                </a>
+                .
+              </p>
+            </div>
           </div>
-        </section>
-      )}
+        </div>
+
+        {/* Related Products Grid */}
+        {related.length > 0 && (
+          <div style={{ maxWidth: 1024, margin: "36px auto 0", width: "100%" }}>
+            <h3
+              style={{
+                fontSize: "1.4rem",
+                fontWeight: 700,
+                letterSpacing: "-0.015em",
+                color: "#111113",
+                marginBottom: 24,
+                textAlign: "center",
+              }}
+            >
+              Otros artículos relacionados
+            </h3>
+            <div className='apple-catalog-grid'>
+              {related.map((rel) => {
+                const relRaw = rel.titulo || "";
+                const relClean = relRaw.includes(":")
+                  ? relRaw.split(":")[0].trim()
+                  : relRaw.trim();
+                return (
+                  <article key={rel.slug} className='apple-product-card-unit'>
+                    <Link
+                      href={`/articulo/${rel.slug}`}
+                      className='apple-product-media-card'
+                      aria-label={relClean}
+                    >
+                      <img
+                        src={rel.imagen_url || "/img/icono.png"}
+                        alt={relClean}
+                        className='apple-product-img'
+                      />
+                    </Link>
+                    <div className='apple-card-dots' aria-hidden='true'>
+                      <span className='apple-card-dot' />
+                      <span className='apple-card-dot active' />
+                    </div>
+                    <div className='apple-product-info-outside'>
+                      <span className='apple-card-kicker'>Destacado</span>
+                      <h4 className='apple-card-title'>{relClean}</h4>
+                      <p className='apple-card-desc'>{rel.resumen}</p>
+                      <div className='apple-card-actions'>
+                        <Link
+                          href={`/articulo/${rel.slug}`}
+                          className='apple-card-btn-primary'
+                        >
+                          <span>Más información</span>
+                        </Link>
+                      </div>
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
+          </div>
+        )}
+      </section>
     </main>
   );
 }
