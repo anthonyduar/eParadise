@@ -13,9 +13,6 @@ export default function CategoryHeroCarousel({ products = [] }) {
       ? [...carouselList, carouselList[0]]
       : carouselList;
 
-  const activeDot =
-    carouselList.length > 0 ? index % carouselList.length : 0;
-
   // Rotación automática continua cada 5 segundos
   useEffect(() => {
     if (carouselList.length <= 1) return;
@@ -77,30 +74,6 @@ export default function CategoryHeroCarousel({ products = [] }) {
           </div>
         ))}
       </div>
-
-      {carouselList.length > 1 && (
-        <div
-          className='apple-carousel-dots'
-          style={{ bottom: "6px" }}
-          role='tablist'
-          aria-label='Diapositivas de la categoría'
-        >
-          {carouselList.map((item, idx) => (
-            <button
-              key={item.slug || idx}
-              type='button'
-              role='tab'
-              aria-selected={idx === activeDot}
-              aria-label={`Mostrar diapositiva ${idx + 1}`}
-              className={`apple-carousel-dot ${idx === activeDot ? "active" : ""}`}
-              onClick={() => {
-                setTransition(true);
-                setIndex(idx);
-              }}
-            />
-          ))}
-        </div>
-      )}
     </div>
   );
 }

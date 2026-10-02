@@ -193,17 +193,7 @@ export default async function ArticlePage({ params }) {
           </section>
 
           {/* Guarantee and Support Notice */}
-          <div
-            style={{
-              background: "#f5f5f7",
-              border: "1px solid rgba(0,0,0,0.06)",
-              borderRadius: 16,
-              padding: "20px 24px",
-              display: "flex",
-              alignItems: "center",
-              gap: 16,
-            }}
-          >
+          <div className='article-support-box'>
             <div
               style={{
                 width: 40,

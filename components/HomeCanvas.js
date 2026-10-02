@@ -43,11 +43,6 @@ export default function HomeCanvas({ products = [] }) {
       ? hardwareCarouselList[hardwareIndex % hardwareCarouselList.length]
       : null;
 
-  const activeSoftwareDot =
-    softwareCarouselList.length > 0
-      ? softwareIndex % softwareCarouselList.length
-      : 0;
-
   // Rotación automática lenta Carrusel 1 (Hardware - Amazon) cuando hay más de 1 producto
   useEffect(() => {
     if (hardwareCarouselList.length <= 1) return;
@@ -107,8 +102,44 @@ export default function HomeCanvas({ products = [] }) {
     ebookProducts.length,
   ]);
 
-  // 3. SECCIÓN 3 - HARDWARE (Cards Grandes en Grilla 2 Columnas - Máximo 2 productos)
-  const hardwareGridCards = hardwareProducts.slice(0, 2).map((item) => ({
+  // Función para seleccionar productos distintos (evitando los más nuevos) que rotan y cambian siempre
+  const getDistinctRandomProducts = (items, count = 2) => {
+    if (!items || items.length === 0) return [];
+    if (items.length <= count) return [...items];
+    // Excluimos el producto más nuevo (índice 0, ya en el Hero superior) si la categoría tiene suficientes productos
+    const pool = items.length > count ? items.slice(1) : [...items];
+    const shuffled = [...pool];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled.slice(0, count);
+  };
+
+  const [hardwareGridItems, setHardwareGridItems] = useState(() => {
+    const pool = hardwareProducts.length > 2 ? hardwareProducts.slice(1) : hardwareProducts;
+    return pool.slice(0, 2);
+  });
+
+  const [softwareGridItems, setSoftwareGridItems] = useState(() => {
+    const pool = digitalProducts.length > 2 ? digitalProducts.slice(1) : digitalProducts;
+    return pool.slice(0, 2);
+  });
+
+  const [ebookGridItems, setEbookGridItems] = useState(() => {
+    const pool = ebookProducts.length > 2 ? ebookProducts.slice(1) : ebookProducts;
+    return pool.slice(0, 2);
+  });
+
+  // Al montar en el cliente y en cada visita/revalidación, aleatoriza para mostrar siempre productos distintos
+  useEffect(() => {
+    setHardwareGridItems(getDistinctRandomProducts(hardwareProducts, 2));
+    setSoftwareGridItems(getDistinctRandomProducts(digitalProducts, 2));
+    setEbookGridItems(getDistinctRandomProducts(ebookProducts, 2));
+  }, [products]);
+
+  // 3. SECCIÓN 3 - HARDWARE (Cards Grandes en Grilla 2 Columnas - Productos rotativos distintos, no los más nuevos)
+  const hardwareGridCards = hardwareGridItems.map((item) => ({
     theme: "card-light",
     title: getModelTitle(item.titulo),
     desc: item.resumen,
@@ -120,8 +151,8 @@ export default function HomeCanvas({ products = [] }) {
     tipo: item.tipo || "amazon",
   }));
 
-  // 4. SECCIÓN 4 - SOFTWARE (Cards Grandes en Grilla 2 Columnas - Máximo 2 productos)
-  const softwareGridCards = digitalProducts.slice(0, 2).map((item) => ({
+  // 4. SECCIÓN 4 - SOFTWARE (Cards Grandes en Grilla 2 Columnas - Productos rotativos distintos, no los más nuevos)
+  const softwareGridCards = softwareGridItems.map((item) => ({
     theme: "card-light",
     title: getModelTitle(item.titulo),
     desc: item.resumen,
@@ -133,8 +164,8 @@ export default function HomeCanvas({ products = [] }) {
     tipo: item.tipo || "payhip",
   }));
 
-  // 5. SECCIÓN 5 - EBOOKS (Cards Grandes en Grilla 2 Columnas - Máximo 2 productos)
-  const ebookGridCards = ebookProducts.slice(0, 2).map((item) => ({
+  // 5. SECCIÓN 5 - EBOOKS (Cards Grandes en Grilla 2 Columnas - Productos rotativos distintos, no los más nuevos)
+  const ebookGridCards = ebookGridItems.map((item) => ({
     theme: "card-light",
     title: getModelTitle(item.titulo),
     desc: item.resumen,
@@ -208,26 +239,6 @@ export default function HomeCanvas({ products = [] }) {
                 />
               </Link>
             </div>
-
-            {hardwareCarouselList.length > 1 && (
-              <div
-                className='apple-carousel-dots'
-                role='tablist'
-                aria-label='Diapositivas de Hardware'
-              >
-                {hardwareCarouselList.map((item, idx) => (
-                  <button
-                    key={item.slug || idx}
-                    type='button'
-                    role='tab'
-                    aria-selected={idx === hardwareIndex}
-                    aria-label={`Mostrar ${item.titulo}`}
-                    className={`apple-carousel-dot ${idx === hardwareIndex ? "active" : ""}`}
-                    onClick={() => setHardwareIndex(idx)}
-                  />
-                ))}
-              </div>
-            )}
           </div>
         </section>
       )}
@@ -306,29 +317,6 @@ export default function HomeCanvas({ products = [] }) {
               ))}
             </div>
           </div>
-
-          {softwareCarouselList.length > 1 && (
-            <div
-              className='apple-carousel-dots'
-              role='tablist'
-              aria-label='Diapositivas de Software'
-            >
-              {softwareCarouselList.map((item, idx) => (
-                <button
-                  key={item.slug || idx}
-                  type='button'
-                  role='tab'
-                  aria-selected={idx === activeSoftwareDot}
-                  aria-label={`Mostrar ${item.titulo}`}
-                  className={`apple-carousel-dot ${idx === activeSoftwareDot ? "active" : ""}`}
-                  onClick={() => {
-                    setSoftwareTransition(true);
-                    setSoftwareIndex(idx);
-                  }}
-                />
-              ))}
-            </div>
-          )}
         </section>
       )}
 
