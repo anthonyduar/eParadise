@@ -50,7 +50,7 @@ export default function CookieBanner() {
           onClick={handleClose}
           aria-label='Cerrar aviso de cookies'
         >
-          <X size={16} />
+          <X size={12} />
         </button>
       </div>
 

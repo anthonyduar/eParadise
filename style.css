@@ -1065,23 +1065,23 @@ html, body {
 }
 
 /* =========================================================
-   COOKIE CONSENT BANNER (eParadise Frosted Style)
+   COOKIE CONSENT BANNER (eParadise Frosted Style) - COMPACTO
    ========================================================= */
 
 .eparadise-cookie-banner {
   position: fixed;
-  bottom: 24px;
+  bottom: 12px; /* 👈 Más bajo en PC (antes 24px) */
   right: 24px;
   z-index: 15000;
   width: calc(100% - 48px);
-  max-width: 430px;
+  max-width: 480px; /* 👈 Contenedor un poco más estrecho (antes 430px) */
   background: rgba(255, 255, 255, 0.94);
   backdrop-filter: saturate(180%) blur(20px);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   border: 1px solid rgba(0, 113, 227, 0.18);
-  border-radius: 22px;
-  padding: 22px 24px;
-  box-shadow: 0 18px 45px rgba(0, 0, 0, 0.12);
+  border-radius: 18px; /* 👈 Esquinas ligeramente más compactas */
+  padding: 28px 18px; /* 👈 Menos relleno interno para ahorrar espacio */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
   color: #1d1d1f;
   animation: appleSlideFade 0.5s var(--ease-apple) both;
 }
@@ -1090,11 +1090,11 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 .cookie-banner-tag {
-  font-size: 0.72rem;
+  font-size: 0.65rem; /* 👈 Letra de categoría más pequeña */
   font-weight: 700;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -1120,10 +1120,10 @@ html, body {
 }
 
 .cookie-banner-text {
-  font-size: 0.94rem;
-  line-height: 1.5;
+  font-size: 0.82rem; /* 👈 Texto principal más pequeño (antes 0.94rem) */
+  line-height: 1.4;
   color: #1d1d1f;
-  margin-bottom: 20px;
+  margin-bottom: 14px; /* 👈 Menos espacio de separación */
 }
 
 .cookie-banner-actions {
@@ -1134,7 +1134,7 @@ html, body {
 }
 
 .cookie-banner-policy {
-  font-size: 0.75rem;
+  font-size: 0.60rem; /* 👈 Enlace más pequeño */
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1152,8 +1152,8 @@ html, body {
   color: #ffffff;
   border: 1px solid var(--apple-blue);
   border-radius: 980px;
-  padding: 9px 24px;
-  font-size: 0.76rem;
+  padding: 10px 18px; /* 👈 Botón más pequeño y estilizado */
+  font-size: 0.60rem; /* 👈 Letra del botón más pequeña */
   font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
@@ -1167,12 +1167,12 @@ html, body {
 
 @media (max-width: 580px) {
   .eparadise-cookie-banner {
-    right: 16px;
-    left: 16px;
-    bottom: 16px;
+    right: 12px;
+    left: 12px;
+    bottom: 8px; /* 👈 Pegadito abajo en pantallas móviles */
     width: auto;
     max-width: none;
-    padding: 20px;
+    padding: 14px;
   }
 }
 
