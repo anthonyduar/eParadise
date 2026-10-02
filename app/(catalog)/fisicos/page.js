@@ -16,12 +16,14 @@ export default async function PhysicalProductsPage() {
 
   return (
     <main className='apple-subpage-wrapper'>
-      {/* 1. Título grande arriba con fondo blanco, texto resumen y carrusel de imágenes grandes de la categoría */}
+      {/* 1. Título grande arriba con fondo blanco, texto resumen flotante y carrusel de imágenes sin contenedor */}
       <header className='apple-subpage-hero'>
-        <h1 className='apple-subpage-title'>Hardware</h1>
-        <p className='apple-subpage-subhead'>
-          Dispositivos de alta gama, rendimiento óptimo y máxima durabilidad.
-        </p>
+        <div className='apple-subpage-hero-content'>
+          <h1 className='apple-subpage-title'>Hardware</h1>
+          <p className='apple-subpage-subhead'>
+            Dispositivos de alta gama, rendimiento óptimo y máxima durabilidad.
+          </p>
+        </div>
 
         {/* Carrusel horizontal solo con las imágenes grandes sin títulos como en la sección 2 del Home */}
         <CategoryHeroCarousel products={products} />

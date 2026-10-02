@@ -16,13 +16,15 @@ export default async function EbooksProductsPage() {
 
   return (
     <main className='apple-subpage-wrapper'>
-      {/* 1. Título grande arriba con fondo blanco estilo Sección 1 del Home, sin botón de volver atrás */}
+      {/* 1. Título grande arriba con fondo blanco, texto resumen flotante y carrusel de imágenes sin contenedor */}
       <header className='apple-subpage-hero'>
-        <h1 className='apple-subpage-title'>Ebooks</h1>
-        <p className='apple-subpage-subhead'>
-          Guías prácticas, literatura técnica y manuales digitales diseñados para
-          potenciar tus conocimientos.
-        </p>
+        <div className='apple-subpage-hero-content'>
+          <h1 className='apple-subpage-title'>Ebooks</h1>
+          <p className='apple-subpage-subhead'>
+            Guías prácticas, literatura técnica y manuales digitales diseñados para
+            potenciar tus conocimientos.
+          </p>
+        </div>
 
         {/* Carrusel horizontal solo con las imágenes grandes sin títulos como en la sección 2 del Home */}
         <CategoryHeroCarousel products={products} />

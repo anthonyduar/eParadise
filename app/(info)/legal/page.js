@@ -8,20 +8,24 @@ export const metadata = {
 export default function LegalPage() {
   return (
     <main className='apple-subpage-wrapper'>
-      {/* 1. Título grande arriba con fondo blanco estilo Sección 1 del Home, sin botón de volver atrás */}
+      {/* 1. Título grande arriba con fondo blanco, texto flotante y la imagen llega cerca de la separación gris */}
       <header className='apple-subpage-hero'>
-        <h1 className='apple-subpage-title'>Avisos Legales</h1>
-        <p className='apple-subpage-subhead'>
-          Información clara sobre la operativa comercial, privacidad y términos de los productos ofertados en eParadise.
-        </p>
+        <div className='apple-subpage-hero-content'>
+          <h1 className='apple-subpage-title'>Avisos Legales</h1>
+          <p className='apple-subpage-subhead'>
+            Información clara sobre la operativa comercial, privacidad y términos de los productos ofertados en eParadise.
+          </p>
+        </div>
 
-        {/* Imagen grande en la misma posición que los carruseles de catálogo */}
-        <div className='apple-subpage-hero-image-box'>
-          <img
-            src='/img/avisos.webp'
-            alt='Avisos Legales eParadise'
-            className='apple-subpage-hero-static-img'
-          />
+        {/* Imagen grande libre de contenedor, al fondo cerca de la separación gris */}
+        <div className='apple-subpage-hero-stage'>
+          <div className='apple-subpage-hero-figure'>
+            <img
+              src='/img/avisos.webp'
+              alt='Avisos Legales eParadise'
+              className='apple-subpage-hero-static-img'
+            />
+          </div>
         </div>
       </header>
 
