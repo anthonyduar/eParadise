@@ -1,4 +1,5 @@
 import ProductGrid from "@/components/ProductGrid";
+import CategoryHeroCarousel from "@/components/CategoryHeroCarousel";
 import { filterProducts, getProducts } from "@/lib/wordpress";
 
 export const dynamic = "force-dynamic";
@@ -15,12 +16,15 @@ export default async function DigitalProductsPage() {
 
   return (
     <main className='apple-subpage-wrapper'>
-      {/* 1. Título grande arriba con fondo blanco estilo Sección 1 del Home, sin botón de volver atrás */}
+      {/* 1. Título grande arriba con fondo blanco, texto resumen y carrusel de imágenes grandes de la categoría */}
       <header className='apple-subpage-hero'>
         <h1 className='apple-subpage-title'>Software</h1>
         <p className='apple-subpage-subhead'>
           Software de nivel profesional. Automatizaciones, herramientas SaaS y soluciones digitales para acelerar tu desarrollo.
         </p>
+
+        {/* Carrusel horizontal solo con las imágenes grandes sin títulos como en la sección 2 del Home */}
+        <CategoryHeroCarousel products={products} />
       </header>
 
       {/* 2. Franja gris clara divisoria como en el Home */}

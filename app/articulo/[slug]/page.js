@@ -288,10 +288,6 @@ export default async function ArticlePage({ params }) {
                         className='apple-product-img'
                       />
                     </Link>
-                    <div className='apple-card-dots' aria-hidden='true'>
-                      <span className='apple-card-dot' />
-                      <span className='apple-card-dot active' />
-                    </div>
                     <div className='apple-product-info-outside'>
                       <span className='apple-card-kicker'>Destacado</span>
                       <h4 className='apple-card-title'>{relClean}</h4>

@@ -14,6 +14,15 @@ export default function LegalPage() {
         <p className='apple-subpage-subhead'>
           Información clara sobre la operativa comercial, privacidad y términos de los productos ofertados en eParadise.
         </p>
+
+        {/* Imagen grande en la misma posición que los carruseles de catálogo */}
+        <div className='apple-subpage-hero-image-box'>
+          <img
+            src='/img/avisos.webp'
+            alt='Avisos Legales eParadise'
+            className='apple-subpage-hero-static-img'
+          />
+        </div>
       </header>
 
       {/* 2. Franja gris clara divisoria como en el Home */}

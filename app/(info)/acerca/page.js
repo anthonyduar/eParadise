@@ -12,6 +12,15 @@ export default function AboutPage() {
         <p className='apple-subpage-subhead'>
           Tu puente hacia la innovación tecnológica para conectar con herramientas confiables, soluciones de software y el ecosistema digital que necesitas.
         </p>
+
+        {/* Imagen grande en la misma posición que los carruseles de catálogo */}
+        <div className='apple-subpage-hero-image-box'>
+          <img
+            src='/img/acerca.webp'
+            alt='Acerca de eParadise'
+            className='apple-subpage-hero-static-img'
+          />
+        </div>
       </header>
 
       {/* 2. Franja gris clara divisoria como en el Home */}

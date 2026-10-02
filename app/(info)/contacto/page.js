@@ -16,6 +16,15 @@ export default function ContactPage() {
         <p className='apple-subpage-subhead'>
           Estamos a tu disposición para resolver dudas sobre productos, pedidos o licenciamiento digital.
         </p>
+
+        {/* Imagen grande en la misma posición que los carruseles de catálogo */}
+        <div className='apple-subpage-hero-image-box'>
+          <img
+            src='/img/contacto.webp'
+            alt='Contacto eParadise'
+            className='apple-subpage-hero-static-img'
+          />
+        </div>
       </header>
 
       {/* 2. Franja gris clara divisoria como en el Home */}

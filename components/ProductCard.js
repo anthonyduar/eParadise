@@ -29,13 +29,7 @@ export default function ProductCard({ product }) {
         />
       </Link>
 
-      {/* 2. Puntos de variación como en la imagen de referencia */}
-      <div className='apple-card-dots' aria-hidden='true'>
-        <span className='apple-card-dot' />
-        <span className='apple-card-dot active' />
-      </div>
-
-      {/* 3. Textos y botones AFUERA de la card abajo */}
+      {/* 2. Textos y botones AFUERA de la card abajo */}
       <div className='apple-product-info-outside'>
         <span className='apple-card-kicker'>{kickerLabel}</span>
         <h3 className='apple-card-title'>{cleanTitle}</h3>
