@@ -5,10 +5,10 @@ import SmoothScroll from "@/components/SmoothScroll";
 import CookieBanner from "@/components/CookieBanner";
 
 export const metadata = {
-  title: "eParadise | Tienda Oficial de Tecnología y Activos Digitales",
-  description: "Descubre los últimos lanzamientos de hardware de alta gama y herramientas digitales en eParadise.",
+  title: "eParadise",
+  description: "Tienda oficial de activos digitales y equipos tecnológicos.",
   openGraph: {
-    title: "eParadise | Tienda Oficial",
+    title: "eParadise",
     description: "Tienda oficial de activos digitales y equipos tecnológicos.",
   },
   icons: { icon: "/img/icono.png" },

@@ -1,21 +1,31 @@
 "use client";
 
-import { Send } from "lucide-react";
+import { useState } from "react";
+import { Send, CheckCircle2, AlertCircle } from "lucide-react";
 
 export default function ContactForm() {
+  const [status, setStatus] = useState("idle");
+
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setStatus("loading");
 
     const form = event.currentTarget;
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      body: new FormData(form),
-    });
-    const result = await response.json();
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: new FormData(form),
+      });
+      const result = await response.json();
 
-    if (response.ok && result.success) {
-      window.alert("¡Enviado!");
-      form.reset();
+      if (response.ok && result.success) {
+        setStatus("success");
+        form.reset();
+      } else {
+        setStatus("error");
+      }
+    } catch {
+      setStatus("error");
     }
   };
 
@@ -30,6 +40,44 @@ export default function ContactForm() {
         value='74baae1a-d4db-41e1-a29c-8b7e936794de'
       />
       <input type='hidden' name='subject' value='Mensaje de eParadise' />
+
+      {status === "success" && (
+        <div
+          style={{
+            padding: "12px 16px",
+            background: "#ecfdf5",
+            border: "1px solid #10b981",
+            borderRadius: 12,
+            color: "#065f46",
+            fontSize: "0.88rem",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <CheckCircle2 size={18} color="#10b981" />
+          <span>¡Mensaje enviado con éxito! Te responderemos a la brevedad.</span>
+        </div>
+      )}
+
+      {status === "error" && (
+        <div
+          style={{
+            padding: "12px 16px",
+            background: "#fef2f2",
+            border: "1px solid #ef4444",
+            borderRadius: 12,
+            color: "#991b1b",
+            fontSize: "0.88rem",
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+          }}
+        >
+          <AlertCircle size={18} color="#ef4444" />
+          <span>Hubo un problema al enviar tu mensaje. Por favor intenta de nuevo.</span>
+        </div>
+      )}
 
       <div>
         <label

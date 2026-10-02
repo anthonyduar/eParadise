@@ -195,11 +195,18 @@ export default function HomeCanvas({ products = [] }) {
               key={`hw-img-${currentHardware.slug}`}
               className='apple-hero-figure carousel-fade-item'
             >
-              <img
-                src={currentHardware.imagen_url || "/img/logo.png"}
-                alt={currentHardware.titulo}
-                className='apple-hero-img'
-              />
+              <Link
+                href={`/articulo/${currentHardware.slug}`}
+                className='apple-hero-img-link'
+                tabIndex={-1}
+                aria-label={currentHardware.titulo}
+              >
+                <img
+                  src={currentHardware.imagen_url || "/img/logo.png"}
+                  alt={currentHardware.titulo}
+                  className='apple-hero-img'
+                />
+              </Link>
             </div>
 
             {hardwareCarouselList.length > 1 && (
@@ -281,11 +288,18 @@ export default function HomeCanvas({ products = [] }) {
 
                   <div className='apple-hero-stage'>
                     <div className='apple-hero-figure'>
-                      <img
-                        src={slideItem.imagen_url || "/img/logo.png"}
-                        alt={slideItem.titulo}
-                        className='apple-hero-img'
-                      />
+                      <Link
+                        href={`/articulo/${slideItem.slug}`}
+                        className='apple-hero-img-link'
+                        tabIndex={-1}
+                        aria-label={slideItem.titulo}
+                      >
+                        <img
+                          src={slideItem.imagen_url || "/img/logo.png"}
+                          alt={slideItem.titulo}
+                          className='apple-hero-img'
+                        />
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -358,11 +372,18 @@ export default function HomeCanvas({ products = [] }) {
                 </div>
 
                 <div className='promo-media-box'>
-                  <img
-                    src={item.imagen_url}
-                    alt={item.title}
-                    className='promo-media-img'
-                  />
+                  <Link
+                    href={`/articulo/${item.slug}`}
+                    className='promo-media-link'
+                    tabIndex={-1}
+                    aria-label={item.title}
+                  >
+                    <img
+                      src={item.imagen_url}
+                      alt={item.title}
+                      className='promo-media-img'
+                    />
+                  </Link>
                 </div>
               </div>
             ))}
@@ -409,11 +430,18 @@ export default function HomeCanvas({ products = [] }) {
                 </div>
 
                 <div className='promo-media-box'>
-                  <img
-                    src={item.imagen_url}
-                    alt={item.title}
-                    className='promo-media-img'
-                  />
+                  <Link
+                    href={`/articulo/${item.slug}`}
+                    className='promo-media-link'
+                    tabIndex={-1}
+                    aria-label={item.title}
+                  >
+                    <img
+                      src={item.imagen_url}
+                      alt={item.title}
+                      className='promo-media-img'
+                    />
+                  </Link>
                 </div>
               </div>
             ))}
@@ -461,11 +489,18 @@ export default function HomeCanvas({ products = [] }) {
                 </div>
 
                 <div className='promo-media-box'>
-                  <img
-                    src={item.imagen_url}
-                    alt={item.title}
-                    className='promo-media-img'
-                  />
+                  <Link
+                    href={`/articulo/${item.slug}`}
+                    className='promo-media-link'
+                    tabIndex={-1}
+                    aria-label={item.title}
+                  >
+                    <img
+                      src={item.imagen_url}
+                      alt={item.title}
+                      className='promo-media-img'
+                    />
+                  </Link>
                 </div>
               </div>
             ))}
