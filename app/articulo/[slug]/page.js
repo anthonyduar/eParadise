@@ -114,52 +114,28 @@ export default async function ArticlePage({ params }) {
 
   return (
     <main className='apple-subpage-wrapper'>
-      {/* 1. Título grande arriba con fondo blanco estilo Sección 1 del Home, sin botón de volver atrás */}
-      <header className='apple-subpage-hero'>
-        <span
-          style={{
-            fontSize: "0.75rem",
-            fontWeight: 700,
-            textTransform: "uppercase",
-            letterSpacing: "0.14em",
-            color: "#0071e3",
-            marginBottom: 8,
-            display: "inline-block",
-          }}
-        >
-          {`${badgeCategoryLabel} • ${isAmazon ? "Amazon" : "Payhip"}`}
-        </span>
-        <h1 className='apple-subpage-title'>{shortTitle}</h1>
-        {product.resumen && (
-          <p className='apple-subpage-subhead'>{product.resumen}</p>
-        )}
+      {/* 1. Título arriba e imagen grande abajo en fondo blanco, estilo Sección 1 del Home, sin etiquetas ni resumen */}
+      <header className='apple-article-hero'>
+        <h1 className='apple-hero-headline' style={{ marginBottom: 12 }}>
+          {shortTitle}
+        </h1>
+        <div className='apple-article-hero-stage'>
+          <img
+            src={product.imagen_url || "/img/logo.png"}
+            alt={shortTitle}
+            className='apple-article-hero-img'
+          />
+        </div>
       </header>
 
       {/* 2. Franja gris clara divisoria como en el Home */}
       <div className='apple-divider-strip' />
 
-      {/* 3. Lienzo predominantemente blanco con franja gris alrededor */}
+      {/* 3. El artículo comenzando con el título completo más allá de los dos puntos ":", sin resumen y con el cuerpo completo */}
       <section className='apple-canvas-page-section'>
         <div className='apple-canvas-container'>
-          {/* Hero Image Showcase */}
-          <div className='article-image-box'>
-            <div style={{ maxWidth: 580, width: "100%", position: "relative" }}>
-              <img
-                src={product.imagen_url || "/img/logo.png"}
-                alt={product.titulo}
-                style={{
-                  width: "100%",
-                  height: "auto",
-                  maxHeight: 460,
-                  objectFit: "contain",
-                  borderRadius: 0,
-                  display: "block",
-                  margin: "0 auto",
-                  filter: "drop-shadow(0 14px 28px rgba(0,0,0,0.05))",
-                }}
-              />
-            </div>
-          </div>
+          {/* Título completo del artículo */}
+          <h2 className='article-full-title'>{product.titulo}</h2>
 
           {/* Article Markdown Body */}
           <article id='art-cuerpo' className='article-body-content'>
