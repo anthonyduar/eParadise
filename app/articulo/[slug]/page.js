@@ -133,7 +133,7 @@ export default async function ArticlePage({ params }) {
 
       {/* 3. El artículo comenzando con el título completo más allá de los dos puntos ":", sin resumen y con el cuerpo completo */}
       <section className='apple-canvas-page-section'>
-        <div className='apple-canvas-container'>
+        <div className='apple-canvas-container article-canvas-compact'>
           {/* Título completo del artículo */}
           <h2 className='article-full-title'>{product.titulo}</h2>
 
@@ -246,14 +246,14 @@ export default async function ArticlePage({ params }) {
 
         {/* Related Products Grid */}
         {related.length > 0 && (
-          <div style={{ maxWidth: 1024, margin: "36px auto 0", width: "100%" }}>
+          <div style={{ maxWidth: 1024, margin: "20px auto 0", width: "100%" }}>
             <h3
               style={{
-                fontSize: "1.4rem",
+                fontSize: "1.35rem",
                 fontWeight: 700,
                 letterSpacing: "-0.015em",
                 color: "#111113",
-                marginBottom: 24,
+                marginBottom: 18,
                 textAlign: "center",
               }}
             >
