@@ -51,7 +51,7 @@ export default function CategoryHeroCarousel({ products = [] }) {
         style={{
           transform: `translate3d(-${index * 100}%, 0, 0)`,
           transition: transition
-            ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
+            ? "transform 1.25s cubic-bezier(0.25, 1, 0.4, 1)"
             : "none",
         }}
       >

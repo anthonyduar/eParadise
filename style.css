@@ -501,16 +501,16 @@ html, body {
 
 /* Carousel & Global Page Entrance Fade Animation */
 .carousel-fade-item {
-  animation: appleSlideFade 0.65s var(--ease-apple) both;
+  animation: appleSlideFade 1.2s cubic-bezier(0.25, 1, 0.4, 1) both;
 }
 @keyframes appleSlideFade {
   from {
     opacity: 0;
-    transform: translateY(12px) scale(0.992);
+    transform: translateY(6px);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
   }
 }
 
