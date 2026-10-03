@@ -21,7 +21,7 @@ export default async function DigitalProductsPage() {
         <div className='apple-subpage-hero-content'>
           <h1 className='apple-subpage-title'>Software</h1>
           <p className='apple-subpage-subhead'>
-Automatizaciones a tu medida, herramientas SaaS avanzadas y soluciones digitales para potenciar tu negocio.          </p>
+Automatizaciones a tu medida, herramientas SaaS avanzadas y soluciones digitales.</p>
         </div>
 
         {/* Carrusel horizontal solo con las imágenes grandes sin títulos como en la sección 2 del Home */}
