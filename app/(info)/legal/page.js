@@ -49,8 +49,6 @@ export default function LegalPage() {
               </p>
             </div>
 
-            <hr style={{ border: "none", borderTop: "1px solid rgba(0,0,0,0.06)" }} />
-
             {/* Section 2 */}
             <div>
               <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
@@ -66,8 +64,6 @@ export default function LegalPage() {
                 <strong>Equipos de Hardware (Amazon Afiliados):</strong> eParadise participa en el Programa de Afiliados de la Unión Europea y América de Amazon. Los enlaces dirigidos a Amazon generan una pequeña comisión para mantener la plataforma sin costo adicional para el comprador. Cualquier trámite logístico, garantía o devolución se rige por las políticas del distribuidor oficial en Amazon.
               </p>
             </div>
-
-            <hr style={{ border: "none", borderTop: "1px solid rgba(0,0,0,0.06)" }} />
 
             {/* Section 3 */}
             <div>
