@@ -243,6 +243,9 @@ export default function HomeCanvas({ products = [] }) {
         </section>
       )}
 
+      {/* Franja gris divisoria tras la Sección 1 visible en la pantalla inicial */}
+      {currentHardware && <div className='apple-divider-strip' />}
+
       {/* =================================================================
           SECCIÓN 2 - SOFTWARE (Carrusel Secundario - Soluciones Payhip)
           Hero Full-Width con desplazamiento lateral continuo
@@ -319,6 +322,9 @@ export default function HomeCanvas({ products = [] }) {
           </div>
         </section>
       )}
+
+      {/* Franja gris divisoria tras la Sección 2 */}
+      {softwareCarouselList.length > 0 && <div className='apple-divider-strip' />}
 
       {/* =================================================================
           SECCIÓN 3 - HARDWARE (Cards Grandes en Grilla 2 Columnas)
