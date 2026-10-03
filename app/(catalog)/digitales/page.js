@@ -21,7 +21,8 @@ export default async function DigitalProductsPage() {
         <div className='apple-subpage-hero-content'>
           <h1 className='apple-subpage-title'>Software</h1>
           <p className='apple-subpage-subhead'>
-            Automatizaciones, herramientas SaaS y soluciones digitales.
+            Automatizaciones, herramientas SaaS 
+            y soluciones digitales.
           </p>
         </div>
 
