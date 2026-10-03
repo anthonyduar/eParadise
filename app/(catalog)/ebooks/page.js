@@ -21,8 +21,7 @@ export default async function EbooksProductsPage() {
         <div className='apple-subpage-hero-content'>
           <h1 className='apple-subpage-title'>Ebooks</h1>
           <p className='apple-subpage-subhead'>
-            Guías prácticas, literatura técnica y manuales digitales diseñados para
-            potenciar tus conocimientos.
+            Guías prácticas, literatura técnica y manuales digitales diseñados.
           </p>
         </div>
 

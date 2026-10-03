@@ -11,7 +11,7 @@ export default function AboutPage() {
         <div className='apple-subpage-hero-content'>
           <h1 className='apple-subpage-title'>Acerca de eParadise</h1>
           <p className='apple-subpage-subhead'>
-            Tu puente hacia la innovación tecnológica para conectar con herramientas confiables, soluciones de software y el ecosistema digital que necesitas.
+            Tu puente hacia la innovación tecnológica para conectar con herramientas confiables.
           </p>
         </div>
 
