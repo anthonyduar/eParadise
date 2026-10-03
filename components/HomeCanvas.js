@@ -5,6 +5,7 @@ import Link from "next/link";
 
 export default function HomeCanvas({ products = [] }) {
   const [hardwareIndex, setHardwareIndex] = useState(0);
+  const [hardwareTransition, setHardwareTransition] = useState(true);
   const [softwareIndex, setSoftwareIndex] = useState(0);
   const [softwareTransition, setSoftwareTransition] = useState(true);
 
@@ -30,6 +31,10 @@ export default function HomeCanvas({ products = [] }) {
 
   // 1. SECCIÓN 1 - HARDWARE (Carrusel Principal - Productos Amazon desde WordPress)
   const hardwareCarouselList = hardwareProducts;
+  const hardwareSlides =
+    hardwareCarouselList.length > 1
+      ? [...hardwareCarouselList, hardwareCarouselList[0]]
+      : hardwareCarouselList;
 
   // 2. SECCIÓN 2 - SOFTWARE (Carrusel Secundario - Soluciones Payhip desde WordPress)
   const softwareCarouselList = digitalProducts;
@@ -38,45 +43,61 @@ export default function HomeCanvas({ products = [] }) {
       ? [...softwareCarouselList, softwareCarouselList[0]]
       : softwareCarouselList;
 
-  const currentHardware =
-    hardwareCarouselList.length > 0
-      ? hardwareCarouselList[hardwareIndex % hardwareCarouselList.length]
-      : null;
-
-  // Rotación automática lenta Carrusel 1 (Hardware - Amazon) cuando hay más de 1 producto
+  // Rotación continua fluida Carrusel 1 (Hardware - Amazon) cada 3 segundos
   useEffect(() => {
     if (hardwareCarouselList.length <= 1) return;
     const interval = setInterval(() => {
-      setHardwareIndex((prev) => (prev + 1) % hardwareCarouselList.length);
-    }, 5500);
+      setHardwareTransition(true);
+      setHardwareIndex((prev) => prev + 1);
+    }, 3000);
     return () => clearInterval(interval);
   }, [hardwareCarouselList.length]);
 
-  // Rotación horizontal continua Carrusel 2 (Software - Payhip) cuando hay más de 1 producto
+  const handleHardwareTransitionEnd = () => {
+    if (hardwareIndex >= hardwareCarouselList.length) {
+      setHardwareTransition(false);
+      setHardwareIndex(0);
+    }
+  };
+
+  useEffect(() => {
+    if (!hardwareTransition && hardwareIndex === 0) {
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setHardwareTransition(true);
+        });
+      });
+      return () => cancelAnimationFrame(id);
+    }
+  }, [hardwareTransition, hardwareIndex]);
+
+  // Rotación continua fluida Carrusel 2 (Software - Payhip) cada 3 segundos
   useEffect(() => {
     if (softwareCarouselList.length <= 1) return;
     const interval = setInterval(() => {
       setSoftwareTransition(true);
       setSoftwareIndex((prev) => prev + 1);
-    }, 6000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [softwareCarouselList.length]);
 
-  // Reinicio silencioso al llegar al clon final para mantener fila continua infinita
-  useEffect(() => {
-    if (softwareCarouselList.length <= 1) return;
-    if (softwareIndex === softwareCarouselList.length) {
-      const timer = setTimeout(() => {
-        setSoftwareTransition(false);
-        setSoftwareIndex(0);
-      }, 820);
-      return () => clearTimeout(timer);
-    }
-    if (softwareIndex > softwareCarouselList.length) {
+  const handleSoftwareTransitionEnd = () => {
+    if (softwareIndex >= softwareCarouselList.length) {
       setSoftwareTransition(false);
       setSoftwareIndex(0);
     }
-  }, [softwareIndex, softwareCarouselList.length]);
+  };
+
+  useEffect(() => {
+    if (!softwareTransition && softwareIndex === 0) {
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setSoftwareTransition(true);
+        });
+      });
+      return () => cancelAnimationFrame(id);
+    }
+  }, [softwareTransition, softwareIndex]);
 
   // Efecto de aparición desde los laterales al hacer scroll y llegar a las secciones 3, 4 y 5
   useEffect(() => {
@@ -181,63 +202,77 @@ export default function HomeCanvas({ products = [] }) {
     <div className='apple-home-wrapper'>
       {/* =================================================================
           SECCIÓN 1 - HARDWARE (Carrusel Principal - Productos Amazon)
-          Hero Full-Width con fondo blanco (#FFFFFF)
+          Hero Full-Width con desplazamiento lateral continuo
          ================================================================= */}
-      {currentHardware && (
+      {hardwareCarouselList.length > 0 && (
         <section
           id='hero-section'
-          className='apple-hero-light'
+          className='apple-hero-light apple-hero-slider-section'
           aria-label='Lanzamientos de Hardware'
         >
-          <div
-            key={`hw-copy-${currentHardware.slug}`}
-            className='apple-hero-content carousel-fade-item'
-          >
-            <h1 className='apple-hero-headline'>
-              {getModelTitle(currentHardware.titulo)}
-            </h1>
-
-            <p className='apple-hero-subhead'>
-              {currentHardware.resumen ||
-                "Diseña tu futuro con tecnología avanzada creada para escalar."}
-            </p>
-
-            <div className='apple-cta-links'>
-              <Link
-                href={`/articulo/${currentHardware.slug}`}
-                className='btn-apple-pill'
-              >
-                <span>Más información</span>
-              </Link>
-
-              <a
-                href={currentHardware.link_compra}
-                target='_blank'
-                rel='noopener noreferrer'
-                className='btn-apple-outline-pill outline-on-light'
-              >
-                <span>Comprar</span>
-              </a>
-            </div>
-          </div>
-
-          <div className='apple-hero-stage'>
+          <div className='apple-slider-viewport'>
             <div
-              key={`hw-img-${currentHardware.slug}`}
-              className='apple-hero-figure carousel-fade-item'
+              className='apple-slider-track'
+              onTransitionEnd={handleHardwareTransitionEnd}
+              style={{
+                transform: `translate3d(-${hardwareIndex * 100}%, 0, 0)`,
+                transition: hardwareTransition
+                  ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
+                  : "none",
+              }}
             >
-              <Link
-                href={`/articulo/${currentHardware.slug}`}
-                className='apple-hero-img-link'
-                tabIndex={-1}
-                aria-label={currentHardware.titulo}
-              >
-                <img
-                  src={currentHardware.imagen_url || "/img/logo.png"}
-                  alt={currentHardware.titulo}
-                  className='apple-hero-img'
-                />
-              </Link>
+              {hardwareSlides.map((slideItem, idx) => (
+                <div
+                  key={`${slideItem.slug || slideItem.id || idx}-hw-${idx}`}
+                  className='apple-slider-slide'
+                >
+                  <div className='apple-hero-content'>
+                    <h1 className='apple-hero-headline'>
+                      {getModelTitle(slideItem.titulo)}
+                    </h1>
+
+                    <p className='apple-hero-subhead'>
+                      {slideItem.resumen ||
+                        "Diseña tu futuro con tecnología avanzada creada para escalar."}
+                    </p>
+
+                    <div className='apple-cta-links'>
+                      <Link
+                        href={`/articulo/${slideItem.slug}`}
+                        className='btn-apple-pill'
+                      >
+                        <span>Más información</span>
+                      </Link>
+
+                      <a
+                        href={slideItem.link_compra}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                        className='btn-apple-outline-pill outline-on-light'
+                      >
+                        <span>Comprar</span>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div className='apple-hero-stage'>
+                    <div className='apple-hero-figure'>
+                      <Link
+                        href={`/articulo/${slideItem.slug}`}
+                        className='apple-hero-img-link'
+                        tabIndex={-1}
+                        aria-label={slideItem.titulo}
+                      >
+                        <img
+                          src={slideItem.imagen_url || "/img/logo.png"}
+                          alt={slideItem.titulo}
+                          className='apple-hero-img'
+                        />
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -256,10 +291,11 @@ export default function HomeCanvas({ products = [] }) {
           <div className='apple-slider-viewport'>
             <div
               className='apple-slider-track'
+              onTransitionEnd={handleSoftwareTransitionEnd}
               style={{
                 transform: `translate3d(-${softwareIndex * 100}%, 0, 0)`,
                 transition: softwareTransition
-                  ? "transform 0.8s cubic-bezier(0.28, 0.11, 0.32, 1)"
+                  ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
                   : "none",
               }}
             >

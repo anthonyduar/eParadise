@@ -332,6 +332,10 @@ html, body {
 .btn-apple-outline-pill.outline-on-light {
   color: var(--apple-blue);
   border-color: var(--apple-blue);
+  background-color: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 .btn-apple-outline-pill.outline-on-light:hover {
   background-color: var(--apple-blue);
@@ -394,7 +398,7 @@ html, body {
 /* Top Copy Block inside Hero - Permanece nítido por encima de la imagen si esta asciende */
 .apple-hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 30;
   max-width: 820px;
   padding: 0 24px;
   flex-shrink: 0;
@@ -405,10 +409,14 @@ html, body {
 .apple-hero-content button,
 .apple-cta-links a,
 .apple-cta-links button {
+  position: relative;
+  z-index: 35;
   pointer-events: auto;
 }
 
 .apple-hero-headline {
+  position: relative;
+  z-index: 30;
   font-size: clamp(2.25rem, 4.3vw, 3.1rem);
   line-height: 1.08;
   font-weight: 600;
@@ -416,6 +424,7 @@ html, body {
   margin-bottom: 6px;
   color: #1d1d1f;
   text-wrap: balance;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.85);
 }
 .apple-hero-fullbleed .apple-hero-headline,
 .apple-hero-light .apple-hero-headline {
@@ -423,6 +432,8 @@ html, body {
 }
 
 .apple-hero-subhead {
+  position: relative;
+  z-index: 30;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   line-height: 1.25;
   font-weight: 400;
@@ -435,6 +446,7 @@ html, body {
   overflow: hidden;
   color: #1d1d1f;
   text-wrap: balance;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 255, 255, 0.8);
 }
 .apple-hero-fullbleed .apple-hero-subhead,
 .apple-hero-light .apple-hero-subhead {
@@ -837,7 +849,7 @@ html, body {
 /* El bloque de título y resumen flota delante de la imagen si esta asciende */
 .apple-subpage-hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 30;
   max-width: 820px;
   padding: 0 24px;
   flex-shrink: 0;
@@ -846,10 +858,14 @@ html, body {
 
 .apple-subpage-hero-content a,
 .apple-subpage-hero-content button {
+  position: relative;
+  z-index: 35;
   pointer-events: auto;
 }
 
 .apple-subpage-title {
+  position: relative;
+  z-index: 30;
   font-size: clamp(2.25rem, 4.3vw, 3.1rem);
   line-height: 1.08;
   font-weight: 600;
@@ -857,9 +873,12 @@ html, body {
   color: #1d1d1f;
   margin-bottom: 6px;
   text-wrap: balance;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.85);
 }
 
 .apple-subpage-subhead {
+  position: relative;
+  z-index: 30;
   font-size: clamp(1rem, 1.5vw, 1.25rem);
   line-height: 1.25;
   font-weight: 400;
@@ -868,6 +887,7 @@ html, body {
   max-width: 620px;
   margin: 0 auto;
   text-wrap: balance;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.95), 0 0 16px rgba(255, 255, 255, 0.8);
 }
 
 /* Escenario y Carrusel Horizontal en Categorías (Hardware, Software, Ebook) - Libre de contenedor */
@@ -1223,6 +1243,12 @@ html, body {
   margin-bottom: 0;
   overflow: hidden;
   animation: appleSlideFade 0.65s var(--ease-apple) both;
+}
+
+.apple-article-hero .apple-hero-headline {
+  position: relative;
+  z-index: 30;
+  text-shadow: 0 1px 4px rgba(255, 255, 255, 0.95), 0 0 20px rgba(255, 255, 255, 0.85);
 }
 
 .apple-article-hero-stage {

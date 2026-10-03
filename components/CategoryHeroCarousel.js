@@ -13,31 +13,33 @@ export default function CategoryHeroCarousel({ products = [] }) {
       ? [...carouselList, carouselList[0]]
       : carouselList;
 
-  // Rotación automática continua cada 5 segundos
+  // Rotación automática continua cada 3 segundos
   useEffect(() => {
     if (carouselList.length <= 1) return;
     const interval = setInterval(() => {
       setTransition(true);
       setIndex((prev) => prev + 1);
-    }, 5000);
+    }, 3000);
     return () => clearInterval(interval);
   }, [carouselList.length]);
 
-  // Reinicio silencioso al llegar al clon para mantener ciclo infinito
-  useEffect(() => {
-    if (carouselList.length <= 1) return;
-    if (index === carouselList.length) {
-      const timer = setTimeout(() => {
-        setTransition(false);
-        setIndex(0);
-      }, 820);
-      return () => clearTimeout(timer);
-    }
-    if (index > carouselList.length) {
+  const handleTransitionEnd = () => {
+    if (index >= carouselList.length) {
       setTransition(false);
       setIndex(0);
     }
-  }, [index, carouselList.length]);
+  };
+
+  useEffect(() => {
+    if (!transition && index === 0) {
+      const id = requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTransition(true);
+        });
+      });
+      return () => cancelAnimationFrame(id);
+    }
+  }, [transition, index]);
 
   if (!products || products.length === 0) return null;
 
@@ -45,10 +47,11 @@ export default function CategoryHeroCarousel({ products = [] }) {
     <div className='apple-category-slider-viewport'>
       <div
         className='apple-category-slider-track'
+        onTransitionEnd={handleTransitionEnd}
         style={{
           transform: `translate3d(-${index * 100}%, 0, 0)`,
           transition: transition
-            ? "transform 0.8s cubic-bezier(0.28, 0.11, 0.32, 1)"
+            ? "transform 0.7s cubic-bezier(0.25, 1, 0.5, 1)"
             : "none",
         }}
       >
