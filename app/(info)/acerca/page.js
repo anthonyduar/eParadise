@@ -19,7 +19,7 @@ export default function AboutPage() {
         <div className='apple-subpage-hero-stage'>
           <div className='apple-subpage-hero-figure'>
             <img
-              src='/img/acerca.webp'
+              src='/img/logosinfondo.png'
               alt='Acerca de eParadise'
               className='apple-subpage-hero-static-img'
             />
