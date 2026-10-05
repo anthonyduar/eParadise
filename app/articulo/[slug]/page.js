@@ -116,9 +116,22 @@ export default async function ArticlePage({ params }) {
     <main className='apple-subpage-wrapper'>
       {/* 1. Título arriba e imagen grande abajo en fondo blanco, estilo Sección 1 del Home, sin etiquetas ni resumen */}
       <header className='apple-article-hero'>
-        <h1 className='apple-hero-headline' style={{ marginBottom: 12 }}>
-          {shortTitle}
-        </h1>
+        <div className='apple-article-hero-title-box'>
+          <h1 className='apple-hero-headline' style={{ marginBottom: 12 }}>
+            {shortTitle}
+          </h1>
+          <div className='apple-article-hero-floating-wrap'>
+            <a
+              href={product.link_compra}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='apple-article-floating-buy-btn'
+              aria-label={`Comprar ${shortTitle}`}
+            >
+              Comprar
+            </a>
+          </div>
+        </div>
         <div className='apple-article-hero-stage'>
           <img
             src={product.imagen_url || "/img/logo.png"}

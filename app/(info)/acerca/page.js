@@ -32,7 +32,7 @@ export default function AboutPage() {
 
       {/* 3. Lienzo predominantemente blanco con franja gris alrededor */}
       <section className='apple-canvas-page-section'>
-        <div className='apple-canvas-container'>
+        <div className='apple-canvas-container' style={{ maxWidth: 880 }}>
           <div
             style={{
               color: "#333336",
