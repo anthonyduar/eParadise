@@ -21,7 +21,7 @@ export default function LegalPage() {
         <div className='apple-subpage-hero-stage'>
           <div className='apple-subpage-hero-figure'>
             <img
-              src='/img/avisos.webp'
+              src='/img/logotipo-gris.webp'
               alt='Avisos Legales eParadise'
               className='apple-subpage-hero-static-img'
             />

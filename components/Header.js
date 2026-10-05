@@ -101,7 +101,7 @@ export default function Header() {
               }
             }}
           >
-            <img src='/img/icono.png' alt='eParadise Logo' />
+            <img src='/img/isotipo.webp' alt='eParadise Logo' />
             <span>eParadise</span>
           </Link>
 
