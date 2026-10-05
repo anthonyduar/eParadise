@@ -25,8 +25,32 @@ export default function Header() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  const closeMobileMenu = () => {
+    if (typeof window !== "undefined" && window.history.state?.mobileMenuOpen) {
+      window.history.back();
+    } else {
+      setMobileMenuOpen(false);
+    }
+  };
+
   useEffect(() => {
     if (!mobileMenuOpen) return;
+
+    // Push history state so the phone's physical/virtual back button closes the menu
+    window.history.pushState({ mobileMenuOpen: true }, "");
+
+    const handlePopState = () => {
+      setMobileMenuOpen(false);
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeMobileMenu();
+      }
+    };
+
+    window.addEventListener("popstate", handlePopState);
+    window.addEventListener("keydown", handleKeyDown);
 
     const prevBodyOverflow = document.body.style.overflow;
     const prevHtmlOverflow = document.documentElement.style.overflow;
@@ -37,6 +61,8 @@ export default function Header() {
     }
 
     return () => {
+      window.removeEventListener("popstate", handlePopState);
+      window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = prevBodyOverflow;
       document.documentElement.style.overflow = prevHtmlOverflow;
       if (window.lenis) {
@@ -175,7 +201,7 @@ export default function Header() {
             </Link>
             <button
               className='close-search'
-              onClick={() => setMobileMenuOpen(false)}
+              onClick={closeMobileMenu}
               aria-label='Cerrar menú'
               style={{ color: "#f5f5f7", background: "rgba(255,255,255,0.12)" }}
             >

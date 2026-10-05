@@ -126,7 +126,7 @@ export default function SearchModal({ onClose }) {
               cursor: "pointer",
             }}
           >
-            Todos ({products.length})
+            Todos
           </button>
           <button
             type='button'

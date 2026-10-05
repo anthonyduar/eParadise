@@ -272,7 +272,7 @@ export default async function ArticlePage({ params }) {
             >
               Otros artículos relacionados
             </h3>
-            <div className='apple-catalog-grid'>
+            <div className='apple-catalog-grid apple-related-cards-scroll'>
               {related.map((rel) => {
                 const relRaw = rel.titulo || "";
                 const relClean = relRaw.includes(":")
