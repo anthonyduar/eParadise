@@ -1,3 +1,5 @@
+import { ShieldCheck, Layers, Activity } from "lucide-react";
+
 export const metadata = {
   title: "Acerca de eParadise | Innovación & Tecnología",
   description: "Conoce más sobre eParadise, nuestra visión y el estándar de excelencia en hardware, software y ebooks.",
