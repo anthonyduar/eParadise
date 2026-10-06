@@ -79,7 +79,7 @@ export default function Footer() {
               style={{ width: 14, height: 14, borderRadius: 3, verticalAlign: "middle" }}
             />
           </Link>
-          <ChevronRight size={12} color='#6e6e73' />
+          <ChevronRight size={12} color='#ffffff' />
           <span>Catálogo de Lanzamientos</span>
         </div>
 
@@ -145,9 +145,9 @@ export default function Footer() {
                   href='https://www.instagram.com/eparadiseve/'
                   target='_blank'
                   rel='noopener noreferrer'
-                  style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#424245" }}
+                  style={{ display: "inline-flex", alignItems: "center", gap: 6, color: "#ffffff" }}
                 >
-                  <InstagramIcon size={12} color='#424245' />
+                  <InstagramIcon size={12} color='#ffffff' />
                   <span>@eparadiseve</span>
                   <ArrowUpRight size={11} opacity={0.7} />
                 </a>

@@ -710,15 +710,17 @@ html, body {
    ========================================================= */
 
 .apple-footer-global {
-  background-color: #f5f5f7;
-  color: #86868b;
+  background: rgba(22, 22, 23, 0.8);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  color: #ffffff;
   font-size: 12px;
   line-height: 1.33337;
   font-weight: 400;
   letter-spacing: -0.01em;
   padding: 20px 22px 36px;
   margin-top: 12px;
-  border-top: 1px solid #d2d2d7;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .apple-footer-inner {
@@ -727,7 +729,7 @@ html, body {
 }
 
 .apple-footer-disclaimers {
-  border-bottom: 1px solid #d2d2d7;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   padding-bottom: 16px;
   margin-bottom: 16px;
   display: flex;
@@ -735,7 +737,7 @@ html, body {
   gap: 9px;
 }
 .apple-footer-disclaimers p {
-  color: #86868b;
+  color: #ffffff;
 }
 
 .apple-footer-breadcrumbs {
@@ -743,16 +745,17 @@ html, body {
   align-items: center;
   gap: 8px;
   padding-bottom: 16px;
-  border-bottom: 1px solid #d2d2d7;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   margin-bottom: 20px;
-  color: #86868b;
+  color: #ffffff;
 }
 .apple-footer-breadcrumbs a {
-  color: #424245;
+  color: #ffffff;
   text-decoration: none;
 }
 .apple-footer-breadcrumbs a:hover {
-  color: #1d1d1f;
+  color: #ffffff;
+  opacity: 0.8;
   text-decoration: underline;
 }
 
@@ -764,7 +767,7 @@ html, body {
 }
 
 .directory-col-title {
-  color: #1d1d1f;
+  color: #ffffff;
   font-weight: 600;
   margin-bottom: 10px;
   font-size: 12px;
@@ -777,17 +780,18 @@ html, body {
   gap: 8px;
 }
 .directory-col-links a {
-  color: #424245;
+  color: #ffffff;
   text-decoration: none;
-  transition: color 0.2s ease;
+  transition: opacity 0.2s ease;
 }
 .directory-col-links a:hover {
-  color: #1d1d1f;
+  color: #ffffff;
+  opacity: 0.8;
   text-decoration: underline;
 }
 
 .apple-footer-legal-bar {
-  border-top: 1px solid #d2d2d7;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   padding-top: 16px;
   display: flex;
   justify-content: center;
@@ -795,7 +799,7 @@ html, body {
   text-align: center;
   flex-wrap: wrap;
   gap: 12px;
-  color: #86868b;
+  color: #ffffff;
 }
 
 .legal-links-inline {
@@ -804,11 +808,12 @@ html, body {
   flex-wrap: wrap;
 }
 .legal-links-inline a {
-  color: #424245;
+  color: #ffffff;
   text-decoration: none;
 }
 .legal-links-inline a:hover {
-  color: #1d1d1f;
+  color: #ffffff;
+  opacity: 0.8;
   text-decoration: underline;
 }
 
