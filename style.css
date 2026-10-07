@@ -1288,18 +1288,19 @@ html, body {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  gap: 6px;
   background-color: var(--apple-blue);
   color: #ffffff;
   font-size: 15px;
   line-height: 1.2;
-  font-weight: 500;
-  letter-spacing: -0.015em;
-  padding: 8px 24px;
+  font-weight: 400;
+  letter-spacing: -0.022em;
+  padding: 8px 18px;
   border-radius: 980px;
   text-decoration: none;
   border: 1px solid var(--apple-blue);
-  box-shadow: 0 4px 14px rgba(0, 113, 227, 0.3);
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: none;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
   cursor: pointer;
   white-space: nowrap;
 }
@@ -1307,8 +1308,8 @@ html, body {
 .apple-article-floating-buy-btn:hover {
   background-color: var(--apple-blue-hover);
   border-color: var(--apple-blue-hover);
-  transform: scale(1.03);
-  box-shadow: 0 6px 18px rgba(0, 113, 227, 0.42);
+  transform: none;
+  box-shadow: none;
 }
 
 .apple-article-hero-stage {

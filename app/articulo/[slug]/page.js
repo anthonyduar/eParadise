@@ -125,10 +125,10 @@ export default async function ArticlePage({ params }) {
               href={product.link_compra}
               target='_blank'
               rel='noopener noreferrer'
-              className='apple-article-floating-buy-btn'
+              className='btn-apple-pill apple-article-floating-buy-btn'
               aria-label={`Comprar ${shortTitle}`}
             >
-              Comprar
+              <span>Comprar</span>
             </a>
           </div>
         </div>
