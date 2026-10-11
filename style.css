@@ -1482,7 +1482,7 @@ html, body {
   font-size: 1.05rem;
   line-height: 1.8;
   color: #333336;
-  margin-bottom: 48px;
+  margin-bottom: 24px;
   text-align: justify;
   text-justify: inter-word;
   animation: appleSlideFade 0.7s var(--ease-apple) 0.12s both;
@@ -1504,6 +1504,9 @@ html, body {
   margin-bottom: 18px;
   text-align: justify;
   text-justify: inter-word;
+}
+.article-body-content > *:last-child {
+  margin-bottom: 0;
 }
 
 /* =========================================================
