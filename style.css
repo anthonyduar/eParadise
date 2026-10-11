@@ -1496,17 +1496,12 @@ html, body {
   color: #1d1d1f;
   text-align: left;
 }
-.article-body-content p {
-  font-size: 1.22rem;
-  line-height: 1.85;
-  margin-bottom: 22px;
-  text-align: justify;
-  text-justify: inter-word;
+.article-body-content h3 {
+  text-align: left;
 }
-
+.article-body-content p,
 .article-body-content li {
-  font-size: 1.05rem;
-  margin-bottom: 14px;
+  margin-bottom: 18px;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -1981,11 +1976,6 @@ table td.has-text-align-left {
     line-height: 1.15;
     margin: 24px 0 10px;
     letter-spacing: -0.012em;
-  }
-  .article-body-content p {
-    font-size: 1.14rem;
-    line-height: 1.75;
-    margin-bottom: 18px;
   }
 
   /* Textos del footer en móvil vertical pegados a la izquierda */
