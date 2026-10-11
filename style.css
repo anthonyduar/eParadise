@@ -1496,14 +1496,186 @@ html, body {
   color: #1d1d1f;
   text-align: left;
 }
-.article-body-content h3 {
-  text-align: left;
-}
-.article-body-content p,
-.article-body-content li {
-  margin-bottom: 18px;
+.article-body-content p {
+  font-size: 1.22rem;
+  line-height: 1.85;
+  margin-bottom: 22px;
   text-align: justify;
   text-justify: inter-word;
+}
+
+.article-body-content li {
+  font-size: 1.05rem;
+  margin-bottom: 14px;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* =========================================================
+   ESTILOS GLOBALES DE TABLAS (WORDPRESS API, GUTENBERG & MARKDOWN)
+   - Bordes completos visibles y claros (cuadrícula/cuadros)
+   - Celdas y filas con líneas definidas
+   - Filas alternadas con rayas (striped)
+   - Encabezados contrastados y diferenciados
+   - Responsivo con desplazamiento horizontal para pantallas móviles
+   ========================================================= */
+
+/* 1. Contenedores de bloques de tabla de WordPress Gutenberg */
+.wp-block-table,
+figure.wp-block-table,
+.table-responsive {
+  width: 100% !important;
+  max-width: 100%;
+  margin: 28px 0 !important;
+  overflow-x: auto !important;
+  -webkit-overflow-scrolling: touch;
+  border-radius: 12px;
+}
+
+/* 2. Reglas globales para cualquier elemento <table> */
+table,
+.wp-block-table table,
+.article-body-content table,
+.apple-canvas-container table {
+  width: 100% !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+  margin: 24px 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #1d1d1f;
+  background-color: #ffffff;
+  border: 1.5px solid #b0b0b8 !important; /* Borde exterior completo y visible */
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+  text-align: left;
+}
+
+/* 3. Encabezados de tabla (thead y th) */
+table thead,
+.wp-block-table thead,
+.article-body-content table thead {
+  background-color: #ebebef;
+  border-bottom: 2px solid #8e8e93 !important;
+}
+
+table th,
+table thead th,
+.wp-block-table th,
+.article-body-content table th {
+  background-color: #ebebef !important;
+  color: #111113 !important;
+  font-weight: 700 !important;
+  font-size: 0.92rem;
+  letter-spacing: -0.01em;
+  padding: 14px 18px !important;
+  border: 1px solid #c7c7cc !important; /* Cuadrícula completa en cabeceras */
+  border-bottom: 2px solid #8e8e93 !important;
+  text-align: left;
+  vertical-align: middle;
+}
+
+/* 4. Celdas de datos (td) - cuadrícula completa y visible */
+table td,
+.wp-block-table td,
+.article-body-content table td {
+  padding: 12px 18px !important;
+  border: 1px solid #d2d2d7 !important; /* Líneas de celdas claras y visibles */
+  vertical-align: middle;
+  color: #333336;
+  font-size: 0.93rem;
+  background-color: inherit;
+}
+
+/* 5. Filas alternadas con rayas (estilo rayado / striped) */
+table tbody tr:nth-child(even),
+.wp-block-table tbody tr:nth-child(even),
+.article-body-content table tbody tr:nth-child(even),
+.wp-block-table.is-style-stripes tbody tr:nth-child(even) {
+  background-color: #f7f7f9 !important;
+}
+
+table tbody tr:nth-child(odd),
+.wp-block-table tbody tr:nth-child(odd),
+.article-body-content table tbody tr:nth-child(odd),
+.wp-block-table.is-style-stripes tbody tr:nth-child(odd) {
+  background-color: #ffffff !important;
+}
+
+/* 6. Efecto hover interactivo al pasar el cursor */
+table tbody tr:hover,
+.wp-block-table tbody tr:hover,
+.article-body-content table tbody tr:hover {
+  background-color: #eaf2fd !important; /* Azul sutil acorde a eParadise */
+  transition: background-color 0.15s ease;
+}
+
+/* 7. Pie de tabla (tfoot) */
+table tfoot,
+.wp-block-table tfoot,
+.article-body-content table tfoot {
+  background-color: #ebebef;
+  border-top: 2px solid #8e8e93 !important;
+}
+
+table tfoot td,
+table tfoot th,
+.wp-block-table tfoot td,
+.article-body-content table tfoot td {
+  font-weight: 600;
+  border: 1px solid #c7c7cc !important;
+  border-top: 2px solid #8e8e93 !important;
+  padding: 12px 18px !important;
+  color: #111113;
+}
+
+/* 8. Título de tabla (caption) */
+table caption,
+.wp-block-table table caption,
+.article-body-content table caption {
+  caption-side: top;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #6e6e73;
+  text-align: left;
+  padding: 0 0 10px 4px;
+}
+
+/* 9. Clases específicas de alineación generadas por Gutenberg */
+table .has-text-align-center,
+table th.has-text-align-center,
+table td.has-text-align-center {
+  text-align: center !important;
+}
+
+table .has-text-align-right,
+table th.has-text-align-right,
+table td.has-text-align-right {
+  text-align: right !important;
+}
+
+table .has-text-align-left,
+table th.has-text-align-left,
+table td.has-text-align-left {
+  text-align: left !important;
+}
+
+/* 10. Adaptabilidad en dispositivos móviles */
+@media (max-width: 768px) {
+  .article-body-content table,
+  .apple-canvas-container table {
+    display: block !important;
+    overflow-x: auto !important;
+    -webkit-overflow-scrolling: touch !important;
+    width: 100% !important;
+    white-space: nowrap;
+  }
+
+  table th,
+  table td {
+    padding: 10px 14px !important;
+    font-size: 0.86rem !important;
+  }
 }
 
 /* =========================================================
@@ -1809,6 +1981,11 @@ html, body {
     line-height: 1.15;
     margin: 24px 0 10px;
     letter-spacing: -0.012em;
+  }
+  .article-body-content p {
+    font-size: 1.14rem;
+    line-height: 1.75;
+    margin-bottom: 18px;
   }
 
   /* Textos del footer en móvil vertical pegados a la izquierda */
