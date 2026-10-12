@@ -1777,6 +1777,20 @@ iframe,
   min-height: auto !important;
 }
 
+.is-embedded-mode .article-canvas-compact {
+  padding-bottom: 0 !important;
+}
+
+.is-embedded-mode .article-body-content {
+  margin-bottom: 0;
+}
+
+.is-embedded-mode .article-action-bar,
+.is-embedded-mode .article-support-box,
+.is-embedded-mode .article-related-products {
+  display: none !important;
+}
+
 .is-embedded-mode .apple-related-cards-scroll {
   overflow: visible !important;
 }

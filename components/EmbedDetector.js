@@ -8,8 +8,8 @@ import { useEffect } from "react";
  * 1. Adds 'is-embedded-mode' to document.documentElement and document.body
  * 2. Hides headers, footers, cookie banners
  * 3. Removes all internal scrollbars (overflow: visible) so the parent modal handles 100% of scrolling
- * 4. Posts real-time document height messages to the parent window (type: 'eparadise-resize')
- *    so the parent iframe can automatically expand to fit the entire page with zero inner scrollbars.
+ * 4. Posts real-time content height messages to the parent window (type: 'eparadise-resize')
+ *    so the parent iframe can automatically expand to fit the embedded content.
  */
 export default function EmbedDetector() {
   useEffect(() => {
@@ -42,13 +42,16 @@ export default function EmbedDetector() {
           const html = document.documentElement;
           if (!body || !html) return;
 
-          const height = Math.max(
-            body.scrollHeight,
-            body.offsetHeight,
-            html.clientHeight,
-            html.scrollHeight,
-            html.offsetHeight,
-          );
+          const article = document.getElementById("art-cuerpo");
+          const height = article
+            ? Math.ceil(article.getBoundingClientRect().bottom + window.scrollY)
+            : Math.max(
+                body.scrollHeight,
+                body.offsetHeight,
+                html.clientHeight,
+                html.scrollHeight,
+                html.offsetHeight,
+              );
 
           if (window.parent && window.parent !== window) {
             window.parent.postMessage(

@@ -247,7 +247,10 @@ export default async function ArticlePage({ params }) {
 
         {/* Related Products Grid */}
         {related.length > 0 && (
-          <div style={{ maxWidth: 1024, margin: "20px auto 0", width: "100%" }}>
+          <div
+            className='article-related-products'
+            style={{ maxWidth: 1024, margin: "20px auto 0", width: "100%" }}
+          >
             <h3
               style={{
                 fontSize: "1.35rem",
@@ -306,4 +309,3 @@ export default async function ArticlePage({ params }) {
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
 export const dynamicParams = true;
-
