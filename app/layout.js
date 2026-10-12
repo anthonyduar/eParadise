@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import SmoothScroll from "@/components/SmoothScroll";
 import CookieBanner from "@/components/CookieBanner";
+import EmbedDetector from "@/components/EmbedDetector";
 
 export const metadata = {
   title: "eParadise",
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" suppressHydrationWarning className="lenis lenis-smooth">
       <body>
+        <EmbedDetector />
         <SmoothScroll>
           <Header />
           {children}

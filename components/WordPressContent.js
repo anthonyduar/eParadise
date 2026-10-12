@@ -220,12 +220,22 @@ export function transformWordPressEmbeds(content) {
     },
   );
 
-  // 6. Si ya existe un iframe directo en el contenido de WordPress pero sin contenedor adaptado:
+  // 6. Desenvolver iframes dentro de párrafos o figuras de WordPress:
   result = result.replace(
-    /<iframe\b([\s\S]*?)src=["']([^"']+)["']([\s\S]*?)>([\s\S]*?)<\/iframe>/gi,
+    /<p(?:\s+[^>]*)?>\s*(<iframe\b[\s\S]*?<\/iframe>)\s*<\/p>/gi,
+    (match, innerIframe) => innerIframe,
+  );
+
+  // 7. Si ya existe un iframe directo en el contenido de WordPress pero sin contenedor adaptado:
+  result = result.replace(
+    /<iframe\b([\s\S]*?)src=["']([^"']+)["']([\s\S]*?)(?:>([\s\S]*?)<\/iframe>|\/>)/gi,
     (match, beforeSrc, src, afterSrc) => {
       // Evita envolver si ya es parte de nuestra ventana interactiva
-      if (match.includes("wp-interactive") || beforeSrc.includes("wp-interactive") || afterSrc.includes("wp-interactive")) {
+      if (
+        match.includes("wp-interactive") ||
+        beforeSrc.includes("wp-interactive") ||
+        afterSrc.includes("wp-interactive")
+      ) {
         return match;
       }
       return createInteractiveEmbedHtml(src);

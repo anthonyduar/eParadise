@@ -1639,11 +1639,30 @@ html, body {
   color: #0077ed;
 }
 
+/* Regla universal para cualquier iframe que se pegue directamente en el contenido o modal */
+iframe,
+.article-body-content iframe,
+.wp-rendered-entry iframe,
+.apple-canvas-container iframe {
+  width: 100% !important;
+  max-width: 100% !important;
+  height: 750px;
+  min-height: 650px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  box-shadow: 0 6px 28px rgba(0, 0, 0, 0.05);
+  display: block;
+  margin: 28px 0;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+
 /* Marco con recorte CSS explícito para ocultar cabecera o barra de menú */
 .wp-interactive-crop-frame {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 750px;
+  min-height: 650px;
   overflow: hidden;
   background-color: #ffffff;
   clip-path: inset(0 0 0 0);
@@ -1654,21 +1673,81 @@ html, body {
   position: absolute;
   top: calc(-1 * var(--embed-top-crop, 65px)); /* Desplaza arriba para ocultar menú/cabecera externa */
   left: 0;
-  width: 100%;
-  height: calc(100% + var(--embed-top-crop, 65px)); /* Compensa exactamente la altura recortada */
-  border: none;
+  width: 100% !important;
+  height: calc(100% + var(--embed-top-crop, 65px)) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  margin: 0 !important;
   display: block;
   background-color: #ffffff;
 }
 
 @media (max-width: 640px) {
+  iframe,
+  .article-body-content iframe,
+  .wp-rendered-entry iframe,
+  .apple-canvas-container iframe,
   .wp-interactive-crop-frame {
-    height: 480px;
+    height: 580px;
+    min-height: 520px;
   }
   .wp-interactive-iframe {
     top: calc(-1 * var(--embed-top-crop, 55px));
-    height: calc(100% + var(--embed-top-crop, 55px));
+    height: calc(100% + var(--embed-top-crop, 55px)) !important;
   }
+}
+
+/* =========================================================
+   MODO EMBEBIDO / IFRAME (#embed, ?embed=true, o dentro de un iframe)
+   Oculta cabecera, pie de página, aviso de cookies y optimiza el lienzo
+   ========================================================= */
+
+.is-embedded-mode .apple-global-header,
+.is-embedded-mode header.apple-global-header {
+  display: none !important;
+}
+
+.is-embedded-mode .apple-footer-global,
+.is-embedded-mode footer.apple-footer-global {
+  display: none !important;
+}
+
+.is-embedded-mode .eparadise-cookie-banner {
+  display: none !important;
+}
+
+.is-embedded-mode,
+.is-embedded-mode body,
+.is-embedded-mode html {
+  background-color: #ffffff !important;
+}
+
+.is-embedded-mode .apple-subpage-wrapper {
+  padding-top: 0 !important;
+  margin-top: 0 !important;
+}
+
+.is-embedded-mode .apple-article-hero {
+  height: auto !important;
+  min-height: 0 !important;
+  padding: 20px 16px 12px !important;
+}
+
+.is-embedded-mode .apple-article-hero-stage {
+  max-height: 280px;
+}
+
+.is-embedded-mode .apple-canvas-page-section {
+  padding: 0 !important;
+  background-color: #ffffff !important;
+}
+
+.is-embedded-mode .apple-canvas-container {
+  border: none !important;
+  box-shadow: none !important;
+  padding: 16px !important;
+  max-width: 100% !important;
 }
 
 /* =========================================================
