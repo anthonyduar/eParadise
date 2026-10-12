@@ -1721,9 +1721,7 @@ iframe,
 .is-embedded-mode body,
 .is-embedded-mode html {
   background-color: #ffffff !important;
-  overflow: visible !important;
-  overflow-y: visible !important;
-  overflow-x: hidden !important;
+  overflow: hidden !important;
   height: auto !important;
   min-height: auto !important;
 }
