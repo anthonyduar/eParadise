@@ -25,6 +25,16 @@ export default function SmoothScroll({ children }) {
   }, [router]);
 
   useEffect(() => {
+    // Si la página está incrustada dentro de un iframe o con flag #embed,
+    // no inicializamos Lenis para no atrapar el scroll y permitir que el modal principal haga scroll fluido
+    const isEmbedded =
+      typeof window !== "undefined" &&
+      (window.self !== window.top ||
+        window.location.hash.toLowerCase().includes("embed") ||
+        new URLSearchParams(window.location.search).has("embed"));
+
+    if (isEmbedded) return;
+
     // Initialize Lenis smooth scroll engine (as on landonorris.com)
     const lenis = new Lenis({
       duration: 1.15,

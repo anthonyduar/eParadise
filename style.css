@@ -1721,33 +1721,64 @@ iframe,
 .is-embedded-mode body,
 .is-embedded-mode html {
   background-color: #ffffff !important;
+  overflow: visible !important;
+  overflow-y: visible !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+  min-height: auto !important;
 }
 
 .is-embedded-mode .apple-subpage-wrapper {
   padding-top: 0 !important;
   margin-top: 0 !important;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: auto !important;
 }
 
 .is-embedded-mode .apple-article-hero {
   height: auto !important;
   min-height: 0 !important;
-  padding: 20px 16px 12px !important;
+  max-height: none !important;
+  padding: 24px 20px 16px !important;
+  overflow: visible !important;
 }
 
 .is-embedded-mode .apple-article-hero-stage {
-  max-height: 280px;
+  height: auto !important;
+  min-height: 0 !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.is-embedded-mode .apple-article-hero-img {
+  max-height: 420px;
+  width: auto;
+  height: auto;
+  display: block;
+  margin: 0 auto;
 }
 
 .is-embedded-mode .apple-canvas-page-section {
   padding: 0 !important;
   background-color: #ffffff !important;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: auto !important;
 }
 
 .is-embedded-mode .apple-canvas-container {
   border: none !important;
   box-shadow: none !important;
-  padding: 16px !important;
+  padding: 24px 20px !important;
   max-width: 100% !important;
+  overflow: visible !important;
+  height: auto !important;
+  min-height: auto !important;
+}
+
+.is-embedded-mode .apple-related-cards-scroll {
+  overflow: visible !important;
 }
 
 /* =========================================================
