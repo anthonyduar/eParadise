@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getProductBySlug, getProducts } from "@/lib/wordpress";
-import ReactMarkdown from "react-markdown";
+import WordPressContent from "@/components/WordPressContent";
 import {
   ArrowLeft,
   ExternalLink,
@@ -150,21 +150,9 @@ export default async function ArticlePage({ params }) {
           {/* Título completo del artículo */}
           <h2 className='article-full-title'>{product.titulo}</h2>
 
-          {/* Article Markdown Body */}
+          {/* Article WordPress Body Content */}
           <article id='art-cuerpo' className='article-body-content'>
-            {/<\/?[a-z][\s\S]*>/i.test(product.cuerpo || "") ? (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html:
-                    product.cuerpo ||
-                    "<p>Contenido detallado en preparación.</p>",
-                }}
-              />
-            ) : (
-              <ReactMarkdown>
-                {product.cuerpo || "Contenido no disponible."}
-              </ReactMarkdown>
-            )}
+            <WordPressContent content={product.cuerpo} />
           </article>
 
           {/* Direct Buy Action Card */}
